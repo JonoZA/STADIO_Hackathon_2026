@@ -1,19 +1,19 @@
 
 :root {
     /* Above section (hAIre header) */
-    --hero-bg: linear-gradient(180deg, #0d6efd, #002a63);
+    --hero-bg: linear-gradient(170deg, #00008b, #c8a2c8,#93c83e );
     --hero-title-color: blanchedalmond;
     --hero-title-font: Georgia, serif;
     --hero-subtitle-color: blanchedalmond;
 
     /* Below section (Apply / Recruit) */
-    --actions-bg: #ff0404;
-    --action-btn-bg: #198754;
+    --actions-bg:  #b9adce;
+    --action-btn-bg: #c09712de;
     --action-btn-text-color: #ffffff;
     --action-btn-font: 'Segoe UI', Arial, sans-serif;
 
     /* Read our brief button */
-    --brief-btn-bg: #198754;
+    --brief-btn-bg: #c09712de;
     --brief-btn-text-color: #ffffff;
 
     /* Timing (seconds) - tweak to speed up/slow down the intro */
@@ -124,6 +124,15 @@ body {
     animation-delay: calc(var(--t-hero-slide) + var(--t-subtitle-delay) + var(--t-brief-delay));
 }
 
+.action-btn:hover {
+    background-color: #b26e14;
+    color: #ffffff;
+}
+
+.brief-btn:hover {
+    background-color: #b26e14;
+    color: #ffffff;
+}
 .brief-btn {
     background-color: var(--brief-btn-bg);
     color: var(--brief-btn-text-color);
