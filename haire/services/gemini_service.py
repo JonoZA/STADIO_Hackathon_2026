@@ -2,12 +2,96 @@ from google import genai
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 from google.genai import types
-# import fitz
-import time
+from typing import List, Optional
+import time, requests
+import json
+from io import BytesIO
+from pypdf import PdfReader
 
-# start_time = time.time()
-# load_dotenv()
-# cover_letter = """Dear Hiring Manager,
+start_time = time.time()
+load_dotenv()
+client = genai.Client()
+class WorkExperience(BaseModel):
+    job_title: str = Field(description="Role or job title held by the candidate")
+    company: str = Field(description="Company or organization name")
+    duration: str = Field(description="Dates or duration of employment")
+    responsibilities: List[str] = Field(description="Key achievements and duties")
+
+class Education(BaseModel):
+    degree: str = Field(description="Degree, diploma, or certificate title")
+    institution: str = Field(description="School, college, or university name")
+    year: Optional[str] = Field(None, description="Graduation year or date range")
+
+class Project(BaseModel):
+    title: str = Field(description="Project name")
+    description: str = Field(description="Brief summary of the project and technologies used")
+
+# Main schema for the complete review
+class CandidateApplicationReview(BaseModel):
+    professional_summary: str = Field(
+        description="Extracted overview of professional background from the CV"
+    )
+    work_experience: List[WorkExperience] = Field(
+        description="List of prior employment entries"
+    )
+    skills: List[str] = Field(
+        description="List of technical, domain, and soft skills identified"
+    )
+    education: List[Education] = Field(
+        description="Academic background and educational history"
+    )
+    certification: List[str] = Field(
+        description="Professional certifications, licenses, or accreditations"
+    )
+    projects: List[Project] = Field(
+        description="Notable projects or portfolio work mentioned"
+    )
+    cover_letter: Optional[str] = Field(
+        None, description="Extracted content or analysis of the candidate's cover letter"
+    )
+    personal_summary: str = Field(
+        description="AI-generated qualitative assessment of candidate strengths, fit, and potential red flags"
+    )
+    candidate_summary: str = Field(
+        description="High-level executive summary summarizing overall suitability for the target role"
+    )
+
+
+def agent_resume_coverLetter_parser(resumeURL, cover_letter):
+    print("Running agent")
+    prompt = f"""
+        You are an expert HR reviewer. Analyze the candidate's CV and application materials.
+        Extract all requested resume details into their respective structured fields, and synthesize
+        a comprehensive 'personal_summary' and 'candidate_summary' evaluating their fit.
+
+        Candidate Resume:
+        {resumeURL}
+
+        Cover Letter:
+        {cover_letter}
+        """
+    print("Prompt Loaded")
+    req = dict(
+        model="gemini-3.5-flash",
+        input=prompt,
+        # remove response_mime_type for now
+        response_format={
+            "type": "text",
+            "mime_type": "application/json",
+            "schema": CandidateApplicationReview.model_json_schema(),
+        },
+    )
+
+    resp = client.interactions.with_raw_response.create(**req)
+    # print("HTTP_REQUEST.CONTENT.DECODE-----------------\n\n\n")
+    # print(resp.http_request.content.decode())
+
+
+    # return server response body as a dict
+    return resp.http_request.content.decode()
+
+url="https://qfktrunnikcwulzwnlgi.supabase.co/storage/v1/object/public/cv-uploads/d4c5032c-02ca-4919-856b-fdca3cf81716.pdf"
+cover_letter = """Dear Hiring Manager,
 
 # I am writing to express my interest in the Life Sciences Teacher position at your school. I am passionate about education and science, and I am eager to contribute to a learning environment where students are encouraged to develop their knowledge, curiosity, and critical-thinking skills.
 
@@ -17,223 +101,7 @@ import time
 
 # In addition to delivering quality lessons, I value the importance of building positive relationships with students, colleagues, and parents. I am organised, enthusiastic, and willing to contribute to the broader school community through extracurricular activities and other initiatives.
 
-# I would welcome the opportunity to bring my passion for Life Sciences and education to your school. Thank you for considering my application. I look forward to the opportunity to discuss how my skills and enthusiasm could contribute to your school and its students.
-
-# Yours sincerely,
-
-# [Full Name]
-# [Phone Number]
-# [Email Address]
-# """
-
-# life_sciences_teacher_criteria = {
-
-#     "life_sciences_knowledge": {
-#         "description": "Strong knowledge of Life Sciences, including biology, genetics, ecology, human biology and evolution",
-#         "keywords": [
-#             "life sciences",
-#             "biology",
-#             "genetics",
-#             "ecology",
-#             "human biology",
-#             "evolution",
-#             "cell biology"
-#         ],
-#         "weight": 20,
-#         "mandatory": True
-#     },
-
-#     "teaching_qualification": {
-#         "description": "Recognised teaching qualification or education degree",
-#         "keywords": [
-#             "PGCE",
-#             "BEd",
-#             "Bachelor of Education",
-#             "teaching qualification",
-#             "education degree",
-#             "teacher qualification"
-#         ],
-#         "weight": 20,
-#         "mandatory": True
-#     },
-
-#     "teaching_experience": {
-#         "description": "Experience teaching Life Sciences, Biology or a closely related subject",
-#         "keywords": [
-#             "teaching experience",
-#             "life sciences teacher",
-#             "biology teacher",
-#             "science teacher",
-#             "classroom experience",
-#             "teaching"
-#         ],
-#         "weight": 15,
-#         "mandatory": True
-#     },
-
-#     "curriculum_knowledge": {
-#         "description": "Knowledge and experience of relevant school curriculum and assessment requirements",
-#         "keywords": [
-#             "curriculum",
-#             "CAPS",
-#             "assessment",
-#             "lesson planning",
-#             "curriculum planning",
-#             "national curriculum"
-#         ],
-#         "weight": 10,
-#         "mandatory": True
-#     },
-
-#     "lesson_planning": {
-#         "description": "Ability to develop effective and engaging Life Sciences lesson plans",
-#         "keywords": [
-#             "lesson planning",
-#             "lesson plans",
-#             "teaching materials",
-#             "learning activities",
-#             "lesson preparation"
-#         ],
-#         "weight": 8,
-#         "mandatory": False
-#     },
-
-#     "classroom_management": {
-#         "description": "Strong classroom management and ability to maintain a positive learning environment",
-#         "keywords": [
-#             "classroom management",
-#             "discipline",
-#             "student behaviour",
-#             "classroom environment",
-#             "learner management"
-#         ],
-#         "weight": 7,
-#         "mandatory": False
-#     },
-
-#     "communication": {
-#         "description": "Excellent verbal and written communication skills",
-#         "keywords": [
-#             "communication",
-#             "verbal communication",
-#             "written communication",
-#             "presentation",
-#             "interpersonal skills"
-#         ],
-#         "weight": 5,
-#         "mandatory": False
-#     },
-
-#     "student_engagement": {
-#         "description": "Ability to engage students and make Life Sciences interesting and accessible",
-#         "keywords": [
-#             "student engagement",
-#             "learner engagement",
-#             "interactive learning",
-#             "student participation",
-#             "engaging lessons"
-#         ],
-#         "weight": 5,
-#         "mandatory": False
-#     },
-
-#     "practical_science": {
-#         "description": "Ability to conduct and supervise practical Life Sciences experiments and laboratory activities",
-#         "keywords": [
-#             "laboratory",
-#             "laboratory experiments",
-#             "practical experiments",
-#             "science experiments",
-#             "laboratory safety",
-#             "practical science"
-#         ],
-#         "weight": 5,
-#         "mandatory": False
-#     },
-
-#     "technology": {
-#         "description": "Ability to use educational technology and digital tools to support teaching",
-#         "keywords": [
-#             "educational technology",
-#             "technology in education",
-#             "digital learning",
-#             "online learning",
-#             "Microsoft Office",
-#             "Google Classroom",
-#             "interactive technology"
-#         ],
-#         "weight": 3,
-#         "mandatory": False
-#     },
-
-#     "teamwork": {
-#         "description": "Ability to collaborate with teachers, school management, parents and other stakeholders",
-#         "keywords": [
-#             "teamwork",
-#             "collaboration",
-#             "teachers",
-#             "parents",
-#             "school management",
-#             "staff collaboration"
-#         ],
-#         "weight": 2,
-#         "mandatory": False
-#     }
-# }
-
-# pdf = fitz.open("Stadio_hackathon_2026/CVs/Anika_Pillay_CV.pdf")
-# pdfText = ""
-# for page in pdf:
-#     pdfText = pdfText + page.get_text()
-# pdf.close()
-
-# knowledge_base= [cover_letter,pdfText, life_sciences_teacher_criteria ]
-
-# client = genai.Client()
-
-# interaction = client.interactions.create(
-#     model="gemini-3.5-flash",
-#     input=f"""Evaluate candidates and return a personality summary and a summary of how the candidate fits the requirements. Ignore the wieght of a requirement
-#         resumes: {pdfText}
-#         Cover Letter: {cover_letter}
-#         Requirements: {life_sciences_teacher_criteria}
-#         """
-# )
-
-# print(interaction.output_text)
-
-# for i in range(1_000_000):
-#     x = i*2
-# end_time = time.time()
-# print(f"Ran for: {end_time - start_time:.4f} seconds")
-
-# class CandidateEvaluation(BaseModel):
-#     candidate_name: str
-#     match_score: int = Field(description="Score between 0 and 100 based on job fit")
-#     key_strengths: list[str]
-#     missing_skills: list[str]
-#     summary_verdict: str
-
-
-
-# def evaluate_cv_content(cv_text: str, job_description: str) -> dict:
-#     prompt = f"""
-#     Evaluate the following candidate CV against the job requirements.
-    
-#     JOB DESCRIPTION:
-#     {job_description}
-    
-#     CANDIDATE CV:
-#     {cv_text}
-#     """
-
-#     response = ai_client.models.generate_content(
-#         model="gemini-2.5-flash",
-#         contents=prompt,
-#         config=types.GenerateContentConfig(
-#             response_mime_type="application/json",
-#             response_schema=CandidateEvaluation,
-#             temperature=0.2,
-#         ),
-#     )
-#     return response.parsed.model_dump()
+I would welcome the opportunity to bring my passion for Life Sciences and education to your school. Thank you for considering my application. I look forward to the opportunity to discuss how my skills and enthusiasm could contribute to your school and its students.
+"""
+review = agent_resume_coverLetter_parser(url, cover_letter)
+print(review)

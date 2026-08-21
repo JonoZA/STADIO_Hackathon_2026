@@ -1,0 +1,40 @@
+job_title,requirement_id,category,description,keywords,weight,mandatory,threshold
+Grade 10 - 12 Life Science Teacher,REQ001,Knowledge,Strong Life Sciences knowledge,"life sciences|biology|genetics|ecology|human biology|evolution|cell biology",20,True,0.50
+Grade 10 - 12 Life Science Teacher,REQ002,Qualification,Recognised teaching qualification or education degree,"PGCE|BEd|Bachelor of Education|teaching qualification|education degree|teacher qualification",20,True,0.70
+Grade 10 - 12 Life Science Teacher,REQ003,Experience,Experience teaching Life Sciences Biology or a closely related subject,"teaching experience|life sciences teacher|biology teacher|science teacher|classroom experience|teaching",15,True,0.50
+Grade 10 - 12 Life Science Teacher,REQ004,Curriculum,Knowledge of relevant school curriculum and assessment requirements,"curriculum|CAPS|assessment|lesson planning|curriculum planning|national curriculum",10,True,0.50
+Grade 10 - 12 Life Science Teacher,REQ005,Teaching,Ability to develop effective and engaging Life Sciences lesson plans,"lesson planning|lesson plans|teaching materials|learning activities|lesson preparation",8,False,0.50
+Grade 10 - 12 Life Science Teacher,REQ006,Teaching,Strong classroom management,"classroom management|discipline|student behaviour|classroom environment|learner management",7,False,0.50
+Grade 10 - 12 Life Science Teacher,REQ007,Soft Skill,Excellent verbal and written communication,"communication|verbal communication|written communication|presentation|interpersonal skills",5,False,0.50
+Grade 10 - 12 Life Science Teacher,REQ008,Teaching,Ability to engage students,"student engagement|learner engagement|interactive learning|student participation|engaging lessons",5,False,0.50
+Grade 10 - 12 Life Science Teacher,REQ009,Science,Ability to conduct practical Life Sciences experiments,"laboratory|laboratory experiments|practical experiments|science experiments|laboratory safety|practical science",5,False,0.50
+Grade 10 - 12 Life Science Teacher,REQ010,Technology,Ability to use educational technology,"educational technology|technology in education|digital learning|online learning|Microsoft Office|Google Classroom|interactive technology",3,False,0.50
+Grade 10 - 12 Life Science Teacher,REQ011,Soft Skill,Ability to collaborate with teachers management and parents,"teamwork|collaboration|teachers|parents|school management|staff collaboration",2,False,0.50
+Junior Python Developer,REQ101,Technical,Python programming experience,"python|django|flask|fastapi",25,True,0.60
+Junior Python Developer,REQ102,Technical,SQL and database experience,"sql|mysql|postgresql|sqlite|database|databases",15,True,0.50
+Junior Python Developer,REQ103,Technical,Web development experience,"html|css|javascript|web development|api|rest api",10,False,0.50
+Junior Python Developer,REQ104,Experience,Software development experience,"software development|programming|developer|internship|application development",15,True,0.50
+Junior Python Developer,REQ105,Technical,Version control experience,"git|github|version control",8,False,0.50
+Junior Python Developer,REQ106,Education,Relevant degree or qualification,"computer science|information systems|software engineering|computer engineering|IT degree",10,False,0.50
+Junior Python Developer,REQ107,Soft Skill,Problem-solving ability,"problem solving|problem-solving|solving problems|analytical thinking",7,False,0.50
+Junior Python Developer,REQ108,Soft Skill,Teamwork and collaboration,"teamwork|collaboration|team|agile|scrum",5,False,0.50
+Junior Python Developer,REQ109,Soft Skill,Communication skills,"communication|presentation|interpersonal skills",5,False,0.50
+A Pub and Grill waiter,REQ201,Experience,Previous waiter or restaurant experience,"waiter|waitress|restaurant experience|hospitality|food service|restaurant",25,True,0.50
+A Pub and Grill waiter,REQ202,Customer Service,Strong customer service skills,"customer service|customer care|guest service|customer satisfaction",20,True,0.50
+A Pub and Grill waiter,REQ203,Communication,Excellent communication skills,"communication|verbal communication|interpersonal skills",10,True,0.50
+A Pub and Grill waiter,REQ204,Operations,Ability to take food and drink orders accurately,"taking orders|food orders|drink orders|order taking|point of sale|POS",10,False,0.50
+A Pub and Grill waiter,REQ205,Teamwork,Ability to work effectively in a busy team,"teamwork|team|collaboration|busy environment|fast paced",10,False,0.50
+A Pub and Grill waiter,REQ206,Reliability,Reliable and punctual,"reliable|reliability|punctual|punctuality|attendance",10,False,0.50
+A Pub and Grill waiter,REQ207,Cash Handling,Ability to handle payments and cash,"cash handling|payments|cashier|card payments|point of sale|POS",5,False,0.50
+A Pub and Grill waiter,REQ208,Food Service,Knowledge of food safety and hygiene,"food safety|hygiene|food hygiene|health and safety",5,False,0.50
+A Pub and Grill waiter,REQ209,Availability,Ability to work evenings weekends and public holidays,"evenings|weekends|public holidays|shift work|flexible hours",5,False,0.50
+A Senior Accountant,REQ301,Qualification,Accounting degree or professional accounting qualification,"accounting degree|BCom Accounting|CA|ACCA|CIMA|professional accountant",20,True,0.70
+A Senior Accountant,REQ302,Experience,Significant accounting experience,"senior accountant|accountant|accounting experience|financial accounting|years experience",20,True,0.50
+A Senior Accountant,REQ303,Financial Reporting,Strong financial reporting experience,"financial reporting|annual financial statements|financial statements|IFRS|GAAP",15,True,0.50
+A Senior Accountant,REQ304,Financial Control,Experience with budgeting forecasting and financial controls,"budgeting|forecasting|financial controls|internal controls|variance analysis",10,False,0.50
+A Senior Accountant,REQ305,Tax,Knowledge of tax and statutory compliance,"tax|VAT|PAYE|SARS|tax compliance|statutory compliance",8,False,0.50
+A Senior Accountant,REQ306,Systems,Strong Excel and accounting software skills,"Excel|Microsoft Excel|Sage|Pastel|Xero|QuickBooks|accounting software|ERP",8,False,0.50
+A Senior Accountant,REQ307,Analysis,Strong analytical and problem-solving skills,"analytical|analysis|problem solving|financial analysis|critical thinking",7,False,0.50
+A Senior Accountant,REQ308,Leadership,Ability to lead or mentor junior staff,"leadership|mentoring|mentor|supervision|team lead|management",5,False,0.50
+A Senior Accountant,REQ309,Communication,Strong communication and stakeholder management,"communication|stakeholder management|presentation|interpersonal skills",4,False,0.50
+A Senior Accountant,REQ310,Accuracy,High level of accuracy and attention to detail,"attention to detail|accuracy|accurate|detail oriented|detail-oriented",3,False,0.50
