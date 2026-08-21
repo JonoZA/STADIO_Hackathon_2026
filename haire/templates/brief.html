@@ -11,127 +11,127 @@
 </head>
 <body>
 
-    <!-- Background haze animation -->
-    <div class="hero-haze"></div>
+<!-- Background haze animation -->
+<div class="hero-haze"></div>
 
-    <div class="page-wrapper">
+<div class="page-wrapper">
 
-        <!-- Top Right Return to Home Button -->
-        <div class="brief-form">
-            <a href="{{ url_for('view_bp.home') }}" aria-label="Return to homepage">
-                <button class="brief-btn" type="button" aria-label="Return home">
-                    <svg class="brief-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
-                </button>
-                <span class="brief-tooltip">Back to Home</span>
+    <!-- Top Right Return to Home Button -->
+    <div class="brief-form">
+        <a href="{{ url_for('view_bp.home') }}" aria-label="Return to homepage">
+            <button class="brief-btn" type="button" aria-label="Return home">
+                <svg class="brief-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </button>
+            <span class="brief-tooltip">Back to Home</span>
+        </a>
+    </div>
+
+    <main class="brief-page">
+        
+        <!-- Hero Header -->
+        <header class="brief-intro">
+            <h1 class="hero-title">Our Brief</h1>
+            <p class="hero-tagline">The problem we set out to solve, and how team hAIre answers it.</p>
+        </header>
+
+        <!-- Problem / Flow Steps -->
+        <div class="brief-flow">
+
+            <!-- Step 1 -->
+            <div class="brief-row row-left">
+                <div class="brief-card">
+                    <span class="step-badge">01</span>
+                    <h3>WHOSE problem are we solving?</h3>
+                    <p>Recruiters who struggle to find ideal candidates due to limited time when processing vast volumes of applications.</p>
+                </div>
+                
+                <svg class="brief-arrow arrow-right" viewBox="0 0 120 100" aria-hidden="true">
+                    <path d="M10,10 C 10,80 110,20 110,90" fill="none" stroke="url(#gradA)" stroke-width="6" stroke-linecap="round" marker-end="url(#headA)" />
+                    <defs>
+                        <linearGradient id="gradA" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#f59e0b" />
+                            <stop offset="100%" stop-color="#d97706" />
+                        </linearGradient>
+                        <marker id="headA" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
+                            <path d="M0,0 L8,4 L0,8 z" fill="#d97706" />
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="brief-row row-right">
+                <svg class="brief-arrow arrow-left" viewBox="0 0 120 100" aria-hidden="true">
+                    <path d="M110,10 C 110,80 10,20 10,90" fill="none" stroke="url(#gradB)" stroke-width="6" stroke-linecap="round" marker-end="url(#headB)" />
+                    <defs>
+                        <linearGradient id="gradB" x1="100%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#f59e0b" />
+                            <stop offset="100%" stop-color="#d97706" />
+                        </linearGradient>
+                        <marker id="headB" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
+                            <path d="M0,0 L8,4 L0,8 z" fill="#d97706" />
+                        </marker>
+                    </defs>
+                </svg>
+
+                <div class="brief-card">
+                    <span class="step-badge">02</span>
+                    <h3>WHAT is the problem?</h3>
+                    <p>Recruiters are unable to process hundreds or thousands of résumés manually and lack software tailored to do it effectively.</p>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="brief-row row-left">
+                <div class="brief-card">
+                    <span class="step-badge">03</span>
+                    <h3>WHY is this a problem?</h3>
+                    <p>High applicant volume leads to burnout and oversight, preventing hiring teams from accurately uncovering top-tier candidates.</p>
+                </div>
+
+                <svg class="brief-arrow arrow-right" viewBox="0 0 120 100" aria-hidden="true">
+                    <path d="M10,10 C 10,80 110,20 110,90" fill="none" stroke="url(#gradC)" stroke-width="6" stroke-linecap="round" marker-end="url(#headC)" />
+                    <defs>
+                        <linearGradient id="gradC" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#f59e0b" />
+                            <stop offset="100%" stop-color="#d97706" />
+                        </linearGradient>
+                        <marker id="headC" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
+                            <path d="M0,0 L8,4 L0,8 z" fill="#d97706" />
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Solution Card -->
+            <div class="brief-card solution-card">
+                <span class="solution-tag">THE SOLUTION</span>
+                <h2 class="solution-name">hAIre</h2>
+                <p><em>The AI-powered hiring platform.</em> hAIre empowers recruiters to rapidly process thousands of CVs with confidence, ensuring top talent reaches the top of the pile instantly.</p>
+            </div>
+
+        </div>
+
+        <!-- Back Action Button -->
+        <div class="brief-back">
+            <a href="{{ url_for('view_bp.home') }}">
+                <button class="action-btn" type="button">BACK TO HOME</button>
             </a>
         </div>
 
-        <main class="brief-page">
-            
-            <!-- Hero Header -->
-            <header class="brief-intro">
-                <h1 class="hero-title">Our Brief</h1>
-                <p class="hero-tagline">The problem we set out to solve, and how team hAIre answers it.</p>
-            </header>
+    </main>
 
-            <!-- Problem / Flow Steps -->
-            <div class="brief-flow">
+    <!-- Footer -->
+    <footer>
+        <small>
+            Created by Elye Fredricks, Geremie Ishimwe, Leyton Manthopoulos, Jonathan Rajdl & Carl Vlok
+        </small>
+    </footer>
 
-                <!-- Step 1 -->
-                <div class="brief-row row-left">
-                    <div class="brief-card">
-                        <span class="step-badge">01</span>
-                        <h3>WHOSE problem are we solving?</h3>
-                        <p>Recruiters who struggle to find ideal candidates due to limited time when processing vast volumes of applications.</p>
-                    </div>
-                    
-                    <svg class="brief-arrow arrow-right" viewBox="0 0 120 100" aria-hidden="true">
-                        <path d="M10,10 C 10,80 110,20 110,90" fill="none" stroke="url(#gradA)" stroke-width="6" stroke-linecap="round" marker-end="url(#headA)" />
-                        <defs>
-                            <linearGradient id="gradA" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#f59e0b" />
-                                <stop offset="100%" stop-color="#d97706" />
-                            </linearGradient>
-                            <marker id="headA" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
-                                <path d="M0,0 L8,4 L0,8 z" fill="#d97706" />
-                            </marker>
-                        </defs>
-                    </svg>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="brief-row row-right">
-                    <svg class="brief-arrow arrow-left" viewBox="0 0 120 100" aria-hidden="true">
-                        <path d="M110,10 C 110,80 10,20 10,90" fill="none" stroke="url(#gradB)" stroke-width="6" stroke-linecap="round" marker-end="url(#headB)" />
-                        <defs>
-                            <linearGradient id="gradB" x1="100%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#f59e0b" />
-                                <stop offset="100%" stop-color="#d97706" />
-                            </linearGradient>
-                            <marker id="headB" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
-                                <path d="M0,0 L8,4 L0,8 z" fill="#d97706" />
-                            </marker>
-                        </defs>
-                    </svg>
-
-                    <div class="brief-card">
-                        <span class="step-badge">02</span>
-                        <h3>WHAT is the problem?</h3>
-                        <p>Recruiters are unable to process hundreds or thousands of résumés manually and lack software tailored to do it effectively.</p>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="brief-row row-left">
-                    <div class="brief-card">
-                        <span class="step-badge">03</span>
-                        <h3>WHY is this a problem?</h3>
-                        <p>High applicant volume leads to burnout and oversight, preventing hiring teams from accurately uncovering top-tier candidates.</p>
-                    </div>
-
-                    <svg class="brief-arrow arrow-right" viewBox="0 0 120 100" aria-hidden="true">
-                        <path d="M10,10 C 10,80 110,20 110,90" fill="none" stroke="url(#gradC)" stroke-width="6" stroke-linecap="round" marker-end="url(#headC)" />
-                        <defs>
-                            <linearGradient id="gradC" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#f59e0b" />
-                                <stop offset="100%" stop-color="#d97706" />
-                            </linearGradient>
-                            <marker id="headC" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
-                                <path d="M0,0 L8,4 L0,8 z" fill="#d97706" />
-                            </marker>
-                        </defs>
-                    </svg>
-                </div>
-
-                <!-- Solution Card -->
-                <div class="brief-card solution-card">
-                    <span class="solution-tag">THE SOLUTION</span>
-                    <h2 class="solution-name">hAIre</h2>
-                    <p><em>The AI-powered hiring platform.</em> hAIre empowers recruiters to rapidly process thousands of CVs with confidence, ensuring top talent reaches the top of the pile instantly.</p>
-                </div>
-
-            </div>
-
-            <!-- Back Action Button -->
-            <div class="brief-back">
-                <a href="{{ url_for('view_bp.home') }}">
-                    <button class="action-btn" type="button">BACK TO HOME</button>
-                </a>
-            </div>
-
-        </main>
-
-        <!-- Footer -->
-        <footer>
-            <small>
-                Created by Elye Fredricks, Geremie Ishimwe, Leyton Manthopoulos, Jonathan Rajdl & Carl Vlok
-            </small>
-        </footer>
-
-    </div>
+</div>
 
 </body>
 </html>
