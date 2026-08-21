@@ -1,14 +1,9 @@
 from google import genai
 from pydantic import BaseModel, Field
-<<<<<<< HEAD
-from extensions import ai_client
-from pypdf import PdfReader
-=======
 from dotenv import load_dotenv
 from google.genai import types
 import fitz
 import time
->>>>>>> 293890e (Created agent, pdf reader, intepretation and output works)
 
 start_time = time.time()
 load_dotenv()
@@ -33,24 +28,6 @@ Yours sincerely,
 
 life_sciences_teacher_criteria = {
 
-<<<<<<< HEAD
-    response = ai_client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            response_mime_type="application/json",
-            response_schema=CandidateEvaluation,
-            temperature=0.2,
-        ),
-    )
-    return response.parsed.model_dump()
-
-
-
-def extract_pdf_text(file_bytes: bytes) -> str:
-    reader = PdfReader(io.BytesIO(file_bytes))
-    return "\n".join([page.extract_text() or "" for page in reader.pages])
-=======
     "life_sciences_knowledge": {
         "description": "Strong knowledge of Life Sciences, including biology, genetics, ecology, human biology and evolution",
         "keywords": [
@@ -260,4 +237,3 @@ print(f"Ran for: {end_time - start_time:.4f} seconds")
 #         ),
 #     )
 #     return response.parsed.model_dump()
->>>>>>> 293890e (Created agent, pdf reader, intepretation and output works)
