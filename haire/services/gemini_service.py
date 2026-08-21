@@ -72,7 +72,7 @@ def agent_resume_coverLetter_parser(resumeURL, cover_letter):
         """
     print("Prompt Loaded")
     req = dict(
-        model="gemini-3.5-flash",
+        model="gemini-3.6-flash",
         input=prompt,
         # remove response_mime_type for now
         response_format={
@@ -88,7 +88,9 @@ def agent_resume_coverLetter_parser(resumeURL, cover_letter):
 
 
     # return server response body as a dict
-    return resp.http_request.content.decode()
+    data = resp.http_request.content.decode()
+    finalDictionary = json.loads(data.text)
+    return finalDictionary
 
 url="https://qfktrunnikcwulzwnlgi.supabase.co/storage/v1/object/public/cv-uploads/d4c5032c-02ca-4919-856b-fdca3cf81716.pdf"
 cover_letter = """Dear Hiring Manager,
