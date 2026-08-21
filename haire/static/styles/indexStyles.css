@@ -7,7 +7,7 @@
     --hero-subtitle-color: blanchedalmond;
 
     /* Below section (Apply / Recruit) */
-    --actions-bg: #001a3d;
+    --actions-bg: #ff0404;
     --action-btn-bg: #198754;
     --action-btn-text-color: #ffffff;
     --action-btn-font: 'Segoe UI', Arial, sans-serif;
@@ -167,7 +167,6 @@ body {
     align-items: center;
     gap: 1.5rem;
     flex-wrap: wrap;
-
     transform: translateY(150%);
     opacity: 0;
     animation-name: slideUp;
