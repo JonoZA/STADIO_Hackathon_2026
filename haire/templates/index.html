@@ -22,23 +22,33 @@
         <section class="hero-section">
 
             <div class="hero-content">
-                <h1 class="hero-title">hAIre</h1>
+                <div class="title-row">
+                    <h1 class="hero-title">hAIre</h1>
+                    <div class="brief-form">
+                        <a href="{{ url_for('view_bp.brief') }}" aria-label="Read our brief">
+                            <button class="btn brief-btn shadow" type="button" aria-label="Read our brief">
+                                <svg class="brief-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M6 3.5h9l3 3V20.5H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                                    <path d="M15 3.5v3h3M9 11h6M9 14.5h6M9 8h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <span class="brief-tooltip">Read our brief</span>
+                        </a>
+                    </div>
+                </div>
+                <p class="hero-subtitle hero-tagline">Turning your recruitement process from text to Gold</p>
                 <p class="hero-subtitle">Explore this demo of the hAire recruitment tool</p>
                 <p class="hero-subtitle-small">Select whether you are an applicant applying or a recruiter filtering applicants</p>
 
                 <div id="message"></div>
-
-                <form class="brief-form" action="/" method="post">
-                    <button class="btn brief-btn shadow" type="submit">Read our brief</button>
-                </form>
             </div>
 
             <div class="action-buttons">
-                <a href="{{ url_for('view_bp.apply') }}">
+                <a href="{{ url_for('apply') }}">
                     <button class="btn action-btn shadow" type="submit">APPLY NOW</button>
                 </a>
 
-                <a href="{{ url_for('view_bp.recruit') }}">
+                <a href="{{ url_for('recruit') }}">
                     <button class="btn action-btn shadow" type="submit">RECRUIT</button>
                 </a>
             </div>

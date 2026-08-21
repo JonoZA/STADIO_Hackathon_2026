@@ -1,0 +1,231 @@
+:root {
+    --header-h: 64px;
+
+    --hero-bg: linear-gradient(120deg, #084027, #058f5c, #025235, #084027);
+    --hero-title-color: blanchedalmond;
+    --hero-title-font: Georgia, serif;
+    --hero-subtitle-color: blanchedalmond;
+
+    --action-btn-bg: #c09712de;
+    --action-btn-hover-bg: #b26e14;
+    --action-btn-text-color: #ffffff;
+    --action-btn-font: 'Segoe UI', Arial, sans-serif;
+
+    --card-bg: #e8eaf0;
+    --card-text-color: #23262f;
+}
+
+html, body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+    padding-top: var(--header-h);
+    background: var(--hero-bg);
+    color: var(--hero-title-color);
+    font-family: var(--action-btn-font);
+    overflow-x: hidden;
+}
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--hero-bg);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-family: var(--hero-title-font);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--hero-title-color);
+}
+
+.hero-haze {
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        135deg,
+        transparent 42%,
+        rgba(142, 242, 163, 0.382) 50%,
+        transparent 58%
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: hazeSweep 6s ease-in-out infinite alternate;
+}
+
+@keyframes hazeSweep {
+    0% { transform: translate(-25%, 25%); }
+    100% { transform: translate(25%, -25%); }
+}
+
+.brief-page {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+}
+
+.brief-intro {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.brief-intro h2 {
+    font-family: var(--hero-title-font);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    margin: 0 0 0.5rem;
+    color: var(--hero-title-color);
+}
+
+.brief-intro p {
+    margin: 0;
+    color: var(--hero-subtitle-color);
+    font-size: 1.05rem;
+}
+
+.brief-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.brief-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.row-left {
+    justify-content: flex-start;
+}
+
+.row-right {
+    justify-content: flex-end;
+}
+
+.brief-card {
+    background-color: var(--card-bg);
+    color: var(--card-text-color);
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    padding: 1.5rem 1.75rem;
+    width: min(420px, 88vw);
+}
+
+.brief-card h3 {
+    margin: 0 0 0.6rem;
+    font-family: var(--hero-title-font);
+    font-size: 1.15rem;
+    text-align: center;
+}
+
+.brief-card p {
+    margin: 0;
+    line-height: 1.5;
+    text-align: center;
+    color: #3a3d45;
+}
+
+.brief-arrow {
+    width: 100px;
+    height: 85px;
+    flex-shrink: 0;
+}
+
+.arrow-left {
+    order: -1;
+}
+
+.solution-card {
+    width: min(700px, 92vw);
+    margin: 1.5rem auto 0;
+    text-align: center;
+    padding: 2rem 2.25rem;
+}
+
+.solution-card h3 {
+    font-size: 1.3rem;
+}
+
+.solution-name {
+    margin: 0.25rem 0 1rem;
+    font-family: var(--hero-title-font);
+    font-size: 2rem;
+    text-decoration: underline;
+    color: #0b3d24;
+}
+
+.solution-card p {
+    font-size: 1.05rem;
+}
+
+.brief-back {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.brief-back a {
+    text-decoration: none;
+}
+
+.action-btn {
+    background-color: var(--action-btn-bg);
+    color: var(--action-btn-text-color);
+    font-family: var(--action-btn-font);
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.75rem 2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: var(--action-btn-hover-bg);
+}
+
+footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 1rem 0 1.5rem;
+    color: var(--hero-title-color);
+}
+
+@media (max-width: 700px) {
+    .brief-row {
+        flex-direction: column;
+    }
+
+    .row-right {
+        flex-direction: column-reverse;
+    }
+
+    .brief-arrow {
+        transform: rotate(90deg);
+        width: 70px;
+        height: 60px;
+    }
+
+    .brief-card {
+        width: 100%;
+    }
+}
