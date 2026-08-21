@@ -35,11 +35,26 @@
 
     <header class="site-header">
 
-        <a href="{{ url_for('index') }}" class="haire-logo">
-            hAIre
-        </a>
+            <a href="{{ url_for('view_bp.home') }}" class="haire-logo">
+                hAIre
+            </a>
 
     </header>
+
+
+        <!-- Top Right Return to Home Button -->
+        <div class="brief-form">
+            <a href="{{ url_for('view_bp.home') }}" aria-label="Return to homepage">
+                <button class="brief-btn" type="button" aria-label="Return home">
+                    <svg class="brief-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </button>
+                <span class="brief-tooltip">Back to Home</span>
+            </a>
+        </div>
 
 
     <!-- ================================= -->
@@ -173,11 +188,11 @@
 
                         <label class="select-applicant">
 
-                            <input
-                                type="radio"
-                                name="application"
-                                value="john"
-                            >
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="john"
+                                >
 
                             Select
 
@@ -244,11 +259,11 @@
 
                         <label class="select-applicant">
 
-                            <input
-                                type="radio"
-                                name="application"
-                                value="sarah"
-                            >
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="sarah"
+                                >
 
                             Select
 
@@ -315,11 +330,11 @@
 
                         <label class="select-applicant">
 
-                            <input
-                                type="radio"
-                                name="application"
-                                value="jan"
-                            >
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="jan"
+                                >
 
                             Select
 
@@ -386,11 +401,11 @@
 
                         <label class="select-applicant">
 
-                            <input
-                                type="radio"
-                                name="application"
-                                value="jake"
-                            >
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="jake"
+                                >
 
                             Select
 
