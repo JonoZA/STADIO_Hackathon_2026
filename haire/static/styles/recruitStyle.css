@@ -91,7 +91,7 @@ body::before {
 
 
 /* ================================= */
-/* BOTH CARDS CONTAINER */
+/* THREE CARDS CONTAINER */
 /* ================================= */
 
 .cards-container {
@@ -104,6 +104,10 @@ body::before {
     gap: 15px;
 
     width: 100%;
+
+    max-width: 1250px;
+
+    margin: 0 auto;
 
     box-sizing: border-box;
 }
@@ -235,7 +239,7 @@ body::before {
 /* FILTER CONTROL */
 /* ================================= */
 
-.Filter {
+.filter-input {
     margin-bottom: 30px;
 }
 
@@ -280,7 +284,7 @@ body::before {
 /* BUTTON AREA */
 /* ================================= */
 
-.second-card > div:last-child {
+.control-buttons {
     display: flex;
 
     flex-direction: column;
@@ -680,6 +684,144 @@ body::before {
 
 
 /* ================================= */
+/* STATISTICS CARD */
+/* ================================= */
+
+.statistics-card {
+    width: 280px;
+
+    height: 80vh;
+
+    flex-shrink: 0;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    color: #084027;
+
+    overflow: hidden;
+}
+
+
+/* ================================= */
+/* STATISTICS HEADING */
+/* ================================= */
+
+.statistics-card h2 {
+    margin: 0 0 25px;
+
+    font-family: var(--hero-title-font);
+
+    font-size: 1.8rem;
+
+    font-weight: 800;
+
+    color: #084027;
+
+    text-align: center;
+}
+
+
+/* ================================= */
+/* STATISTICS CONTENT */
+/* ================================= */
+
+.statistics-content {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    gap: 15px;
+}
+
+
+/* ================================= */
+/* STATISTIC ITEM */
+/* ================================= */
+
+.statistic-item {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 18px 10px;
+
+    background-color: rgba(255, 255, 255, 0.95);
+
+    border: 2px solid rgba(8, 64, 39, 0.25);
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+
+    text-align: center;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* ================================= */
+/* STATISTIC ITEM HOVER */
+/* ================================= */
+
+.statistic-item:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.12);
+
+    border-color: #058f5c;
+}
+
+
+/* ================================= */
+/* STATISTIC TITLE */
+/* ================================= */
+
+.statistic-item h3 {
+    margin: 0 0 8px;
+
+    color: #084027;
+
+    font-family: var(--hero-title-font);
+
+    font-size: 1rem;
+
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* ================================= */
+/* STATISTIC VALUE */
+/* ================================= */
+
+.statistic-item p {
+    margin: 0;
+
+    color: #333;
+
+    font-family: 'Segoe UI', Arial, sans-serif;
+
+    font-size: 2rem;
+
+    font-weight: 800;
+
+    text-align: center;
+}
+
+
+/* ================================= */
 /* ANIMATIONS */
 /* ================================= */
 
@@ -715,7 +857,7 @@ body::before {
 /* RESPONSIVE DESIGN */
 /* ================================= */
 
-@media (max-width: 950px) {
+@media (max-width: 1250px) {
 
     body {
         overflow-y: auto;
@@ -729,6 +871,20 @@ body::before {
 
 
     .cards-container {
+        flex-wrap: wrap;
+
+        align-items: flex-start;
+
+        justify-content: center;
+
+        gap: 20px;
+    }
+}
+
+
+@media (max-width: 950px) {
+
+    .cards-container {
         flex-direction: column;
 
         align-items: center;
@@ -738,7 +894,8 @@ body::before {
 
 
     .outer-card,
-    .second-card {
+    .second-card,
+    .statistics-card {
         width: min(600px, 95vw);
 
         height: auto;
@@ -765,7 +922,8 @@ body::before {
 
 
     .outer-card,
-    .second-card {
+    .second-card,
+    .statistics-card {
         width: 100%;
 
         height: 90vh;
