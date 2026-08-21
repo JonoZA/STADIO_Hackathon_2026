@@ -1,22 +1,17 @@
-
 :root {
-    /* Above section (hAIre header) */
-    --hero-bg: linear-gradient(170deg, #00008b, #c8a2c8,#93c83e );
+    --hero-bg: linear-gradient(120deg, #084027, #058f5c,#025235, #084027 );
     --hero-title-color: blanchedalmond;
     --hero-title-font: Georgia, serif;
     --hero-subtitle-color: blanchedalmond;
 
-    /* Below section (Apply / Recruit) */
-    --actions-bg:  #b9adce;
+    --actions-bg:  #93c83e;
     --action-btn-bg: #c09712de;
     --action-btn-text-color: #ffffff;
     --action-btn-font: 'Segoe UI', Arial, sans-serif;
 
-    /* Read our brief button */
     --brief-btn-bg: #c09712de;
     --brief-btn-text-color: #ffffff;
 
-    /* Timing (seconds) - tweak to speed up/slow down the intro */
     --t-hero-slide: 1s;
     --t-title-fade: 0.8s;
     --t-subtitle-delay: 0.3s;
@@ -35,9 +30,9 @@ body {
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: hidden;
-    /* Matches the below-section color so nothing white shows through
-       while the hero section is still sliding into place */
-    background-color: var(--actions-bg);
+    /* background-color can't render a gradient - needs the background
+       shorthand (or background-image) instead */
+    background: var(--hero-bg);
 }
 
 .page-wrapper {
@@ -47,15 +42,19 @@ body {
     height: calc(100vh - 2.5rem);
 }
 
+/* Hero section now takes the full page (previously flex: 0 0 68%,
+   with the rest handed to .action-section, which has been removed) */
+/* Hero section is transparent - the single gradient lives on body,
+   so there's no seam between this section and the rest of the page */
 .hero-section {
     position: relative;
-    flex: 0 0 68%;
+    flex: 1;
     min-height: 0;
-    background: var(--hero-bg);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    gap: 2.5rem;
 
     transform: translateY(-100%);
     animation-name: heroSlideDown;
@@ -140,17 +139,18 @@ body {
     font-weight: 600;
 }
 
-/* Moving haze / reflection sweeping across the hero section */
+/* Haze now covers the whole viewport (position: fixed) instead of
+   being scoped to .hero-section, so it sweeps corner-to-corner
+   across the entire page, footer included */
 .hero-haze {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 220%;
-    height: 220%;
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
     background: linear-gradient(
         135deg,
         transparent 42%,
-        rgba(255, 255, 255, 0.18) 50%,
+        rgba(89, 69, 151, 0.382) 50%,
         transparent 58%
     );
     pointer-events: none;
@@ -158,19 +158,9 @@ body {
     animation: hazeSweep 6s ease-in-out infinite alternate;
 }
 
-
-.action-section {
-    flex: 1;
-    min-height: 0;
-    background: var(--actions-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    overflow: hidden;
-}
-
 .action-buttons {
+    position: relative;
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -200,11 +190,13 @@ body {
 }
 
 footer {
+    position: relative;
+    z-index: 2;
     text-align: center;
     height: 2.5rem;
     box-sizing: border-box;
     padding: 0.5rem 0;
-    background: var(--actions-bg);
+    background: transparent;
     color: var(--hero-title-color);
 }
 
