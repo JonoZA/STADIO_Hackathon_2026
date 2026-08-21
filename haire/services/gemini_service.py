@@ -8,9 +8,7 @@ import json
 from io import BytesIO
 # from pypdf import PdfReader
 
-start_time = time.time()
-load_dotenv()
-client = genai.Client()
+from extensions import ai_client as client
 class WorkExperience(BaseModel):
     job_title: str = Field(description="Role or job title held by the candidate")
     company: str = Field(description="Company or organization name")
