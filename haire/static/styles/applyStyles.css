@@ -1,4 +1,22 @@
-:root { --header-h: 64px; }
+:root {
+    --header-h: 64px;
+
+    /* Shared theme tokens - keep these in sync with indexStyles.css
+       if you want both pages to stay visually consistent */
+    --hero-bg: linear-gradient(120deg, #084027, #058f5c, #025235, #084027);
+    --hero-title-color: blanchedalmond;
+    --hero-title-font: Georgia, serif;
+    --hero-subtitle-color: blanchedalmond;
+
+    --action-btn-bg: #c09712de;
+    --action-btn-hover-bg: #b26e14;
+    --action-btn-text-color: #ffffff;
+    --action-btn-font: 'Segoe UI', Arial, sans-serif;
+
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --card-text-color: #2a2a2a;
+    --accent-border-color: #058f5c;
+}
 
 .site-header {
     position: fixed;
@@ -9,15 +27,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255,255,255,0.95);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    background: var(--hero-bg);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     z-index: 1000;
 }
 
 .site-header h1 {
     margin: 0;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-family: var(--hero-title-font);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--hero-title-color);
 }
 
 /* push page content below the fixed header */
@@ -27,15 +48,43 @@ body {
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background: linear-gradient(to left, rgb(4, 4, 112), ghostwhite)
+    position: relative;
+    overflow-x: hidden;
+    background: var(--hero-bg);
+    color: var(--hero-title-color);
+    font-family: var(--action-btn-font);
 }
 
-.mainListings{
-    margin:20px;
+/* Full-page haze sweep, matching the homepage */
+.hero-haze {
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        135deg,
+        transparent 42%,
+        rgba(142, 242, 163, 0.382) 50%,
+        transparent 58%
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: hazeSweep 6s ease-in-out infinite alternate;
+}
+
+@keyframes hazeSweep {
+    0% { transform: translate(-25%, 25%); }
+    100% { transform: translate(25%, -25%); }
+}
+
+.mainListings {
+    position: relative;
+    z-index: 2;
+    margin: 20px;
 }
 
 .card {
@@ -43,14 +92,16 @@ body {
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    background-color: lavender;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    background-color: var(--card-bg);
+    color: var(--card-text-color);
     font-family: Arial, sans-serif;
 }
 
-
 .card h2 {
     margin: 15px 0 10px;
+    font-family: var(--hero-title-font);
+    color: #0b3d24;
 }
 
 .application-layout {
@@ -67,11 +118,16 @@ body {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--action-btn-bg);
+    color: var(--action-btn-text-color);
+    font-weight: 700;
+    letter-spacing: 0.02em;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
 
-
+.card button:hover {
+    background-color: var(--action-btn-hover-bg);
 }
 
 .card label {
@@ -88,7 +144,6 @@ body {
     border: 1px solid #ccc;
     border-radius: 10px;
 }
-
 
 .card select {
     width: 50%;
@@ -120,7 +175,7 @@ body {
     transform: scale(1.15);
     margin: 8px 0 15px 0;
     vertical-align: middle;
-    accent-color: #007bff;
+    accent-color: var(--action-btn-bg);
 }
 
 /* Collapsible card behavior */
@@ -141,8 +196,7 @@ body {
 }
 
 .card.expanded {
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
-
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
 }
 
 .card.expanded .form,
@@ -156,14 +210,15 @@ body {
 }
 
 .job-requirements {
-    border-left: 2px dashed #8d91b5;
+    border-left: 2px dashed var(--accent-border-color);
     padding-left: 24px;
-    color: #34365a;
+    color: #1f2937;
 }
 
 .job-requirements h3 {
     margin-top: 0;
-    color: #15163c;
+    font-family: var(--hero-title-font);
+    color: #0b3d24;
 }
 
 .job-requirements ul {
@@ -201,7 +256,6 @@ body {
     opacity: 0.6;
 }
 
-
 .form-scroll {
     height: 250px;
     overflow-y: auto;
@@ -218,9 +272,15 @@ body {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--action-btn-bg);
+    color: var(--action-btn-text-color);
+    font-weight: 700;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.upload-section button:hover {
+    background-color: var(--action-btn-hover-bg);
 }
 
 .submit-btn {
@@ -239,7 +299,7 @@ body {
 
     .job-requirements {
         border-left: 0;
-        border-top: 2px dashed #8d91b5;
+        border-top: 2px dashed var(--accent-border-color);
         padding: 20px 0 0;
     }
 
