@@ -5,7 +5,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from flask import Flask
-from routes.upload_rank import upload_bp
+from routes.rank_upload import upload_bp
 from routes.view_routes import view_bp
 
 app = Flask(__name__)

@@ -1,7 +1,7 @@
 from google.genai import types
 from pydantic import BaseModel, Field
 from extensions import ai_client
-from routes.upload_rank import extract_pdf_text
+from pypdf import PdfReader
 
 """
 class CandidateEvaluation(BaseModel):
@@ -33,3 +33,9 @@ def evaluate_cv_content(cv_text: str, job_description: str) -> dict:
         ),
     )
     return response.parsed.model_dump()
+
+
+
+def extract_pdf_text(file_bytes: bytes) -> str:
+    reader = PdfReader(io.BytesIO(file_bytes))
+    return "\n".join([page.extract_text() or "" for page in reader.pages])

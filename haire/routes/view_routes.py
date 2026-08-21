@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, jsonify, request
-from services.supadb_service import get_all_evaluations
+# from services.supaDB_service import get_all_evaluations
 
 view_bp = Blueprint("view_bp", __name__)
 
@@ -15,11 +15,11 @@ def apply():
 def recruit():
     return render_template("recruit.html")
 
-@view_bp.route("/api/candidates", methods=["GET"])
-def list_candidates():
-    job_title = request.args.get("job_title")
-    try:
-        data = get_all_evaluations(job_title)
-        return jsonify({"success": True, "candidates": data}), 200
-    except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
+# @view_bp.route("/api/candidates", methods=["GET"])
+# def list_candidates():
+#     job_title = request.args.get("job_title")
+#     try:
+#         data = get_all_evaluations(job_title)
+#         return jsonify({"success": True, "candidates": data}), 200
+#     except Exception as e:
+#         return jsonify({"success": False, "error": str(e)}), 500

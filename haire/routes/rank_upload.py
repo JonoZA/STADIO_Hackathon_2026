@@ -1,8 +1,7 @@
 import io, time
 from flask import Blueprint, request, jsonify
-from pypdf import PdfReader
 from services.gemini_service import evaluate_cv_content
-from services.supadb_service import save_candidate_and_cv
+from services.supaDB_service import save_candidate_and_cv
 from extensions import supabase 
 
 upload_bp = Blueprint("upload_bp", __name__)
@@ -25,9 +24,7 @@ def handle_application():
 
 
 
-def extract_pdf_text(file_bytes: bytes) -> str:
-    reader = PdfReader(io.BytesIO(file_bytes))
-    return "\n".join([page.extract_text() or "" for page in reader.pages])
+
 
 @upload_bp.route("/api/evaluate", methods=["POST"])
 def evaluate_cv():
