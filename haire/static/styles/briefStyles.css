@@ -1,114 +1,183 @@
+/* ==========================================================================
+   Design System & Tokens
+   ========================================================================== */
 :root {
-    --header-h: 64px;
+    --bg-deep: #04130b;
+    --text-primary: #f0fdf4;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
 
-    --hero-bg: linear-gradient(120deg, #084027, #058f5c, #025235, #084027);
-    --hero-title-color: blanchedalmond;
-    --hero-title-font: Georgia, serif;
-    --hero-subtitle-color: blanchedalmond;
+    --gold-primary: #f59e0b;
+    --gold-hover: #d97706;
+    --gold-glow: rgba(245, 158, 11, 0.35);
 
-    --action-btn-bg: #c09712de;
-    --action-btn-hover-bg: #b26e14;
-    --action-btn-text-color: #ffffff;
-    --action-btn-font: 'Segoe UI', Arial, sans-serif;
+    --card-bg: rgba(15, 23, 42, 0.55);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-glow: rgba(245, 158, 11, 0.05);
 
-    --card-bg: #e8eaf0;
-    --card-text-color: #23262f;
+    --font-serif: "Playfair Display", Georgia, serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    --t-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --t-medium: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 html, body {
     margin: 0;
-    min-height: 100%;
-}
-
-body {
-    position: relative;
-    padding-top: var(--header-h);
-    background: var(--hero-bg);
-    color: var(--hero-title-color);
-    font-family: var(--action-btn-font);
+    padding: 0;
+    min-height: 100vh;
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--header-h);
+.page-wrapper {
+    position: relative;
+    z-index: 2;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--hero-bg);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.site-header h1 {
-    margin: 0;
-    font-family: var(--hero-title-font);
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--hero-title-color);
-}
-
+/* ==========================================================================
+   Ambient Background Animation
+   ========================================================================== */
 .hero-haze {
     position: fixed;
     inset: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(
-        135deg,
-        transparent 42%,
-        rgba(142, 242, 163, 0.382) 50%,
-        transparent 58%
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(16, 185, 129, 0.12) 0%,
+        rgba(245, 158, 11, 0.06) 35%,
+        transparent 70%
     );
     pointer-events: none;
     z-index: 1;
-    animation: hazeSweep 6s ease-in-out infinite alternate;
+    animation: hazeSweep 12s ease-in-out infinite alternate;
 }
 
 @keyframes hazeSweep {
-    0% { transform: translate(-25%, 25%); }
-    100% { transform: translate(25%, -25%); }
+    0% { transform: translate(-10%, 10%) scale(0.95); }
+    100% { transform: translate(10%, -10%) scale(1.05); }
 }
 
+/* ==========================================================================
+   Top Right Floating Home Button
+   ========================================================================== */
+.brief-form {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+}
+
+.brief-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--gold-primary);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition: all var(--t-fast);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.brief-btn:hover {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: var(--gold-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px var(--gold-glow);
+}
+
+.brief-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.brief-tooltip {
+    position: absolute;
+    right: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--t-fast);
+}
+
+.brief-form:hover .brief-tooltip {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Brief Content Page Layout
+   ========================================================================== */
 .brief-page {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
+    flex: 1;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 2.5rem 1.5rem 4rem;
+    padding: 4rem 1.5rem 5rem;
+    width: 100%;
 }
 
 .brief-intro {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3.5rem;
+    animation: fadeUp 0.8s ease-out forwards;
 }
 
-.brief-intro h2 {
-    font-family: var(--hero-title-font);
-    font-size: clamp(2rem, 5vw, 2.75rem);
-    margin: 0 0 0.5rem;
-    color: var(--hero-title-color);
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 4.25rem);
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    background: linear-gradient(135deg, #ffffff 30%, #a7f3d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.brief-intro p {
+.hero-tagline {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
     margin: 0;
-    color: var(--hero-subtitle-color);
-    font-size: 1.05rem;
 }
 
+/* ==========================================================================
+   Step Cards & Flow
+   ========================================================================== */
 .brief-flow {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .brief-row {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    animation: fadeUp 0.8s ease-out forwards;
 }
 
 .row-left {
@@ -120,65 +189,101 @@ body {
 }
 
 .brief-card {
-    background-color: var(--card-bg);
-    color: var(--card-text-color);
-    border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-    padding: 1.5rem 1.75rem;
-    width: min(420px, 88vw);
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    backdrop-filter: blur(16px);
+    padding: 1.75rem 2rem;
+    width: min(460px, 100%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: all var(--t-medium);
+}
+
+.brief-card:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 30px var(--card-glow);
+    transform: translateY(-3px);
+}
+
+.step-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--gold-primary);
+    margin-bottom: 0.5rem;
 }
 
 .brief-card h3 {
     margin: 0 0 0.6rem;
-    font-family: var(--hero-title-font);
-    font-size: 1.15rem;
-    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: #ffffff;
 }
 
 .brief-card p {
     margin: 0;
-    line-height: 1.5;
-    text-align: center;
-    color: #3a3d45;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
 }
 
 .brief-arrow {
-    width: 100px;
-    height: 85px;
+    width: 90px;
+    height: 75px;
     flex-shrink: 0;
+    opacity: 0.85;
 }
 
 .arrow-left {
     order: -1;
 }
 
+/* Solution Hero Card */
 .solution-card {
-    width: min(700px, 92vw);
-    margin: 1.5rem auto 0;
+    width: 100%;
+    margin-top: 2rem;
     text-align: center;
-    padding: 2rem 2.25rem;
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.75), rgba(4, 19, 11, 0.85));
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 40px var(--card-glow);
 }
 
-.solution-card h3 {
-    font-size: 1.3rem;
+.solution-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--gold-primary);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
 }
 
 .solution-name {
-    margin: 0.25rem 0 1rem;
-    font-family: var(--hero-title-font);
-    font-size: 2rem;
-    text-decoration: underline;
-    color: #0b3d24;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0 0 1rem;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .solution-card p {
     font-size: 1.05rem;
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--text-primary);
 }
 
+/* ==========================================================================
+   Action Button & Footer
+   ========================================================================== */
 .brief-back {
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 3.5rem;
 }
 
 .brief-back a {
@@ -186,31 +291,48 @@ body {
 }
 
 .action-btn {
-    background-color: var(--action-btn-bg);
-    color: var(--action-btn-text-color);
-    font-family: var(--action-btn-font);
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-hover));
+    color: #000000;
     border: none;
-    border-radius: 6px;
+    border-radius: 50px;
     font-weight: 700;
-    letter-spacing: 0.03em;
-    padding: 0.75rem 2rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    padding: 1rem 2.5rem;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all var(--t-fast);
+    box-shadow: 0 0 25px var(--gold-glow);
 }
 
 .action-btn:hover {
-    background-color: var(--action-btn-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px var(--gold-glow);
+    filter: brightness(1.1);
 }
 
 footer {
-    position: relative;
-    z-index: 2;
     text-align: center;
-    padding: 1rem 0 1.5rem;
-    color: var(--hero-title-color);
+    padding: 2rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--card-border);
 }
 
-@media (max-width: 700px) {
+/* ==========================================================================
+   Animations & Responsive Design
+   ========================================================================== */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
     .brief-row {
         flex-direction: column;
     }
@@ -221,8 +343,9 @@ footer {
 
     .brief-arrow {
         transform: rotate(90deg);
-        width: 70px;
-        height: 60px;
+        width: 60px;
+        height: 50px;
+        margin: 0.5rem 0;
     }
 
     .brief-card {
