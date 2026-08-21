@@ -1,56 +1,31 @@
-import uuid
-import re
 from extensions import supabase
 
-def sanitize_filename(filename: str) -> str:
-    return re.sub(r'[^a-zA-Z0-9_.-]', '_', filename)
+def save_candidate_and_cv(form_data: dict, file_bytes: bytes) -> dict:
+    # 1. Insert form fields to get the generated UUID
+    insert_res = supabase.table("candidates_raw").insert({
+        "fullName": form_data.get("fullName"),
+        "cellphone": form_data.get("cellphone"),
+        "email": form_data.get("email"),
+        "address": form_data.get("address"),
+        "gender": form_data.get("gender"),
+        "marStatus": form_data.get("marStatus"),
+        "transport": form_data.get("transport") == "true" or form_data.get("transport") == "on",
+        "nationality": form_data.get("nationality"),
+        "job_title": form_data.get("job_title")
+    }).execute()
 
-def upload_cv_to_bucket(file_bytes: bytes, filename: str, job_id: str) -> tuple[str, str]:
-    clean_name = sanitize_filename(filename)
-    unique_id = uuid.uuid4().hex[:8]
-    # bucket file path 
-    storage_path = f"{sanitize_filename(job_id)}/{unique_id}_{clean_name}"
+    candidate_id = insert_res.data[0]["id"]
+    filename = f"{candidate_id}.pdf"
 
-    # uploading to Supabase
+    # 2. Upload file named <id>.pdf to bucket
     supabase.storage.from_("cv-uploads").upload(
-        path=storage_path,
+        path=filename,
         file=file_bytes,
-        file_options={"content-type": "application/pdf","UPSERT":"false"}
+        file_options={"content-type": "application/pdf"}
     )
 
-    file_url = supabase.storage.from_("cv-uploads").get_public_url(storage_path)
-    return file_url, storage_path
+    # 3. Get public URL and update the candidate row
+    file_url = supabase.storage.from_("cv-uploads").get_public_url(filename)
+    supabase.table("candidates_raw").update({"cv_file_url": file_url}).eq("id", candidate_id).execute()
 
-
-def create_candidate_record(candidate_data: dict, file_info: dict) -> dict:
-    """
-    Links candidate details, AI score, and bucket file info in the database table.
-    """
-    payload = {
-        "candidate_name": candidate_data.get("candidate_name"),
-        "job_title": candidate_data.get("job_title"),
-        "match_score": candidate_data.get("match_score"),
-        "evaluation_json": candidate_data.get("evaluation_json"),
-        # Foreign links to the storage bucket:
-        "cv_file_url": file_info.get("file_url"),
-        "cv_storage_path": file_info.get("storage_path")
-    }
-
-    response = supabase.table("evaluations").insert(payload).execute()
-    return response.data[0] if response.data else payload
-
-
-
-
-
-
-
-# def save_evaluation_record(record_data: dict) -> dict:
-#     res = supabase.table("evaluations").insert(record_data).execute()
-#     return res.data[0] if res.data else {}
-
-# def get_all_evaluations(job_title: str = None) -> list:
-#     query = supabase.table("evaluations").select("*").order("match_score", desc=True)
-#     if job_title:
-#         query = query.ilike("job_title", f"%{job_title}%")
-#     return query.execute().data
+    return {"id": candidate_id, "file_url": file_url}
