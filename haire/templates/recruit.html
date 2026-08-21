@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <link rel="stylesheet" href="../static/styles/recruitStyle.css">
@@ -14,382 +15,453 @@
 
 <body>
 
-    <div class="outer-card">
+    <!-- ================================= -->
+    <!-- BOTH CARDS CONTAINER -->
+    <!-- ================================= -->
 
-        <!-- SECOND CARD - LEFT -->
-         <div class="outer-cared second-card">
+    <div class="cards-container">
 
-            <h2>Job Description</h2>
+
+        <!-- ================================= -->
+        <!-- CONTROLS CARD - LEFT -->
+        <!-- ================================= -->
+
+        <div class="outer-card second-card">
+
+            <h2>Controls</h2>
 
             <p>
-                This is a sample job description for a software developer position.
-                The ideal candidate should have experience in software development,
-                programming languages, and database management.
+                Select what you need.
             </p>
 
 
+            <!-- JOB SELECTION -->
 
-        <!-- APPLICANTS CARD - RIGHT -->
-        <h2>Applicants</h2>
+            <div class="job-control">
 
-        <p>Select an applicant for hierarchy</p>
+                <label for="job-selector">
+                    Select Job:
+                </label>
+
+                <select id="job-selector">
+
+                    <option value="software-engineer">
+                        Software Engineer
+                    </option>
+
+                    <option value="data-analyst">
+                        Data Analyst
+                    </option>
+
+                    <option value="product-manager">
+                        Product Manager
+                    </option>
+
+                </select>
+                
+
+            </div>
+
+            <!-- Filter-->
+            <div class="filter-input">
+
+                <label for="filter-input">
+                    Filter Applicants:
+                </label>
+
+                <select id="filter-input">
+
+                    <option value="all">
+                            All
+                    </option>
+
+                    <option value="high-score">
+                        High Score
+                    </option>
+
+                    <option value="low-score">
+                     Low Score
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="control-buttons">
+
+                <button id="clear-button">
+                    Clear
+                </button>
+
+                <button id="load-all-button">
+                Load All
+                </button>
+
+                <button id="approve-button">
+                    Approve
+                </button>
+
+            </div>
+        </div>
+        <!-- END CONTROLS CARD -->
+
 
 
         <!-- ================================= -->
-        <!-- SCROLLABLE APPLICANT AREA -->
+        <!-- APPLICANTS CARD - MIDDLE -->
         <!-- ================================= -->
 
-        <div class="form-scroll">
+        <div class="outer-card applicants-card">
+
+            <h2>Applicants</h2>
+
+            <p>
+                Select an applicant for hierarchy
+            </p>
 
 
             <!-- ================================= -->
-            <!-- APPLICANT 1 -->
+            <!-- SCROLLABLE APPLICANT AREA -->
             <!-- ================================= -->
 
-            <div class="applicant-card">
-
-                <div class="applicant-header">
-
-                    <h3 class="applicant-name">
-                        John Doe
-                    </h3>
-
-                    <span class="score">
-                        85%
-                    </span>
-
-                    <!-- Radio Button -->
-
-                    <label class="select-applicant">
-
-                        <input
-                            type="radio"
-                            name="application"
-                            value="john"
-                        >
-
-                        Select
-
-                    </label>
-
-                </div>
+            <div class="form-scroll">
 
 
-                <!-- Dropdown Button -->
+                <!-- ================================= -->
+                <!-- APPLICANT 1 -->
+                <!-- ================================= -->
 
-                <button class="more-info-button">
-                    View More Info
-                </button>
+                <div class="applicant-card">
 
+                    <div class="applicant-header">
 
-                <!-- Hidden Information -->
+                        <h3 class="applicant-name">
+                            John Doe
+                        </h3>
 
-                <div class="more-information">
+                        <span class="score">
+                            85%
+                        </span>
 
+                        <label class="select-applicant">
 
-                    <!-- LEFT SIDE: DESCRIPTION -->
+                            <input
+                                type="radio"
+                                name="application"
+                                value="john"
+                            >
 
-                    <div class="description-section">
+                            Select
 
-                        <h4>Description</h4>
-
-                        <p>
-                            John is an experienced software developer
-                            with a strong interest in creating reliable
-                            and user-friendly applications.
-                        </p>
+                        </label>
 
                     </div>
 
 
-                    <!-- RIGHT SIDE: TOP MATCHES -->
+                    <button class="more-info-button">
+                        View More Info
+                    </button>
 
-                    <div class="qualification-section">
 
-                        <h4>Top Matches</h4>
+                    <div class="more-information">
 
-                        <ul>
+                        <div class="description-section">
 
-                            <li>Software Engineering</li>
-                            <li>Java</li>
-                            <li>Python</li>
-                            <li>Database Management</li>
+                            <h4>Description</h4>
 
-                        </ul>
+                            <p>
+                                John is an experienced software developer
+                                with a strong interest in creating reliable
+                                and user-friendly applications.
+                            </p>
+
+                        </div>
+
+
+                        <div class="qualification-section">
+
+                            <h4>Top Matches</h4>
+
+                            <ul>
+
+                                <li>Software Engineering</li>
+                                <li>Java</li>
+                                <li>Python</li>
+                                <li>Database Management</li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- END APPLICANT 1 -->
+
+
+
+                <!-- ================================= -->
+                <!-- APPLICANT 2 -->
+                <!-- ================================= -->
+
+                <div class="applicant-card">
+
+                    <div class="applicant-header">
+
+                        <h3 class="applicant-name">
+                            Sarah Smith
+                        </h3>
+
+                        <span class="score">
+                            90%
+                        </span>
+
+                        <label class="select-applicant">
+
+                            <input
+                                type="radio"
+                                name="application"
+                                value="sarah"
+                            >
+
+                            Select
+
+                        </label>
 
                     </div>
 
 
+                    <button class="more-info-button">
+                        View More Info
+                    </button>
+
+
+                    <div class="more-information">
+
+                        <div class="description-section">
+
+                            <h4>Description</h4>
+
+                            <p>
+                                Sarah is a skilled software developer
+                                with experience in designing and developing
+                                modern software applications.
+                            </p>
+
+                        </div>
+
+
+                        <div class="qualification-section">
+
+                            <h4>Top Matches</h4>
+
+                            <ul>
+
+                                <li>Software Engineering</li>
+                                <li>Java</li>
+                                <li>Web Development</li>
+                                <li>Database Management</li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
                 </div>
+                <!-- END APPLICANT 2 -->
+
+
+
+                <!-- ================================= -->
+                <!-- APPLICANT 3 -->
+                <!-- ================================= -->
+
+                <div class="applicant-card">
+
+                    <div class="applicant-header">
+
+                        <h3 class="applicant-name">
+                            Jan Doe
+                        </h3>
+
+                        <span class="score">
+                            75%
+                        </span>
+
+                        <label class="select-applicant">
+
+                            <input
+                                type="radio"
+                                name="application"
+                                value="jan"
+                            >
+
+                            Select
+
+                        </label>
+
+                    </div>
+
+
+                    <button class="more-info-button">
+                        View More Info
+                    </button>
+
+
+                    <div class="more-information">
+
+                        <div class="description-section">
+
+                            <h4>Description</h4>
+
+                            <p>
+                                Jan is a motivated developer with
+                                experience working on software projects
+                                and database systems.
+                            </p>
+
+                        </div>
+
+
+                        <div class="qualification-section">
+
+                            <h4>Top Matches</h4>
+
+                            <ul>
+
+                                <li>Software Development</li>
+                                <li>Python</li>
+                                <li>Database Management</li>
+                                <li>System Analysis</li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- END APPLICANT 3 -->
+
+
+
+                <!-- ================================= -->
+                <!-- APPLICANT 4 -->
+                <!-- ================================= -->
+
+                <div class="applicant-card">
+
+                    <div class="applicant-header">
+
+                        <h3 class="applicant-name">
+                            Jake Doe
+                        </h3>
+
+                        <span class="score">
+                            66%
+                        </span>
+
+                        <label class="select-applicant">
+
+                            <input
+                                type="radio"
+                                name="application"
+                                value="jake"
+                            >
+
+                            Select
+
+                        </label>
+
+                    </div>
+
+
+                    <button class="more-info-button">
+                        View More Info
+                    </button>
+
+
+                    <div class="more-information">
+
+                        <div class="description-section">
+
+                            <h4>Description</h4>
+
+                            <p>
+                                Jake is a developing software professional
+                                with experience in programming and
+                                application development.
+                            </p>
+
+                        </div>
+
+
+                        <div class="qualification-section">
+
+                            <h4>Top Matches</h4>
+
+                            <ul>
+
+                                <li>Programming</li>
+                                <li>Java</li>
+                                <li>Software Development</li>
+                                <li>Problem Solving</li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- END APPLICANT 4 -->
+
 
             </div>
-            <!-- END APPLICANT 1 -->
-
-
-
-            <!-- ================================= -->
-            <!-- APPLICANT 2 -->
-            <!-- ================================= -->
-
-            <div class="applicant-card">
-
-                <div class="applicant-header">
-
-                    <h3 class="applicant-name">
-                        Sarah Smith
-                    </h3>
-
-                    <span class="score">
-                        90%
-                    </span>
-
-                    <!-- Radio Button -->
-
-                    <label class="select-applicant">
-
-                        <input
-                            type="radio"
-                            name="application"
-                            value="sarah"
-                        >
-
-                        Select
-
-                    </label>
-
-                </div>
-
-
-                <!-- Dropdown Button -->
-
-                <button class="more-info-button">
-                    View More Info
-                </button>
-
-
-                <!-- Hidden Information -->
-
-                <div class="more-information">
-
-
-                    <!-- LEFT SIDE: DESCRIPTION -->
-
-                    <div class="description-section">
-
-                        <h4>Description</h4>
-
-                        <p>
-                            Sarah is a skilled software developer
-                            with experience in designing and developing
-                            modern software applications.
-                        </p>
-
-                    </div>
-
-
-                    <!-- RIGHT SIDE: TOP MATCHES -->
-
-                    <div class="qualification-section">
-
-                        <h4>Top Matches</h4>
-
-                        <ul>
-
-                            <li>Software Engineering</li>
-                            <li>Java</li>
-                            <li>Web Development</li>
-                            <li>Database Management</li>
-
-                        </ul>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-            <!-- END APPLICANT 2 -->
-
-
-
-            <!-- ================================= -->
-            <!-- APPLICANT 3 -->
-            <!-- ================================= -->
-
-            <div class="applicant-card">
-
-                <div class="applicant-header">
-
-                    <h3 class="applicant-name">
-                        Jan Doe
-                    </h3>
-
-                    <span class="score">
-                        75%
-                    </span>
-
-                    <!-- Radio Button -->
-
-                    <label class="select-applicant">
-
-                        <input
-                            type="radio"
-                            name="application"
-                            value="jan"
-                        >
-
-                        Select
-
-                    </label>
-
-                </div>
-
-
-                <!-- Dropdown Button -->
-
-                <button class="more-info-button">
-                    View More Info
-                </button>
-
-
-                <!-- Hidden Information -->
-
-                <div class="more-information">
-
-
-                    <!-- LEFT SIDE: DESCRIPTION -->
-
-                    <div class="description-section">
-
-                        <h4>Description</h4>
-
-                        <p>
-                            Jan is a motivated developer with
-                            experience working on software projects
-                            and database systems.
-                        </p>
-
-                    </div>
-
-
-                    <!-- RIGHT SIDE: TOP MATCHES -->
-
-                    <div class="qualification-section">
-
-                        <h4>Top Matches</h4>
-
-                        <ul>
-
-                            <li>Software Development</li>
-                            <li>Python</li>
-                            <li>Database Management</li>
-                            <li>System Analysis</li>
-
-                        </ul>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-            <!-- END APPLICANT 3 -->
-
-
-
-            <!-- ================================= -->
-            <!-- APPLICANT 4 -->
-            <!-- ================================= -->
-
-            <div class="applicant-card">
-
-                <div class="applicant-header">
-
-                    <h3 class="applicant-name">
-                        Jake Doe
-                    </h3>
-
-                    <span class="score">
-                        66%
-                    </span>
-
-                    <!-- Radio Button -->
-
-                    <label class="select-applicant">
-
-                        <input
-                            type="radio"
-                            name="application"
-                            value="jake"
-                        >
-
-                        Select
-
-                    </label>
-
-                </div>
-
-
-                <!-- Dropdown Button -->
-
-                <button class="more-info-button">
-                    View More Info
-                </button>
-
-
-                <!-- Hidden Information -->
-
-                <div class="more-information">
-
-
-                    <!-- LEFT SIDE: DESCRIPTION -->
-
-                    <div class="description-section">
-
-                        <h4>Description</h4>
-
-                        <p>
-                            Jake is a developing software professional
-                            with experience in programming and
-                            application development.
-                        </p>
-
-                    </div>
-
-
-                    <!-- RIGHT SIDE: TOP MATCHES -->
-
-                    <div class="qualification-section">
-
-                        <h4>Top Matches</h4>
-
-                        <ul>
-
-                            <li>Programming</li>
-                            <li>Java</li>
-                            <li>Software Development</li>
-                            <li>Problem Solving</li>
-
-                        </ul>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-            <!-- END APPLICANT 4 -->
+            <!-- END FORM-SCROLL -->
 
 
         </div>
-        <!-- End of form-scroll -->
+        <!-- END APPLICANTS CARD -->
+
+        <!--===================================-->
+        <!--Statistics Card - Right-->
+        <!--===================================-->
+
+        <div class="outer-card statistics-card">
+
+            <h2>Statistics</h2>
+
+
+            <div class="statistics-content">
+
+                <div class="statistic-item">
+                    <h3>Total Applicants</h3>
+                    <p id="total-applicants">4</p>
+                </div>
+
+                <div class="statistic-item">
+                    <h3>Average Score</h3>
+                    <p id="average-score">79%</p>
+                </div>
+
+                <div class="statistic-item">
+                    <h3>Highest Score</h3>
+                    <p id="highest-score">90%</p>
+                </div>
+
+                <div class="statistic-item">
+                    <h3>Lowest Score</h3>
+                    <p id="lowest-score">66%</p>
+                </div>
+
+            </div> <!-- END STATISTICS-CONTENT -->
 
 
     </div>
-    <!-- End of outer-card -->
+    <!-- END CARDS-CONTAINER -->
 
-
-    <!-- JavaScript -->
 
     <script src="../static/scripts/recruit.js"></script>
 
