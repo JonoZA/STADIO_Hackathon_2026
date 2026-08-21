@@ -58,7 +58,7 @@ class CandidateApplicationReview(BaseModel):
 
 
 def agent_resume_coverLetter_parser(resumeURL, cover_letter):
-    print("Running agent")
+
     prompt = f"""
         You are an expert HR reviewer. Analyze the candidate's CV and application materials.
         Extract all requested resume details into their respective structured fields, and synthesize
@@ -69,28 +69,22 @@ def agent_resume_coverLetter_parser(resumeURL, cover_letter):
 
         Cover Letter:
         {cover_letter}
-        """
-    print("Prompt Loaded")
-    req = dict(
+    """
+
+    response = client.interactions.create(
         model="gemini-3.6-flash",
         input=prompt,
-        # remove response_mime_type for now
         response_format={
             "type": "text",
             "mime_type": "application/json",
             "schema": CandidateApplicationReview.model_json_schema(),
-        },
+        }
     )
 
-    resp = client.interactions.with_raw_response.create(**req)
-    # print("HTTP_REQUEST.CONTENT.DECODE-----------------\n\n\n")
-    # print(resp.http_request.content.decode())
+    # Convert Gemini's JSON response into a Python dictionary
+    result = json.loads(response.output_text)
 
-
-    # return server response body as a dict
-    data = resp.http_request.content.decode()
-    finalDictionary = json.loads(data.text)
-    return finalDictionary
+    return result
 
 url="https://qfktrunnikcwulzwnlgi.supabase.co/storage/v1/object/public/cv-uploads/d4c5032c-02ca-4919-856b-fdca3cf81716.pdf"
 cover_letter = """Dear Hiring Manager,
@@ -106,4 +100,7 @@ cover_letter = """Dear Hiring Manager,
 I would welcome the opportunity to bring my passion for Life Sciences and education to your school. Thank you for considering my application. I look forward to the opportunity to discuss how my skills and enthusiasm could contribute to your school and its students.
 """
 review = agent_resume_coverLetter_parser(url, cover_letter)
+print(type(review))
 print(review)
+print("-----------")
+print(review["personal_summary"])
