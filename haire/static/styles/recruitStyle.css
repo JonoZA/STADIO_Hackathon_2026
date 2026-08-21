@@ -1,124 +1,212 @@
        
-         /* OUTER CARD */
-        .outer-card {
-            width: 600px;
-            height: 600px;
+   /* ================================= */
+/* OUTER CARD */
+/* ================================= */
 
-            margin: 40px auto;
-            padding: 25px;
+.outer-card {
+    width: 600px;
+    height: 600px;
 
-            border: 2px solid #333;
-            border-radius: 15px;
+    margin: 40px auto;
+    padding: 25px;
 
-            background-color: #f5f5f5;
+    border: 2px solid #333;
+    border-radius: 15px;
 
-            box-sizing: border-box;
-        }
+    background-color: #f5f5f5;
 
-
-        /* INNER APPLICANT CARD */
-        .applicant-card {
-            margin-top: 15px;
-            padding: 20px;
-
-            background-color: white;
-
-            border: 2px solid #ccc;
-            border-radius: 10px;
-
-            transition: 0.2s;
-        }
+    box-sizing: border-box;
+}
 
 
-        /* APPLICANT HEADER */
-        .applicant-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* ================================= */
+/* SCROLLABLE APPLICANT AREA */
+/* ================================= */
+
+.form-scroll {
+    height: 450px;
+
+    overflow-y: auto;
+
+    padding-right: 10px;
+}
 
 
-        /* NAME */
-        .applicant-name {
-            margin: 0;
-        }
+/* ================================= */
+/* INNER APPLICANT CARD */
+/* ================================= */
+
+.applicant-card {
+    margin-top: 15px;
+    padding: 20px;
+
+    background-color: white;
+
+    border: 2px solid #ccc;
+    border-radius: 10px;
+
+    transition: 0.2s;
+}
 
 
-        /* SCORE */
-        .score {
-            font-weight: bold;
-            font-size: 18px;
-        }
+/* ================================= */
+/* APPLICANT HEADER */
+/* ================================= */
+
+.applicant-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
 
 
-        /* DROPDOWN BUTTON */
-        .more-info-button {
-            width: 100%;
-            margin-top: 15px;
-            padding: 10px;
+/* ================================= */
+/* NAME */
+/* ================================= */
 
-            border: none;
-            border-radius: 6px;
-
-            background-color: #eee;
-
-            cursor: pointer;
-        }
-
-        .more-info-button:hover {
-            background-color: #ddd;
-        }
+.applicant-name {
+    margin: 0;
+}
 
 
-        /* MORE INFORMATION */
-        .more-information {
-            display: none;
+/* ================================= */
+/* SCORE */
+/* ================================= */
 
-            margin-top: 15px;
-            padding: 15px;
+.score {
+    font-weight: bold;
 
-            background-color: #f7f7f7;
-            border-radius: 8px;
-        }
-
-
-        /* SHOW INFORMATION */
-        .more-information.show {
-            display: block;
-        }
+    font-size: 18px;
+}
 
 
-        /* SELECT BUTTON */
-        .select-button {
-            margin-top: 15px;
-            padding: 10px 20px;
+/* ================================= */
+/* RADIO BUTTON */
+/* ================================= */
 
-            border: none;
-            border-radius: 6px;
+.select-applicant {
+    display: block;
 
-            background-color: #333;
-            color: white;
+    margin-top: 8px;
 
-            cursor: pointer;
-        }
+    font-size: 14px;
 
-
-        /* SELECTED CARD */
-        .applicant-card.selected {
-            border: 3px solid blue;
-            background-color: #eef3ff;
-        }
+    cursor: pointer;
+}
 
 
-        /* SELECTED BUTTON */
-        .applicant-card.selected .select-button {
-            background-color: blue;
-        }
+.select-applicant input {
+    margin-right: 5px;
 
-        /* SCROLLABLE APPLICANT AREA */
-        .form-scroll {
-            height: 450px;
-            overflow-y: auto;
+    cursor: pointer;
+}
 
-            padding-right: 10px;
-        }
+
+/* ================================= */
+/* DROPDOWN BUTTON */
+/* ================================= */
+
+.more-info-button {
+    width: 140px;
+
+    margin-top: 15px;
+
+    padding: 7px 10px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background-color: #eee;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+
+.more-info-button:hover {
+    background-color: #ddd;
+}
+
+
+/* ================================= */
+/* MORE INFORMATION */
+/* ================================= */
+
+.more-information {
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 15px;
+
+    background-color: #f7f7f7;
+
+    border-radius: 8px;
+}
+
+
+/* ================================= */
+/* SHOW INFORMATION */
+/* ================================= */
+
+.more-information.show {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+
+/* ================================= */
+/* DESCRIPTION SECTION */
+/* ================================= */
+
+.description-section {
+    padding-right: 20px;
+
+    border-right: 1px solid #ccc;
+}
+
+
+/* ================================= */
+/* QUALIFICATION SECTION */
+/* ================================= */
+
+.qualification-section {
+    padding-left: 10px;
+}
+
+
+/* ================================= */
+/* SECTION HEADINGS */
+/* ================================= */
+
+.description-section h4,
+.qualification-section h4 {
+    margin-top: 0;
+}
+
+
+/* ================================= */
+/* QUALIFICATION LIST */
+/* ================================= */
+
+.qualification-section ul {
+    padding-left: 20px;
+}
+
+
+/* ================================= */
+/* SELECTED APPLICANT */
+/* ================================= */
+
+.applicant-card.selected {
+    border: 3px solid blue;
+
+    background-color: #eef3ff;
+}
