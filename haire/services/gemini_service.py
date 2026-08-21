@@ -6,7 +6,7 @@ from typing import List, Optional
 import time, requests
 import json
 from io import BytesIO
-from pypdf import PdfReader
+# from pypdf import PdfReader
 
 start_time = time.time()
 load_dotenv()
@@ -60,7 +60,7 @@ class CandidateApplicationReview(BaseModel):
 def agent_resume_coverLetter_parser(resumeURL, cover_letter):
 
     prompt = f"""
-        You are an expert HR reviewer. Analyze the candidate's CV and application materials.
+        You are an expert HR recruiter. Analyze the candidate's CV and application materials.
         Extract all requested resume details into their respective structured fields, and synthesize
         a comprehensive 'personal_summary' and 'candidate_summary' evaluating their fit.
 
@@ -71,22 +71,22 @@ def agent_resume_coverLetter_parser(resumeURL, cover_letter):
         {cover_letter}
     """
 
-    response = client.interactions.create(
-        model="gemini-3.6-flash",
-        input=prompt,
-        response_format={
-            "type": "text",
-            "mime_type": "application/json",
-            "schema": CandidateApplicationReview.model_json_schema(),
-        }
+    response = client.models.generate_content(
+        model="gemini-3.5-flash-lite",
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            response_mime_type="application/json",
+            response_schema=CandidateApplicationReview,
+            temperature=0.2,
+        ),
     )
 
     # Convert Gemini's JSON response into a Python dictionary
-    result = json.loads(response.output_text)
+    result = json.loads(response.text)
 
     return result
 
-url="https://qfktrunnikcwulzwnlgi.supabase.co/storage/v1/object/public/cv-uploads/d4c5032c-02ca-4919-856b-fdca3cf81716.pdf"
+url="https://qfktrunnikcwulzwnlgi.supabase.co/storage/v1/object/public/cv-uploads/9a73e765-3e6c-409c-b2db-9b8594285836.pdf"
 cover_letter = """Dear Hiring Manager,
 
 # I am writing to express my interest in the Life Sciences Teacher position at your school. I am passionate about education and science, and I am eager to contribute to a learning environment where students are encouraged to develop their knowledge, curiosity, and critical-thinking skills.
