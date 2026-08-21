@@ -47,6 +47,7 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    width: 100%;
 
     font-family: var(--font-body);
 
@@ -63,6 +64,7 @@ select,
 input,
 textarea {
     font: inherit;
+    max-width: 100%;
 }
 
 
@@ -82,7 +84,6 @@ a:focus-visible {
 
 /* ================================= */
 /* MOVING GREEN HAZE */
-/* SAME AS RECRUITS */
 /* ================================= */
 
 .hero-haze {
@@ -118,6 +119,9 @@ a:focus-visible {
     flex-direction: column;
 
     min-height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 
@@ -298,13 +302,13 @@ a:focus-visible {
 
 /* ================================= */
 /* APPLICATION CARD */
-/* SAME STYLE AS RECRUIT CARDS */
 /* ================================= */
 
 .card {
     position: relative;
 
     width: 100%;
+    max-width: 100%;
 
     background: var(--card-bg);
 
@@ -441,6 +445,9 @@ a:focus-visible {
     flex-direction: column;
 
     gap: 1.25rem;
+    
+    width: 100%;
+    min-width: 0; /* Prevents grid/flex children from overflowing */
 }
 
 .form-row {
@@ -449,6 +456,9 @@ a:focus-visible {
     grid-template-columns: 1fr 1fr;
 
     gap: 1rem;
+
+    width: 100%;
+    min-width: 0;
 }
 
 .form-group {
@@ -457,6 +467,9 @@ a:focus-visible {
     flex-direction: column;
 
     gap: 0.4rem;
+
+    width: 100%;
+    min-width: 0; /* Ensures inner inputs compress properly */
 }
 
 
@@ -576,6 +589,9 @@ a:focus-visible {
     text-align: center;
 
     transition: border-color 0.2s ease;
+
+    width: 100%;
+    overflow: hidden; /* Prevents long filenames from breaking out */
 }
 
 .upload-section:hover {
@@ -598,6 +614,8 @@ a:focus-visible {
     font-size: 0.85rem;
 
     color: var(--text-muted);
+
+    max-width: 100%;
 }
 
 .upload-section input[type="file"]::file-selector-button {
@@ -631,7 +649,6 @@ a:focus-visible {
 
 /* ================================= */
 /* SUBMIT BUTTON */
-/* SAME AS RECRUIT PRIMARY BUTTON */
 /* ================================= */
 
 .submit-btn {
@@ -688,6 +705,8 @@ a:focus-visible {
     border-left: 1px solid rgba(8, 64, 39, 0.25);
 
     padding-left: 2rem;
+    
+    min-width: 0;
 }
 
 .job-requirements h3 {
@@ -851,11 +870,11 @@ footer small {
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.25rem;
     }
 
     .mainListings {
-        padding: 1rem 1rem 2rem;
+        padding: 1rem 0.75rem 2rem;
     }
 
     .form-row {
@@ -863,16 +882,16 @@ footer small {
     }
 
     .card-header {
-        padding: 1.25rem 1.5rem;
+        padding: 1.25rem 1rem;
     }
 
     .application-layout,
     .card.expanded .application-layout {
-        padding: 0 1.5rem 1.5rem;
+        padding: 0 1rem 1.25rem;
     }
 
     .card.expanded .application-layout {
-        padding-top: 1.5rem;
+        padding-top: 1.25rem;
     }
 
     .brief-form {
@@ -885,5 +904,11 @@ footer small {
         width: 3rem;
 
         height: 3rem;
+    }
+
+    /* Stack file upload elements gracefully on small screens */
+    .upload-section input[type="file"]::file-selector-button {
+        display: block;
+        margin: 0 auto 0.5rem auto;
     }
 }
