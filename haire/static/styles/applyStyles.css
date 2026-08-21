@@ -1,312 +1,463 @@
+/* ==========================================================================
+   Design System & Variables
+   ========================================================================== */
 :root {
-    --header-h: 64px;
+    --bg-deep: #04130b;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
 
-    /* Shared theme tokens - keep these in sync with indexStyles.css
-       if you want both pages to stay visually consistent */
-    --hero-bg: linear-gradient(120deg, #084027, #058f5c, #025235, #084027);
-    --hero-title-color: blanchedalmond;
-    --hero-title-font: Georgia, serif;
-    --hero-subtitle-color: blanchedalmond;
+    --gold-primary: #f59e0b;
+    --gold-hover: #d97706;
+    --gold-glow: rgba(245, 158, 11, 0.35);
 
-    --action-btn-bg: #c09712de;
-    --action-btn-hover-bg: #b26e14;
-    --action-btn-text-color: #ffffff;
-    --action-btn-font: 'Segoe UI', Arial, sans-serif;
+    /* Lighter, clearer slate card styling */
+    --card-bg: rgba(30, 41, 59, 0.75);
+    --card-border: rgba(255, 255, 255, 0.18);
+    --card-glow: rgba(245, 158, 11, 0.12);
 
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --card-text-color: #2a2a2a;
-    --accent-border-color: #058f5c;
+    /* Lighter form field styling */
+    --input-bg: rgba(15, 23, 42, 0.65);
+    --input-border: rgba(255, 255, 255, 0.22);
+    --input-focus: var(--gold-primary);
+
+    --font-serif: "Playfair Display", Georgia, serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    --t-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --t-medium: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--header-h);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--hero-bg);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+/* ==========================================================================
+   Reset & Base Layout
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-.site-header h1 {
+html, body {
     margin: 0;
-    font-family: var(--hero-title-font);
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--hero-title-color);
+    padding: 0;
+    min-height: 100vh;
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* push page content below the fixed header */
-body {
-    padding-top: var(--header-h);
-}
-
-body {
+.page-wrapper {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
-    align-items: center;
     min-height: 100vh;
-    margin: 0;
-    position: relative;
-    overflow-x: hidden;
-    background: var(--hero-bg);
-    color: var(--hero-title-color);
-    font-family: var(--action-btn-font);
 }
 
-/* Full-page haze sweep, matching the homepage */
+/* ==========================================================================
+   Shared Hero Haze Animation (Matched to indexStyles.css)
+   ========================================================================== */
 .hero-haze {
     position: fixed;
     inset: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(
-        135deg,
-        transparent 42%,
-        rgba(142, 242, 163, 0.382) 50%,
-        transparent 58%
+    background: radial-gradient(
+        circle at 20% 80%,
+        rgba(16, 185, 129, 0.40) 0%,
+        rgba(245, 158, 11, 0.25) 30%,
+        rgba(5, 150, 105, 0.10) 55%,
+        transparent 70%
     );
     pointer-events: none;
     z-index: 1;
-    animation: hazeSweep 6s ease-in-out infinite alternate;
+    filter: blur(40px);
+    animation: hazeSweep 12s ease-in-out infinite alternate;
 }
 
 @keyframes hazeSweep {
-    0% { transform: translate(-25%, 25%); }
-    100% { transform: translate(25%, -25%); }
+    0% {
+        transform: translate(-10%, 10%) scale(0.95);
+        opacity: 0.85;
+    }
+    100% {
+        transform: translate(15%, -15%) scale(1.1);
+        opacity: 1;
+    }
 }
 
+/* ==========================================================================
+   Top Right Floating Home Button
+   ========================================================================== */
+.brief-form {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+}
+
+.brief-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--gold-primary);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition: all var(--t-fast);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.brief-btn:hover {
+    background: rgba(245, 158, 11, 0.25);
+    border-color: var(--gold-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px var(--gold-glow);
+}
+
+.brief-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.brief-tooltip {
+    position: absolute;
+    right: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--t-fast);
+}
+
+.brief-form:hover .brief-tooltip {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Header Section
+   ========================================================================== */
+.portal-header {
+    text-align: center;
+    padding: 4rem 1.5rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    background: linear-gradient(135deg, #ffffff 30%, #a7f3d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ==========================================================================
+   Main Job Listings & Cards
+   ========================================================================== */
 .mainListings {
-    position: relative;
-    z-index: 2;
-    margin: 20px;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex: 1;
 }
 
+/* Glass Card */
 .card {
-    width: 800px;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-    background-color: var(--card-bg);
-    color: var(--card-text-color);
-    font-family: Arial, sans-serif;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    transition: all var(--t-medium);
 }
 
-.card h2 {
-    margin: 15px 0 10px;
-    font-family: var(--hero-title-font);
-    color: #0b3d24;
+.card:hover {
+    background: rgba(47, 63, 86, 0.82);
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 35px var(--card-glow);
 }
 
+/* Header / Toggle Row */
+.card-header {
+    padding: 1.75rem 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    transition: background-color var(--t-fast);
+}
+
+.card-header:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.header-content h2 {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: #ffffff;
+}
+
+.header-content .summary {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--gold-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.expand-icon {
+    font-size: 1.25rem;
+    color: var(--gold-primary);
+    transition: transform var(--t-medium);
+}
+
+.card.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+/* Collapsible Content Area */
 .application-layout {
     display: none;
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.7fr);
-    gap: 24px;
-}
-
-.card p {
-    color: #555;
-}
-
-.card button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--action-btn-bg);
-    color: var(--action-btn-text-color);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.card button:hover {
-    background-color: var(--action-btn-hover-bg);
-}
-
-.card label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.card input {
-    width: 50%;
-    padding: 10px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-}
-
-.card select {
-    width: 50%;
-    padding: 10px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background: white;
-    appearance: none;
-}
-
-.card textarea {
-    width: 50%;
-    min-height: 220px;
-    padding: 12px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font: inherit;
-    line-height: 1.5;
-    resize: vertical;
-}
-
-/* Keep checkboxes compact but aligned with spacing of other fields */
-.card input[type="checkbox"] {
-    width: auto;
-    transform: scale(1.15);
-    margin: 8px 0 15px 0;
-    vertical-align: middle;
-    accent-color: var(--action-btn-bg);
-}
-
-/* Collapsible card behavior */
-.card {
-    overflow: hidden;
-    transition: box-shadow 0.2s ease;
-    cursor: default;
-}
-
-.card-header {
-    padding: 8px 0 12px 0;
-    cursor: pointer;
-}
-
-.card .form,
-.card .upload-section {
-    display: none;
-}
-
-.card.expanded {
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
-}
-
-.card.expanded .form,
-.card.expanded .upload-section,
-.card.expanded .application-layout {
-    display: block;
+    padding: 0 2rem 2.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card.expanded .application-layout {
     display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2.5rem;
+    padding-top: 2rem;
+    animation: fadeIn 0.4s ease-out;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Form Components
+   ========================================================================== */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.card label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.card input[type="text"],
+.card input[type="tel"],
+.card input[type="email"],
+.card select,
+.card textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    outline: none;
+    transition: all var(--t-fast);
+}
+
+.card select option {
+    background-color: #1e293b;
+    color: var(--text-primary);
+}
+
+.card input:focus,
+.card select:focus,
+.card textarea:focus {
+    border-color: var(--input-focus);
+    background: rgba(15, 23, 42, 0.85);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+}
+
+.card textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+/* Custom File Upload Box */
+.upload-section {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px dashed var(--input-border);
+    border-radius: 12px;
+    text-align: center;
+    transition: border-color var(--t-fast);
+}
+
+.upload-section:hover {
+    border-color: var(--gold-primary);
+}
+
+.upload-section label {
+    display: block;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.upload-section input[type="file"] {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.upload-section input[type="file"]::file-selector-button {
+    background: rgba(245, 158, 11, 0.2);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 0.8rem;
+    transition: all var(--t-fast);
+}
+
+.upload-section input[type="file"]::file-selector-button:hover {
+    background: var(--gold-primary);
+    color: #000000;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-hover));
+    color: #000000;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all var(--t-fast);
+    box-shadow: 0 0 20px var(--gold-glow);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px var(--gold-glow);
+    filter: brightness(1.1);
+}
+
+/* ==========================================================================
+   Sidebar / Job Requirements
+   ========================================================================== */
 .job-requirements {
-    border-left: 2px dashed var(--accent-border-color);
-    padding-left: 24px;
-    color: #1f2937;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    padding-left: 2rem;
 }
 
 .job-requirements h3 {
     margin-top: 0;
-    font-family: var(--hero-title-font);
-    color: #0b3d24;
+    margin-bottom: 1rem;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: #ffffff;
 }
 
 .job-requirements ul {
     margin: 0;
-    padding-left: 20px;
+    padding-left: 1.2rem;
+    color: var(--text-secondary);
 }
 
 .job-requirements li {
-    margin-bottom: 12px;
-    line-height: 1.4;
+    margin-bottom: 0.85rem;
+    line-height: 1.5;
+    font-size: 0.9rem;
 }
 
-/* End of current stage overlay */
-.stage-end {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 20px;
-    z-index: 9999;
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--card-border);
 }
 
-.stage-end.hidden {
-    display: none;
-}
-
-.mainListings.ended .card {
-    pointer-events: none;
-    opacity: 0.6;
-}
-
-.form-scroll {
-    height: 250px;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
-.upload-section {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid #ccc;
-}
-
-.upload-section button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--action-btn-bg);
-    color: var(--action-btn-text-color);
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.upload-section button:hover {
-    background-color: var(--action-btn-hover-bg);
-}
-
-.submit-btn {
-    width: 50%;
-    margin-top: 4px;
-}
-
-@media (max-width: 700px) {
-    .card {
-        width: auto;
-    }
-
-    .application-layout {
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 820px) {
+    .card.expanded .application-layout {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .job-requirements {
-        border-left: 0;
-        border-top: 2px dashed var(--accent-border-color);
-        padding: 20px 0 0;
+        border-left: none;
+        border-top: 1px dashed rgba(255, 255, 255, 0.15);
+        padding-left: 0;
+        padding-top: 1.5rem;
+    }
+}
+
+@media (max-width: 580px) {
+    .form-row {
+        grid-template-columns: 1fr;
     }
 
-    .card input,
-    .card select,
-    .card textarea,
-    .submit-btn {
-        width: 100%;
+    .card-header {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .application-layout {
+        padding: 0 1.5rem 1.5rem;
     }
 }

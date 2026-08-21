@@ -1,163 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="../static/styles/applyStyles.css" />
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  
-    
+    <title>Job Application Portal — hAIre</title>
+    <meta name="theme-color" content="#04130b" />
 
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="../static/styles/applyStyles.css" />
+</head>
 <body>
-  <div class="hero-haze"></div>
 
-  <header class="site-header">
-      <h1 class="title">Linkdeed</h1>
-  </header>
-  <div class="mainListings">
-    <div class="card" data-job="junior-dev">
-      <div class="card-header">
-        <h2>Junior Software Developer</h2>
-        <p class="summary">Click to apply — basic details only.</p>
-      </div>
+    <!-- Ambient Background Glow (Haze) -->
+    <div class="hero-haze"></div>
 
-      <div class="application-layout">
-        <form class="form" id="form-junior" enctype="multipart/form-data">
-        <label>Full name:</label>
-        <input type="text" name="fullName" required />
+    <div class="page-wrapper">
 
-        <label>Cellphone number:</label>
-        <input type="tel" name="cellphone" required />
-
-        <label>Email:</label>
-        <input type="email" name="email" required />
-
-        <label>Address:</label>
-        <input type="text" name="address" />
-
-        <label>Gender:</label>
-        <select name="gender" id="gender">
-          <option value="Other">Other</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-
-        <label>Marriage Status:</label>
-        <select name="marStatus" id="marStatus">
-          <option value="Married">Married</option>
-          <option value="notMarried">Not Married</option>
-        </select>
-
-        <label>Do you have reliable transport?</label>
-        <select name="transport" id="transport">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-
-        <label>What is your nationality</label>
-        <select name="nationality" id="nationality">
-          <option value="South Africa">South Africa</option>
-          <option value="Namibia">Namibia</option>
-          <option value="Botswana">Botswana</option>
-          <option value="Other">Other</option>
-        </select>
-
-        <label for="cover-letter-junior">Cover letter:</label>
-        <textarea id="cover-letter-junior" name="coverLetter" rows="10" placeholder="Tell us about yourself and why you are a good fit for this role" required></textarea>
-
-        <div class="upload-section">
-          <label for="cv-upload">Upload a CV:</label>
-          <input type="file" id="cv-upload" name="cv" accept=".pdf" />
+        <!-- Top Right Return to Home Button -->
+        <div class="brief-form">
+            <a href="{{ url_for('view_bp.home') }}" aria-label="Return to homepage">
+                <button class="brief-btn" type="button" aria-label="Return home">
+                    <svg class="brief-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </button>
+                <span class="brief-tooltip">Back to Home</span>
+            </a>
         </div>
 
-        <button type="submit" class="submit-btn">Submit application</button>
-        </form>
+        <!-- Page Header -->
+        <header class="portal-header">
+            <h1 class="hero-title">Open Positions</h1>
+            <p class="hero-tagline">Select a role below to expand details and submit your application.</p>
+        </header>
 
-        <aside class="job-requirements">
-          <h3>Job requirements</h3>
-          <ul>
-            <li>Basic knowledge of software development</li>
-            <li>Problem-solving and communication skills</li>
-            <li>Willingness to learn and work in a team</li>
-            <li>Relevant qualification or equivalent experience</li>
-          </ul>
-        </aside>
-      </div>
+        <!-- Main Job Listings Container -->
+        <main class="mainListings">
+
+            <!-- Card 1: Junior Software Developer -->
+            <div class="card" data-job="junior-dev">
+                <div class="card-header">
+                    <div class="header-content">
+                        <h2>Junior Software Developer</h2>
+                        <p class="summary">Engineering &bull; Full-Time</p>
+                    </div>
+                    <span class="expand-icon" aria-hidden="true">↓</span>
+                </div>
+
+                <div class="application-layout">
+                    <form class="form" id="form-junior" enctype="multipart/form-data">
+                        
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" name="fullName" placeholder="Jane Doe" required />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Cellphone Number</label>
+                                <input type="tel" name="cellphone" placeholder="+27 82 123 4567" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" name="email" placeholder="jane@example.com" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" name="address" placeholder="123 Main St, Cape Town" />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select name="gender" id="gender">
+                                    <option value="Other">Other</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Marital Status</label>
+                                <select name="marStatus" id="marStatus">
+                                    <option value="notMarried">Not Married</option>
+                                    <option value="Married">Married</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Reliable Transport?</label>
+                                <select name="transport" id="transport">
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nationality</label>
+                                <select name="nationality" id="nationality">
+                                    <option value="South Africa">South Africa</option>
+                                    <option value="Namibia">Namibia</option>
+                                    <option value="Botswana">Botswana</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cover-letter-junior">Cover Letter</label>
+                            <textarea id="cover-letter-junior" name="coverLetter" rows="6" placeholder="Tell us about yourself and why you're a great fit for this role..." required></textarea>
+                        </div>
+
+                        <div class="upload-section">
+                            <label for="cv-upload">Upload CV (PDF format)</label>
+                            <input type="file" id="cv-upload" name="cv" accept=".pdf" />
+                        </div>
+
+                        <button type="submit" class="submit-btn">SUBMIT APPLICATION</button>
+                    </form>
+
+                    <aside class="job-requirements">
+                        <h3>Job Requirements</h3>
+                        <ul>
+                            <li>Basic knowledge of software development principles and clean code.</li>
+                            <li>Strong problem-solving and communication skills.</li>
+                            <li>Eagerness to learn and thrive in a collaborative environment.</li>
+                            <li>Relevant degree, diploma, or equivalent project experience.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+
+            <!-- Card 2: Teacher -->
+            <div class="card" data-job="teacher">
+                <div class="card-header">
+                    <div class="header-content">
+                        <h2>Educator / Teacher</h2>
+                        <p class="summary">Education &bull; Full-Time</p>
+                    </div>
+                    <span class="expand-icon" aria-hidden="true">↓</span>
+                </div>
+
+                <div class="application-layout">
+                    <form class="form" id="form-teacher" enctype="multipart/form-data">
+                        
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" name="fullName" placeholder="John Smith" required />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Cellphone Number</label>
+                                <input type="tel" name="cellphone" placeholder="+27 83 987 6543" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" name="email" placeholder="john@example.com" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" name="address" placeholder="45 Park Road, Johannesburg" />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select name="gender" id="gender-teacher">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Marital Status</label>
+                                <select name="marStatus" id="marStatus-teacher">
+                                    <option value="notMarried">Not Married</option>
+                                    <option value="Married">Married</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Reliable Transport?</label>
+                                <select name="transport" id="transport-teacher">
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Nationality</label>
+                                <select name="nationality" id="nationality-teacher">
+                                    <option value="South Africa">South Africa</option>
+                                    <option value="Namibia">Namibia</option>
+                                    <option value="Botswana">Botswana</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cover-letter-teacher">Cover Letter</label>
+                            <textarea id="cover-letter-teacher" name="coverLetter" rows="6" placeholder="Tell us about your teaching philosophy and experience..." required></textarea>
+                        </div>
+
+                        <div class="upload-section">
+                            <label for="cv-teacher">Upload CV (PDF format)</label>
+                            <input type="file" id="cv-teacher" name="cv" accept=".pdf" />
+                        </div>
+
+                        <button type="submit" class="submit-btn">SUBMIT APPLICATION</button>
+                    </form>
+
+                    <aside class="job-requirements">
+                        <h3>Job Requirements</h3>
+                        <ul>
+                            <li>Recognised teaching qualification (B.Ed or PGCE).</li>
+                            <li>Strong organizational and classroom leadership skills.</li>
+                            <li>Ability to foster an engaging and inclusive learning environment.</li>
+                            <li>Patience, empathy, and genuine dedication to student growth.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <small>
+                Created by Elye Fredricks, Geremie Ishimwe, Leyton Manthopoulos, Jonathan Rajdl & Carl Vlok
+            </small>
+        </footer>
+
     </div>
 
-    <div class="card" data-job="teacher">
-      <div class="card-header">
-        <h2>Teacher</h2>
-        <p class="summary">Click to apply — basic details only.</p>
-      </div>
-
-      <div class="application-layout">
-        <form class="form" id="form-teacher" enctype="multipart/form-data">
-        <label>Full name:</label>
-        <input type="text" name="fullName" required />
-
-        <label>Cellphone number:</label>
-        <input type="tel" name="cellphone" required />
-
-        <label>Email:</label>
-        <input type="email" name="email" required />
-
-        <label>Address:</label>
-        <input type="text" name="address" />
-
-        <label>Gender:</label>
-        <select name="gender" id="gender-teacher">
-          <option value="male">male</option>
-          <option value="female">female</option>
-          <option value="other">Other</option>
-        </select>
-
-        <label>Marriage Status:</label>
-        <select name="marStatus" id="marStatus-teacher">
-          <option value="Married">Married</option>
-          <option value="notMarried">Not Married</option>
-        </select>
-
-        <label>Do you have reliable transport?</label>
-        <select name="transport" id="transport-teacher">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-
-        <label>What is your nationality</label>
-        <select name="nationality" id="nationality-teacher">
-          <option value="South Africa">South Africa</option>
-          <option value="Namibia">Namibia</option>
-          <option value="Botswana">Botswana</option>
-          <option value="Other">Other</option>
-        </select>
-
-        
-          <label for="cover-letter-teacher">Cover letter:</label>
-          <textarea id="cover-letter-teacher" name="coverLetter" rows="10" placeholder="Tell us about yourself and why you are a good fit for this role" required></textarea>
-          
-
-        <div class="upload-section">
-          <label for="cv-teacher">Upload a CV:</label>
-          <input type="file" id="cv-teacher" name="cv" accept=".pdf" />
-        </div>
-
-        <button type="submit" class="submit-btn">Submit application</button>
-        </form>
-
-        <aside class="job-requirements">
-          <h3>Job requirements</h3>
-          <ul>
-            <li>Recognised teaching qualification</li>
-            <li>Strong communication and organisation skills</li>
-            <li>Ability to create an engaging learning environment</li>
-            <li>Patience, empathy, and a passion for teaching</li>
-          </ul>
-        </aside>
-      </div>
-    </div>
-  </div>
+    <!-- Application JS Logic -->
     <script src="../static/scripts/apply.js"></script>
-  </body>
+</body>
 </html>
