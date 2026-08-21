@@ -29,3 +29,25 @@ def save_candidate_and_cv(form_data: dict, file_bytes: bytes) -> dict:
     update_res = supabase.table("candidates_raw").update({"cv_file_url": file_url}).eq("id", candidate_id).execute()
     
     return update_res.data[0]
+
+def save_ranked_candidate(ranked_data: dict) -> dict:
+    """
+    Saves the processed algorithm output to the 'candidates_ranked' table.
+    The ranked_data dict should contain the fields required by your Supabase table schema
+    (e.g., candidate_id, score, top_matches, etc.).
+    """
+    insert_res = supabase.table("candidates_ranked").insert(ranked_data).execute()
+    return insert_res.data[0]
+
+def get_all_evaluations(job_title: str = None) -> list:
+    """
+    Fetches all ranked candidates from the 'candidates_ranked' table.
+    Optionally filters by job_title if provided.
+    """
+    query = supabase.table("candidates_ranked").select("*")
+    
+    if job_title and job_title != "all":
+        query = query.eq("job_title", job_title)
+        
+    result = query.execute()
+    return result.data
