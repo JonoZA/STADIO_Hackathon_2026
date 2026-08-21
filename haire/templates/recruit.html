@@ -30,35 +30,63 @@
 
 
         <!-- ================================= -->
-        <!-- HAIRE LOGO - TOP OF PAGE -->
+        <!-- HAIRE LOGO -->
         <!-- ================================= -->
 
         <header class="site-header">
 
-            <a href="{{ url_for('view_bp.home') }}" class="haire-logo">
+            <a
+                href="{{ url_for('view_bp.home') }}"
+                class="haire-logo"
+                aria-label="hAIre Home"
+            >
                 hAIre
             </a>
 
         </header>
 
 
-        <!-- Top Right Return to Home Button -->
+        <!-- ================================= -->
+        <!-- RETURN HOME BUTTON -->
+        <!-- ================================= -->
+
         <div class="brief-form">
-            <a href="{{ url_for('view_bp.home') }}" aria-label="Return to homepage">
-                <button class="brief-btn" type="button" aria-label="Return home">
-                    <svg class="brief-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
-                </button>
-                <span class="brief-tooltip">Back to Home</span>
+
+            <a
+                href="{{ url_for('view_bp.home') }}"
+                class="brief-btn"
+                aria-label="Return to homepage"
+                title="Back to Home"
+            >
+
+                <svg
+                    class="brief-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2z"></path>
+
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+
+                </svg>
+
+                <span class="brief-tooltip">
+                    Back to Home
+                </span>
+
             </a>
+
         </div>
 
 
         <!-- ================================= -->
-        <!-- THREE RECRUITMENT CARDS -->
+        <!-- MAIN DASHBOARD -->
         <!-- ================================= -->
 
         <main class="cards-container">
@@ -68,12 +96,17 @@
             <!-- CONTROLS CARD -->
             <!-- ================================= -->
 
-            <div class="outer-card second-card">
+            <section
+                class="outer-card second-card"
+                aria-labelledby="controls-heading"
+            >
 
-                <h2>Controls</h2>
+                <h2 id="controls-heading">
+                    Controls
+                </h2>
 
                 <p>
-                    Select what you need.
+                    Select a job and filter applicants.
                 </p>
 
 
@@ -82,10 +115,13 @@
                 <div class="job-control">
 
                     <label for="job-selector">
-                        Select Job:
+                        Select Job
                     </label>
 
-                    <select id="job-selector">
+                    <select
+                        id="job-selector"
+                        name="job"
+                    >
 
                         <option value="software-engineer">
                             Software Engineer
@@ -109,13 +145,16 @@
                 <div class="filter-input">
 
                     <label for="filter-input">
-                        Filter Applicants:
+                        Filter Applicants
                     </label>
 
-                    <select id="filter-input">
+                    <select
+                        id="filter-input"
+                        name="applicant-filter"
+                    >
 
                         <option value="all">
-                            All
+                            All Applicants
                         </option>
 
                         <option value="high-score">
@@ -133,48 +172,72 @@
 
                 <!-- CONTROL BUTTONS -->
 
-                <div class="control-buttons">
+                <div
+                    class="control-buttons"
+                    aria-label="Applicant actions"
+                >
 
-                    <button id="clear-button">
-                        Clear
-                    </button>
-
-                    <button id="load-all-button">
+                    <button
+                        id="load-all-button"
+                        type="button"
+                        class="secondary-button"
+                    >
                         Load All
                     </button>
 
-                    <button id="approve-button">
-                        Approve
+                    <button
+                        id="approve-button"
+                        type="button"
+                        class="primary-button"
+                    >
+                        Approve Selected
+                    </button>
+
+                    <button
+                        id="clear-button"
+                        type="button"
+                        class="clear-button"
+                    >
+                        Clear Selection
                     </button>
 
                 </div>
 
-            </div>
+            </section>
 
 
             <!-- ================================= -->
             <!-- APPLICANTS CARD -->
             <!-- ================================= -->
 
-            <div class="outer-card applicants-card">
+            <section
+                class="outer-card applicants-card"
+                aria-labelledby="applicants-heading"
+            >
 
-                <h2>Applicants</h2>
+                <h2 id="applicants-heading">
+                    Applicants
+                </h2>
 
                 <p>
-                    Select an applicant for hierarchy
+                    Select an applicant to review or approve.
                 </p>
 
 
                 <!-- SCROLLABLE APPLICANT AREA -->
 
-                <div class="form-scroll">
+                <div
+                    class="form-scroll"
+                    role="radiogroup"
+                    aria-label="Applicants"
+                >
 
 
                     <!-- ================================= -->
                     <!-- APPLICANT 1 -->
                     <!-- ================================= -->
 
-                    <div class="applicant-card">
+                    <article class="applicant-card">
 
                         <div class="applicant-header">
 
@@ -182,22 +245,36 @@
                                 John Doe
                             </h3>
 
-                            <span class="score">
-                                85%
+                            <span
+                                class="score"
+                                aria-label="Applicant match score: 85 percent"
+                            >
+                                85% Match
                             </span>
 
                             <label class="select-applicant">
 
-                                <input type="radio" name="application" value="john">
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="john"
+                                >
 
-                                Select
+                                <span>
+                                    Select
+                                </span>
 
                             </label>
 
                         </div>
 
 
-                        <button class="more-info-button">
+                        <button
+                            class="more-info-button"
+                            type="button"
+                            aria-expanded="false"
+                            aria-label="View more information about John Doe"
+                        >
                             View More Info
                         </button>
 
@@ -206,7 +283,9 @@
 
                             <div class="description-section">
 
-                                <h4>Description</h4>
+                                <h4>
+                                    Description
+                                </h4>
 
                                 <p>
                                     John is an experienced software developer
@@ -219,7 +298,9 @@
 
                             <div class="qualification-section">
 
-                                <h4>Top Matches</h4>
+                                <h4>
+                                    Top Matches
+                                </h4>
 
                                 <ul>
 
@@ -234,14 +315,14 @@
 
                         </div>
 
-                    </div>
+                    </article>
 
 
                     <!-- ================================= -->
                     <!-- APPLICANT 2 -->
                     <!-- ================================= -->
 
-                    <div class="applicant-card">
+                    <article class="applicant-card">
 
                         <div class="applicant-header">
 
@@ -249,22 +330,36 @@
                                 Sarah Smith
                             </h3>
 
-                            <span class="score">
-                                90%
+                            <span
+                                class="score"
+                                aria-label="Applicant match score: 90 percent"
+                            >
+                                90% Match
                             </span>
 
                             <label class="select-applicant">
 
-                                <input type="radio" name="application" value="sarah">
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="sarah"
+                                >
 
-                                Select
+                                <span>
+                                    Select
+                                </span>
 
                             </label>
 
                         </div>
 
 
-                        <button class="more-info-button">
+                        <button
+                            class="more-info-button"
+                            type="button"
+                            aria-expanded="false"
+                            aria-label="View more information about Sarah Smith"
+                        >
                             View More Info
                         </button>
 
@@ -273,7 +368,9 @@
 
                             <div class="description-section">
 
-                                <h4>Description</h4>
+                                <h4>
+                                    Description
+                                </h4>
 
                                 <p>
                                     Sarah is a skilled software developer
@@ -286,7 +383,9 @@
 
                             <div class="qualification-section">
 
-                                <h4>Top Matches</h4>
+                                <h4>
+                                    Top Matches
+                                </h4>
 
                                 <ul>
 
@@ -301,14 +400,14 @@
 
                         </div>
 
-                    </div>
+                    </article>
 
 
                     <!-- ================================= -->
                     <!-- APPLICANT 3 -->
                     <!-- ================================= -->
 
-                    <div class="applicant-card">
+                    <article class="applicant-card">
 
                         <div class="applicant-header">
 
@@ -316,22 +415,36 @@
                                 Jan Doe
                             </h3>
 
-                            <span class="score">
-                                75%
+                            <span
+                                class="score"
+                                aria-label="Applicant match score: 75 percent"
+                            >
+                                75% Match
                             </span>
 
                             <label class="select-applicant">
 
-                                <input type="radio" name="application" value="jan">
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="jan"
+                                >
 
-                                Select
+                                <span>
+                                    Select
+                                </span>
 
                             </label>
 
                         </div>
 
 
-                        <button class="more-info-button">
+                        <button
+                            class="more-info-button"
+                            type="button"
+                            aria-expanded="false"
+                            aria-label="View more information about Jan Doe"
+                        >
                             View More Info
                         </button>
 
@@ -340,7 +453,9 @@
 
                             <div class="description-section">
 
-                                <h4>Description</h4>
+                                <h4>
+                                    Description
+                                </h4>
 
                                 <p>
                                     Jan is a motivated developer with
@@ -353,7 +468,9 @@
 
                             <div class="qualification-section">
 
-                                <h4>Top Matches</h4>
+                                <h4>
+                                    Top Matches
+                                </h4>
 
                                 <ul>
 
@@ -368,14 +485,14 @@
 
                         </div>
 
-                    </div>
+                    </article>
 
 
                     <!-- ================================= -->
                     <!-- APPLICANT 4 -->
                     <!-- ================================= -->
 
-                    <div class="applicant-card">
+                    <article class="applicant-card">
 
                         <div class="applicant-header">
 
@@ -383,22 +500,36 @@
                                 Jake Doe
                             </h3>
 
-                            <span class="score">
-                                66%
+                            <span
+                                class="score"
+                                aria-label="Applicant match score: 66 percent"
+                            >
+                                66% Match
                             </span>
 
                             <label class="select-applicant">
 
-                                <input type="radio" name="application" value="jake">
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="jake"
+                                >
 
-                                Select
+                                <span>
+                                    Select
+                                </span>
 
                             </label>
 
                         </div>
 
 
-                        <button class="more-info-button">
+                        <button
+                            class="more-info-button"
+                            type="button"
+                            aria-expanded="false"
+                            aria-label="View more information about Jake Doe"
+                        >
                             View More Info
                         </button>
 
@@ -407,7 +538,9 @@
 
                             <div class="description-section">
 
-                                <h4>Description</h4>
+                                <h4>
+                                    Description
+                                </h4>
 
                                 <p>
                                     Jake is a developing software professional
@@ -420,7 +553,9 @@
 
                             <div class="qualification-section">
 
-                                <h4>Top Matches</h4>
+                                <h4>
+                                    Top Matches
+                                </h4>
 
                                 <ul>
 
@@ -435,21 +570,26 @@
 
                         </div>
 
-                    </div>
+                    </article>
 
 
                 </div>
 
-            </div>
+            </section>
 
 
             <!-- ================================= -->
             <!-- STATISTICS CARD -->
             <!-- ================================= -->
 
-            <div class="outer-card statistics-card">
+            <section
+                class="outer-card statistics-card"
+                aria-labelledby="statistics-heading"
+            >
 
-                <h2>Statistics</h2>
+                <h2 id="statistics-heading">
+                    Statistics
+                </h2>
 
 
                 <div class="statistics-content">
@@ -457,9 +597,14 @@
 
                     <div class="statistic-item">
 
-                        <h3>Total Applicants</h3>
+                        <h3>
+                            Total Applicants
+                        </h3>
 
-                        <p id="total-applicants">
+                        <p
+                            id="total-applicants"
+                            aria-label="Total applicants: 4"
+                        >
                             4
                         </p>
 
@@ -468,9 +613,14 @@
 
                     <div class="statistic-item">
 
-                        <h3>Average Score</h3>
+                        <h3>
+                            Average Score
+                        </h3>
 
-                        <p id="average-score">
+                        <p
+                            id="average-score"
+                            aria-label="Average score: 79 percent"
+                        >
                             79%
                         </p>
 
@@ -479,9 +629,14 @@
 
                     <div class="statistic-item">
 
-                        <h3>Highest Score</h3>
+                        <h3>
+                            Highest Score
+                        </h3>
 
-                        <p id="highest-score">
+                        <p
+                            id="highest-score"
+                            aria-label="Highest score: 90 percent"
+                        >
                             90%
                         </p>
 
@@ -490,9 +645,14 @@
 
                     <div class="statistic-item">
 
-                        <h3>Lowest Score</h3>
+                        <h3>
+                            Lowest Score
+                        </h3>
 
-                        <p id="lowest-score">
+                        <p
+                            id="lowest-score"
+                            aria-label="Lowest score: 66 percent"
+                        >
                             66%
                         </p>
 
@@ -501,14 +661,14 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
         </main>
 
 
         <!-- ================================= -->
-        <!-- GENERIC COMPANY FOOTER -->
+        <!-- FOOTER -->
         <!-- ================================= -->
 
         <footer class="site-footer">
@@ -518,7 +678,8 @@
             </p>
 
             <p>
-                Created by Elye Fredricks, Geremie Ishimwe, Leyton Manthopoulos, Jonathan Rajdl & Carl Vlok
+                Created by Elye Fredricks, Geremie Ishimwe,
+                Leyton Manthopoulos, Jonathan Rajdl & Carl Vlok
             </p>
 
         </footer>
