@@ -1,0 +1,228 @@
+
+:root {
+    /* Above section (hAIre header) */
+    --hero-bg: linear-gradient(180deg, #0d6efd, #002a63);
+    --hero-title-color: blanchedalmond;
+    --hero-title-font: Georgia, serif;
+    --hero-subtitle-color: blanchedalmond;
+
+    /* Below section (Apply / Recruit) */
+    --actions-bg: #001a3d;
+    --action-btn-bg: #198754;
+    --action-btn-text-color: #ffffff;
+    --action-btn-font: 'Segoe UI', Arial, sans-serif;
+
+    /* Read our brief button */
+    --brief-btn-bg: #198754;
+    --brief-btn-text-color: #ffffff;
+
+    /* Timing (seconds) - tweak to speed up/slow down the intro */
+    --t-hero-slide: 1s;
+    --t-title-fade: 0.8s;
+    --t-subtitle-delay: 0.3s;
+    --t-brief-delay: 0.5s;
+    --t-actions-delay: 0.4s;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    color: var(--hero-title-color);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /* Matches the below-section color so nothing white shows through
+       while the hero section is still sliding into place */
+    background-color: var(--actions-bg);
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: calc(100vh - 2.5rem);
+}
+
+.hero-section {
+    position: relative;
+    flex: 0 0 68%;
+    min-height: 0;
+    background: var(--hero-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    transform: translateY(-100%);
+    animation-name: heroSlideDown;
+    animation-duration: var(--t-hero-slide);
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 1.5rem;
+}
+
+.hero-title {
+    font-family: var(--hero-title-font);
+    color: var(--hero-title-color);
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    margin: 0;
+
+    opacity: 0;
+    animation-name: fadeUp;
+    animation-duration: var(--t-title-fade);
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: var(--t-hero-slide);
+}
+
+.hero-subtitle {
+    color: var(--hero-subtitle-color);
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    margin: 0.5rem 0 0;
+
+    opacity: 0;
+    animation-name: fadeUp;
+    animation-duration: var(--t-title-fade);
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: calc(var(--t-hero-slide) + var(--t-subtitle-delay));
+}
+
+.hero-subtitle-small {
+    color: var(--hero-subtitle-color);
+    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+    margin: 0.35rem 0 1.5rem;
+
+    opacity: 0;
+    animation-name: fadeUp;
+    animation-duration: var(--t-title-fade);
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: calc(var(--t-hero-slide) + var(--t-subtitle-delay) + 0.2s);
+}
+
+.brief-form {
+    margin: 0;
+
+    opacity: 0;
+    animation-name: fadeUp;
+    animation-duration: var(--t-title-fade);
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: calc(var(--t-hero-slide) + var(--t-subtitle-delay) + var(--t-brief-delay));
+}
+
+.brief-btn {
+    background-color: var(--brief-btn-bg);
+    color: var(--brief-btn-text-color);
+    border: none;
+    font-weight: 600;
+}
+
+/* Moving haze / reflection sweeping across the hero section */
+.hero-haze {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 220%;
+    height: 220%;
+    background: linear-gradient(
+        135deg,
+        transparent 42%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 58%
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: hazeSweep 6s ease-in-out infinite alternate;
+}
+
+
+.action-section {
+    flex: 1;
+    min-height: 0;
+    background: var(--actions-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+
+    transform: translateY(150%);
+    opacity: 0;
+    animation-name: slideUp;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: calc(var(--t-hero-slide) + var(--t-subtitle-delay) + var(--t-brief-delay) + var(--t-actions-delay));
+}
+
+.action-buttons a {
+    text-decoration: none;
+}
+
+.action-btn {
+    background-color: var(--action-btn-bg);
+    color: var(--action-btn-text-color);
+    font-family: var(--action-btn-font);
+    border: none;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 0.75rem 2rem;
+}
+
+footer {
+    text-align: center;
+    height: 2.5rem;
+    box-sizing: border-box;
+    padding: 0.5rem 0;
+    background: var(--actions-bg);
+    color: var(--hero-title-color);
+}
+
+@keyframes heroSlideDown {
+    to { transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes hazeSweep {
+    0% { transform: translate(-25%, 25%); }
+    100% { transform: translate(25%, -25%); }
+}
