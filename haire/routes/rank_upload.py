@@ -1,6 +1,6 @@
 import io, time
 from flask import Blueprint, request, jsonify
-from services.gemini_service import evaluate_cv_content
+# from services.gemini_service import evaluate_cv_content
 from services.supaDB_service import save_candidate_and_cv
 from extensions import supabase 
 
