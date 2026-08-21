@@ -1,0 +1,124 @@
+       
+         /* OUTER CARD */
+        .outer-card {
+            width: 600px;
+            height: 600px;
+
+            margin: 40px auto;
+            padding: 25px;
+
+            border: 2px solid #333;
+            border-radius: 15px;
+
+            background-color: #f5f5f5;
+
+            box-sizing: border-box;
+        }
+
+
+        /* INNER APPLICANT CARD */
+        .applicant-card {
+            margin-top: 15px;
+            padding: 20px;
+
+            background-color: white;
+
+            border: 2px solid #ccc;
+            border-radius: 10px;
+
+            transition: 0.2s;
+        }
+
+
+        /* APPLICANT HEADER */
+        .applicant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        /* NAME */
+        .applicant-name {
+            margin: 0;
+        }
+
+
+        /* SCORE */
+        .score {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+
+        /* DROPDOWN BUTTON */
+        .more-info-button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+
+            border: none;
+            border-radius: 6px;
+
+            background-color: #eee;
+
+            cursor: pointer;
+        }
+
+        .more-info-button:hover {
+            background-color: #ddd;
+        }
+
+
+        /* MORE INFORMATION */
+        .more-information {
+            display: none;
+
+            margin-top: 15px;
+            padding: 15px;
+
+            background-color: #f7f7f7;
+            border-radius: 8px;
+        }
+
+
+        /* SHOW INFORMATION */
+        .more-information.show {
+            display: block;
+        }
+
+
+        /* SELECT BUTTON */
+        .select-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+
+            border: none;
+            border-radius: 6px;
+
+            background-color: #333;
+            color: white;
+
+            cursor: pointer;
+        }
+
+
+        /* SELECTED CARD */
+        .applicant-card.selected {
+            border: 3px solid blue;
+            background-color: #eef3ff;
+        }
+
+
+        /* SELECTED BUTTON */
+        .applicant-card.selected .select-button {
+            background-color: blue;
+        }
+
+        /* SCROLLABLE APPLICANT AREA */
+        .form-scroll {
+            height: 450px;
+            overflow-y: auto;
+
+            padding-right: 10px;
+        }
