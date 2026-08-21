@@ -15,674 +15,642 @@
 
 <body>
 
-<!-- ================================= -->
+
 <!-- BACKGROUND HAZE -->
-<!-- ================================= -->
 
 <div class="hero-haze"></div>
 
 
-<!-- ================================= -->
 <!-- PAGE WRAPPER -->
-<!-- ================================= -->
 
 <div class="page-wrapper">
 
+<!-- our HAIRE LOGO -->
 
-    <!-- ================================= -->
-    <!-- HAIRE LOGO -->
-    <!-- ================================= -->
+<header class="site-header">
 
-    <header class="site-header">
+    <a
+        href="{{ url_for('view_bp.home') }}"
+        class="haire-logo"
+        aria-label="hAIre Home"
+    >
+        hAIre
+    </a>
 
-        <a
-            href="{{ url_for('view_bp.home') }}"
-            class="haire-logo"
-            aria-label="hAIre Home"
-        >
-            hAIre
-        </a>
-
-    </header>
+</header>
 
 
-    <!-- ================================= -->
-    <!-- RETURN HOME BUTTON -->
-    <!-- ================================= -->
-
-    <div class="brief-form">
-
-        <a
-            href="{{ url_for('view_bp.home') }}"
-            class="brief-btn"
-            aria-label="Return to homepage"
-            title="Back to Home"
-        >
-
-            <svg
-                class="brief-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-            >
-
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2z"></path>
-
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-
-            </svg>
-
-            <span class="brief-tooltip">
-                Back to Home
-            </span>
-
-        </a>
-
-    </div>
+<!-- RETURN HOME BUTTON -->
 
 
-    <!-- ================================= -->
-    <!-- MAIN DASHBOARD -->
-    <!-- ================================= -->
+<div class="brief-form">
 
-    <main class="cards-container">
+    <a
+        href="{{ url_for('view_bp.home') }}"
+        class="brief-btn"
+        aria-label="Return to homepage"
+        title="Back to Home"
+    >
 
-
-        <!-- ================================= -->
-        <!-- CONTROLS CARD -->
-        <!-- ================================= -->
-
-        <section
-            class="outer-card second-card"
-            aria-labelledby="controls-heading"
+        <svg
+            class="brief-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
         >
 
-            <h2 id="controls-heading">
-                Controls
-            </h2>
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 0 2 2H5a2 2 0 0 1-2-2z"></path>
 
-            <p>
-                Select a job and filter applicants.
-            </p>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
 
+        </svg>
 
-            <!-- JOB SELECTION -->
+        <span class="brief-tooltip">
+            Back to Home
+        </span>
 
-            <div class="job-control">
+    </a>
 
-                <label for="job-selector">
-                    Select Job
-                </label>
+</div>
 
-                <select
-                    id="job-selector"
-                    name="job"
-                >
 
-                    <option value="software-engineer">
-                        Software Engineer
-                    </option>
+<!-- MAIN DASHBOARD -->
 
-                    <option value="data-analyst">
-                        Data Analyst
-                    </option>
 
-                    <option value="product-manager">
-                        Product Manager
-                    </option>
+<main class="cards-container">
 
-                </select>
+    <!-- CONTROLS CARD -->
 
-            </div>
+    <section
+        class="outer-card second-card"
+        aria-labelledby="controls-heading"
+    >
 
-
-            <!-- FILTER -->
-
-            <div class="filter-input">
-
-                <label for="filter-input">
-                    Filter Applicants
-                </label>
-
-                <select
-                    id="filter-input"
-                    name="applicant-filter"
-                >
-
-                    <option value="all">
-                        All Applicants
-                    </option>
-
-                    <option value="high-score">
-                        High Score
-                    </option>
-
-                    <option value="low-score">
-                        Low Score
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- CONTROL BUTTONS -->
-
-            <div
-                class="control-buttons"
-                aria-label="Applicant actions"
-            >
-
-                <button
-                    id="load-all-button"
-                    type="button"
-                    class="secondary-button"
-                >
-                    Load All
-                </button>
-
-                <button
-                    id="approve-button"
-                    type="button"
-                    class="primary-button"
-                >
-                    Approve Selected
-                </button>
-
-                <button
-                    id="clear-button"
-                    type="button"
-                    class="clear-button"
-                >
-                    Clear Selection
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================= -->
-        <!-- APPLICANTS CARD -->
-        <!-- ================================= -->
-
-        <section
-            class="outer-card applicants-card"
-            aria-labelledby="applicants-heading"
-        >
-
-            <h2 id="applicants-heading">
-                Applicants
-            </h2>
-
-            <p>
-                Select an applicant to review or approve.
-            </p>
-
-
-            <!-- SCROLLABLE APPLICANT AREA -->
-
-            <div
-                class="form-scroll"
-                role="radiogroup"
-                aria-label="Applicants"
-            >
-
-
-                <!-- ================================= -->
-                <!-- APPLICANT 1 -->
-                <!-- ================================= -->
-
-                <article class="applicant-card">
-
-                    <div class="applicant-header">
-
-                        <h3 class="applicant-name">
-                            John Doe
-                        </h3>
-
-                        <span
-                            class="score"
-                            aria-label="Applicant match score: 85 percent"
-                        >
-                            85% Match
-                        </span>
-
-                        <label class="select-applicant">
-
-                            <input
-                                type="radio"
-                                name="application"
-                                value="john"
-                            >
-
-                            <span>
-                                Select
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <button
-                        class="more-info-button"
-                        type="button"
-                        aria-expanded="false"
-                        aria-label="View more information about John Doe"
-                    >
-                        View More Info
-                    </button>
-
-
-                    <div class="more-information">
-
-                        <div class="description-section">
-
-                            <h4>
-                                Description
-                            </h4>
-
-                            <p>
-                                John is an experienced software developer
-                                with a strong interest in creating reliable
-                                and user-friendly applications.
-                            </p>
-
-                        </div>
-
-
-                        <div class="qualification-section">
-
-                            <h4>
-                                Top Matches
-                            </h4>
-
-                            <ul>
-
-                                <li>Software Engineering</li>
-                                <li>Java</li>
-                                <li>Python</li>
-                                <li>Database Management</li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- ================================= -->
-                <!-- APPLICANT 2 -->
-                <!-- ================================= -->
-
-                <article class="applicant-card">
-
-                    <div class="applicant-header">
-
-                        <h3 class="applicant-name">
-                            Sarah Smith
-                        </h3>
-
-                        <span
-                            class="score"
-                            aria-label="Applicant match score: 90 percent"
-                        >
-                            90% Match
-                        </span>
-
-                        <label class="select-applicant">
-
-                            <input
-                                type="radio"
-                                name="application"
-                                value="sarah"
-                            >
-
-                            <span>
-                                Select
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <button
-                        class="more-info-button"
-                        type="button"
-                        aria-expanded="false"
-                        aria-label="View more information about Sarah Smith"
-                    >
-                        View More Info
-                    </button>
-
-
-                    <div class="more-information">
-
-                        <div class="description-section">
-
-                            <h4>
-                                Description
-                            </h4>
-
-                            <p>
-                                Sarah is a skilled software developer
-                                with experience in designing and developing
-                                modern software applications.
-                            </p>
-
-                        </div>
-
-
-                        <div class="qualification-section">
-
-                            <h4>
-                                Top Matches
-                            </h4>
-
-                            <ul>
-
-                                <li>Software Engineering</li>
-                                <li>Java</li>
-                                <li>Web Development</li>
-                                <li>Database Management</li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- ================================= -->
-                <!-- APPLICANT 3 -->
-                <!-- ================================= -->
-
-                <article class="applicant-card">
-
-                    <div class="applicant-header">
-
-                        <h3 class="applicant-name">
-                            Jan Doe
-                        </h3>
-
-                        <span
-                            class="score"
-                            aria-label="Applicant match score: 75 percent"
-                        >
-                            75% Match
-                        </span>
-
-                        <label class="select-applicant">
-
-                            <input
-                                type="radio"
-                                name="application"
-                                value="jan"
-                            >
-
-                            <span>
-                                Select
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <button
-                        class="more-info-button"
-                        type="button"
-                        aria-expanded="false"
-                        aria-label="View more information about Jan Doe"
-                    >
-                        View More Info
-                    </button>
-
-
-                    <div class="more-information">
-
-                        <div class="description-section">
-
-                            <h4>
-                                Description
-                            </h4>
-
-                            <p>
-                                Jan is a motivated developer with
-                                experience working on software projects
-                                and database systems.
-                            </p>
-
-                        </div>
-
-
-                        <div class="qualification-section">
-
-                            <h4>
-                                Top Matches
-                            </h4>
-
-                            <ul>
-
-                                <li>Software Development</li>
-                                <li>Python</li>
-                                <li>Database Management</li>
-                                <li>System Analysis</li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- ================================= -->
-                <!-- APPLICANT 4 -->
-                <!-- ================================= -->
-
-                <article class="applicant-card">
-
-                    <div class="applicant-header">
-
-                        <h3 class="applicant-name">
-                            Jake Doe
-                        </h3>
-
-                        <span
-                            class="score"
-                            aria-label="Applicant match score: 66 percent"
-                        >
-                            66% Match
-                        </span>
-
-                        <label class="select-applicant">
-
-                            <input
-                                type="radio"
-                                name="application"
-                                value="jake"
-                            >
-
-                            <span>
-                                Select
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <button
-                        class="more-info-button"
-                        type="button"
-                        aria-expanded="false"
-                        aria-label="View more information about Jake Doe"
-                    >
-                        View More Info
-                    </button>
-
-
-                    <div class="more-information">
-
-                        <div class="description-section">
-
-                            <h4>
-                                Description
-                            </h4>
-
-                            <p>
-                                Jake is a developing software professional
-                                with experience in programming and
-                                application development.
-                            </p>
-
-                        </div>
-
-
-                        <div class="qualification-section">
-
-                            <h4>
-                                Top Matches
-                            </h4>
-
-                            <ul>
-
-                                <li>Programming</li>
-                                <li>Java</li>
-                                <li>Software Development</li>
-                                <li>Problem Solving</li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================= -->
-        <!-- STATISTICS CARD -->
-        <!-- ================================= -->
-
-        <section
-            class="outer-card statistics-card"
-            aria-labelledby="statistics-heading"
-        >
-
-            <h2 id="statistics-heading">
-                Statistics
-            </h2>
-
-
-            <div class="statistics-content">
-
-
-                <div class="statistic-item">
-
-                    <h3>
-                        Total Applicants
-                    </h3>
-
-                    <p
-                        id="total-applicants"
-                        aria-label="Total applicants: 4"
-                    >
-                        4
-                    </p>
-
-                </div>
-
-
-                <div class="statistic-item">
-
-                    <h3>
-                        Average Score
-                    </h3>
-
-                    <p
-                        id="average-score"
-                        aria-label="Average score: 79 percent"
-                    >
-                        79%
-                    </p>
-
-                </div>
-
-
-                <div class="statistic-item">
-
-                    <h3>
-                        Highest Score
-                    </h3>
-
-                    <p
-                        id="highest-score"
-                        aria-label="Highest score: 90 percent"
-                    >
-                        90%
-                    </p>
-
-                </div>
-
-
-                <div class="statistic-item">
-
-                    <h3>
-                        Lowest Score
-                    </h3>
-
-                    <p
-                        id="lowest-score"
-                        aria-label="Lowest score: 66 percent"
-                    >
-                        66%
-                    </p>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-    </main>
-
-
-    <!-- ================================= -->
-    <!-- FOOTER -->
-    <!-- ================================= -->
-
-    <footer class="site-footer">
+        <h2 id="controls-heading">
+            Controls
+        </h2>
 
         <p>
-            © 2026 hAIre. All rights reserved.
+            Select a job and filter applicants.
         </p>
+
+
+        <!-- JOB SELECTION -->
+
+        <div class="job-control">
+
+            <label for="job-selector">
+                Select Job
+            </label>
+
+            <select
+                id="job-selector"
+                name="job"
+            >
+
+                <option value="software-engineer">
+                    Software Engineer
+                </option>
+
+                <option value="data-analyst">
+                    Data Analyst
+                </option>
+
+                <option value="product-manager">
+                    Product Manager
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="filter-input">
+
+            <label for="filter-input">
+                Filter Applicants
+            </label>
+
+            <select
+                id="filter-input"
+                name="applicant-filter"
+            >
+
+                <option value="all">
+                    All Applicants
+                </option>
+
+                <option value="high-score">
+                    High Score
+                </option>
+
+                <option value="low-score">
+                    Low Score
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- CONTROL BUTTONS -->
+
+        <div
+            class="control-buttons"
+            aria-label="Applicant actions"
+        >
+
+            <button
+                id="load-all-button"
+                type="button"
+                class="secondary-button"
+            >
+                Load All
+            </button>
+
+            <button
+                id="approve-button"
+                type="button"
+                class="primary-button"
+            >
+                Approve Selected
+            </button>
+
+            <button
+                id="clear-button"
+                type="button"
+                class="clear-button"
+            >
+                Clear Selection
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- APPLICANTS CARD -->
+
+    <section
+        class="outer-card applicants-card"
+        aria-labelledby="applicants-heading"
+    >
+
+        <h2 id="applicants-heading">
+            Applicants
+        </h2>
 
         <p>
-            Created by Elye Fredricks, Geremie Ishimwe,
-            Leyton Manthopoulos, Jonathan Rajdl & Carl Vlok
+            Select an applicant to review or approve.
         </p>
 
-    </footer>
+
+        <!-- the SCROLLABLE APPLICANT AREA -->
+
+        <div
+            class="form-scroll"
+            role="radiogroup"
+            aria-label="Applicants"
+        >
+
+            <!-- First applicant -->
+
+            <article class="applicant-card">
+
+                <div class="applicant-header">
+
+                    <h3 class="applicant-name">
+                        John Doe
+                    </h3>
+
+                    <span
+                        class="score"
+                        aria-label="Applicant match score: 85 percent"
+                    >
+                        85% Match
+                    </span>
+
+                    <label class="select-applicant">
+
+                        <input
+                            type="radio"
+                            name="application"
+                            value="john"
+                        >
+
+                        <span>
+                            Select
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    class="more-info-button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="View more information about John Doe"
+                >
+                    View More Info
+                </button>
+
+
+                <div class="more-information">
+
+                    <div class="description-section">
+
+                        <h4>
+                            Description
+                        </h4>
+
+                        <p>
+                            John is an experienced software developer
+                            with a strong interest in creating reliable
+                            and user-friendly applications.
+                        </p>
+
+                    </div>
+
+
+                    <div class="qualification-section">
+
+                        <h4>
+                            Top Matches
+                        </h4>
+
+                        <ul>
+
+                            <li>Software Engineering</li>
+                            <li>Java</li>
+                            <li>Python</li>
+                            <li>Database Management</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- Second applicant -->
+
+            <article class="applicant-card">
+
+                <div class="applicant-header">
+
+                    <h3 class="applicant-name">
+                        Sarah Smith
+                    </h3>
+
+                    <span
+                        class="score"
+                        aria-label="Applicant match score: 90 percent"
+                    >
+                        90% Match
+                    </span>
+
+                    <label class="select-applicant">
+
+                        <input
+                            type="radio"
+                            name="application"
+                            value="sarah"
+                        >
+
+                        <span>
+                            Select
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    class="more-info-button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="View more information about Sarah Smith"
+                >
+                    View More Info
+                </button>
+
+
+                <div class="more-information">
+
+                    <div class="description-section">
+
+                        <h4>
+                            Description
+                        </h4>
+
+                        <p>
+                            Sarah is a skilled software developer
+                            with experience in designing and developing
+                            modern software applications.
+                        </p>
+
+                    </div>
+
+
+                    <div class="qualification-section">
+
+                        <h4>
+                            Top Matches
+                        </h4>
+
+                        <ul>
+
+                            <li>Software Engineering</li>
+                            <li>Java</li>
+                            <li>Web Development</li>
+                            <li>Database Management</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- Third applicant -->
+
+            <article class="applicant-card">
+
+                <div class="applicant-header">
+
+                    <h3 class="applicant-name">
+                        Jan Doe
+                    </h3>
+
+                    <span
+                        class="score"
+                        aria-label="Applicant match score: 75 percent"
+                    >
+                        75% Match
+                    </span>
+
+                    <label class="select-applicant">
+
+                        <input
+                            type="radio"
+                            name="application"
+                            value="jan"
+                        >
+
+                        <span>
+                            Select
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    class="more-info-button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="View more information about Jan Doe"
+                >
+                    View More Info
+                </button>
+
+
+                <div class="more-information">
+
+                    <div class="description-section">
+
+                        <h4>
+                            Description
+                        </h4>
+
+                        <p>
+                            Jan is a motivated developer with
+                            experience working on software projects
+                            and database systems.
+                        </p>
+
+                    </div>
+
+
+                    <div class="qualification-section">
+
+                        <h4>
+                            Top Matches
+                        </h4>
+
+                        <ul>
+
+                            <li>Software Development</li>
+                            <li>Python</li>
+                            <li>Database Management</li>
+                            <li>System Analysis</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- Fourth applicant -->
+
+            <article class="applicant-card">
+
+                <div class="applicant-header">
+
+                    <h3 class="applicant-name">
+                        Jake Doe
+                    </h3>
+
+                    <span
+                        class="score"
+                        aria-label="Applicant match score: 66 percent"
+                    >
+                        66% Match
+                    </span>
+
+                    <label class="select-applicant">
+
+                        <input
+                            type="radio"
+                            name="application"
+                            value="jake"
+                        >
+
+                        <span>
+                            Select
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <button
+                    class="more-info-button"
+                    type="button"
+                    aria-expanded="false"
+                    aria-label="View more information about Jake Doe"
+                >
+                    View More Info
+                </button>
+
+
+                <div class="more-information">
+
+                    <div class="description-section">
+
+                        <h4>
+                            Description
+                        </h4>
+
+                        <p>
+                            Jake is a developing software professional
+                            with experience in programming and
+                            application development.
+                        </p>
+
+                    </div>
+
+
+                    <div class="qualification-section">
+
+                        <h4>
+                            Top Matches
+                        </h4>
+
+                        <ul>
+
+                            <li>Programming</li>
+                            <li>Java</li>
+                            <li>Software Development</li>
+                            <li>Problem Solving</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+    <!-- STATISTICS CARD -->
+
+    <section
+        class="outer-card statistics-card"
+        aria-labelledby="statistics-heading"
+    >
+
+        <h2 id="statistics-heading">
+            Statistics
+        </h2>
+
+
+        <div class="statistics-content">
+
+
+            <div class="statistic-item">
+
+                <h3>
+                    Total Applicants
+                </h3>
+
+                <p
+                    id="total-applicants"
+                    aria-label="Total applicants: 4"
+                >
+                    4
+                </p>
+
+            </div>
+
+
+            <div class="statistic-item">
+
+                <h3>
+                    Average Score
+                </h3>
+
+                <p
+                    id="average-score"
+                    aria-label="Average score: 79 percent"
+                >
+                    79%
+                </p>
+
+            </div>
+
+
+            <div class="statistic-item">
+
+                <h3>
+                    Highest Score
+                </h3>
+
+                <p
+                    id="highest-score"
+                    aria-label="Highest score: 90 percent"
+                >
+                    90%
+                </p>
+
+            </div>
+
+
+            <div class="statistic-item">
+
+                <h3>
+                    Lowest Score
+                </h3>
+
+                <p
+                    id="lowest-score"
+                    aria-label="Lowest score: 66 percent"
+                >
+                    66%
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+
+    <p>
+        © 2026 hAIre. All rights reserved.
+    </p>
+
+    <p>
+        Created by Elye Fredricks, Geremie Ishimwe,
+        Leyton Manthopoulos, Jonathan Rajdl & Carl Vlok
+    </p>
+
+</footer>
 
 
 </div>
