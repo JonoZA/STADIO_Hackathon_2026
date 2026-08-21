@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +10,7 @@
     <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="../static/styles/applyStyles.css" />
 </head>
+
 <body>
 
     <!-- Ambient Background Glow (Haze) -->
@@ -20,7 +22,8 @@
         <div class="brief-form">
             <a href="{{ url_for('view_bp.home') }}" aria-label="Return to homepage">
                 <button class="brief-btn" type="button" aria-label="Return home">
-                    <svg class="brief-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <svg class="brief-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
@@ -50,7 +53,7 @@
 
                 <div class="application-layout">
                     <form class="form" id="form-junior" enctype="multipart/form-data">
-                        
+
                         <div class="form-group">
                             <label>Full Name</label>
                             <input type="text" name="fullName" placeholder="Jane Doe" required />
@@ -111,7 +114,9 @@
 
                         <div class="form-group">
                             <label for="cover-letter-junior">Cover Letter</label>
-                            <textarea id="cover-letter-junior" name="coverLetter" rows="6" placeholder="Tell us about yourself and why you're a great fit for this role..." required></textarea>
+                            <textarea id="cover-letter-junior" name="coverLetter" rows="6"
+                                placeholder="Tell us about yourself and why you're a great fit for this role..."
+                                required></textarea>
                         </div>
 
                         <div class="upload-section">
@@ -146,7 +151,7 @@
 
                 <div class="application-layout">
                     <form class="form" id="form-teacher" enctype="multipart/form-data">
-                        
+
                         <div class="form-group">
                             <label>Full Name</label>
                             <input type="text" name="fullName" placeholder="John Smith" required />
@@ -207,15 +212,19 @@
 
                         <div class="form-group">
                             <label for="cover-letter-teacher">Cover Letter</label>
-                            <textarea id="cover-letter-teacher" name="coverLetter" rows="6" placeholder="Tell us about your teaching philosophy and experience..." required></textarea>
+                            <textarea id="cover-letter-teacher" name="coverLetter" rows="6"
+                                placeholder="Tell us about your teaching philosophy and experience..."
+                                required></textarea>
                         </div>
 
                         <div class="upload-section">
                             <label for="cv-teacher">Upload CV (PDF format)</label>
                             <input type="file" id="cv-teacher" name="cv" accept=".pdf" />
                         </div>
+                        <a href=" {{ url_for('view_bp.success') }}">
+                            <button type="submit" class="submit-btn">SUBMIT APPLICATION</button>
+                        </a>
 
-                        <button type="submit" class="submit-btn">SUBMIT APPLICATION</button>
                     </form>
 
                     <aside class="job-requirements">
@@ -244,4 +253,5 @@
     <!-- Application JS Logic -->
     <script src="../static/scripts/apply.js"></script>
 </body>
+
 </html>
