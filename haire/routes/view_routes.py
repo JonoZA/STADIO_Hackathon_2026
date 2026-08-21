@@ -15,6 +15,10 @@ def apply():
 def recruit():
     return render_template("recruit.html")
 
+@view_bp.route("/brief")
+def brief():
+    return render_template("brief.html")
+
 # @view_bp.route("/api/candidates", methods=["GET"])
 # def list_candidates():
 #     job_title = request.args.get("job_title")
