@@ -1,10 +1,40 @@
-import io
+import io, time
 from flask import Blueprint, request, jsonify
 from pypdf import PdfReader
 from services.gemini_service import evaluate_cv_content
 from services.supadb_service import upload_pdf_to_storage, save_evaluation_record
+from extensions import supabase 
 
 upload_bp = Blueprint("upload_bp", __name__)
+
+
+@upload_bp.route("/upload", methods=["POST"])
+def upload_cv():
+    name = request.form.get("candidate_name", "").strip().replace(" ", "_")
+    cv_file = request.files.get("cv")
+
+    # 1. Generate unique filename linked to applicant name
+    filename = f"{name}_{int(time.time())}.pdf"
+
+    # 2. Upload to Supabase bucket
+    supabase.storage.from_("cv-uploads").upload(
+        path=filename,
+        file=cv_file.read(),
+        file_options={"content-type": "application/pdf"}
+    )
+
+    # 3. Get file URL
+    file_url = supabase.storage.from_("cv-uploads").get_public_url(filename)
+
+    # 4. Insert row into candidates table
+    supabase.table("candidates").insert({
+        "candidate_name": request.form.get("candidate_name"),
+        "cv_file_url": file_url
+    }).execute()
+
+    return 200
+
+
 
 def extract_pdf_text(file_bytes: bytes) -> str:
     reader = PdfReader(io.BytesIO(file_bytes))
