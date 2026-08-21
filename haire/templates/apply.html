@@ -9,9 +9,10 @@
     <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="../static/styles/applyStyles.css" />
 </head>
+
 <body>
 
-    <!-- Ambient Background Glow (Haze) -->
+    <!-- Ambient Background Glow -->
     <div class="hero-haze"></div>
 
     <div class="page-wrapper">
@@ -20,228 +21,1204 @@
         <div class="brief-form">
             <a href="{{ url_for('view_bp.home') }}" aria-label="Return to homepage">
                 <button class="brief-btn" type="button" aria-label="Return home">
-                    <svg class="brief-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <svg class="brief-icon"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         aria-hidden="true">
+
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
+
                     </svg>
                 </button>
+
                 <span class="brief-tooltip">Back to Home</span>
             </a>
         </div>
 
+
         <!-- Page Header -->
         <header class="portal-header">
+
             <h1 class="hero-title">Open Positions</h1>
-            <p class="hero-tagline">Select a role below to expand details and submit your application.</p>
+
+            <p class="hero-tagline">
+                Select a role below to expand details and submit your application.
+            </p>
+
         </header>
 
-        <!-- Main Job Listings Container -->
+
+        <!-- Main Job Listings -->
         <main class="mainListings">
 
-            <!-- Card 1: Junior Software Developer -->
-            <div class="card" data-job="junior-dev">
+
+            <!-- ===================================================== -->
+            <!-- CARD 1: JUNIOR PYTHON DEVELOPER -->
+            <!-- ===================================================== -->
+
+            <div class="card" data-job="junior-python-developer">
+
                 <div class="card-header">
+
                     <div class="header-content">
-                        <h2>Junior Software Developer</h2>
-                        <p class="summary">Engineering &bull; Full-Time</p>
+
+                        <h2>Junior Python Developer</h2>
+
+                        <p class="summary">
+                            Engineering &bull; Full-Time
+                        </p>
+
                     </div>
+
                     <span class="expand-icon" aria-hidden="true">↓</span>
+
                 </div>
 
+
                 <div class="application-layout">
-                    <form class="form" id="form-junior" enctype="multipart/form-data">
-                        
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" name="fullName" placeholder="Jane Doe" required />
-                        </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Cellphone Number</label>
-                                <input type="tel" name="cellphone" placeholder="+27 82 123 4567" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" name="email" placeholder="jane@example.com" required />
-                            </div>
-                        </div>
+                    <form
+                        class="form"
+                        id="form-junior-python"
+                        enctype="multipart/form-data"
+                    >
 
                         <div class="form-group">
-                            <label>Address</label>
-                            <input type="text" name="address" placeholder="123 Main St, Cape Town" />
+
+                            <label for="fullName-python">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullName-python"
+                                name="fullName"
+                                placeholder="Jane Doe"
+                                required
+                            />
+
                         </div>
 
+
                         <div class="form-row">
+
                             <div class="form-group">
-                                <label>Gender</label>
-                                <select name="gender" id="gender">
+
+                                <label for="cellphone-python">
+                                    Cellphone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="cellphone-python"
+                                    name="cellphone"
+                                    placeholder="+27 82 123 4567"
+                                    required
+                                />
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="email-python">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email-python"
+                                    name="email"
+                                    placeholder="jane@example.com"
+                                    required
+                                />
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="address-python">
+                                Address
+                            </label>
+
+                            <input
+                                type="text"
+                                id="address-python"
+                                name="address"
+                                placeholder="123 Main St, Cape Town"
+                            />
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="gender-python">
+                                    Gender
+                                </label>
+
+                                <select
+                                    name="gender"
+                                    id="gender-python"
+                                >
+
                                     <option value="Other">Other</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
+
                                 </select>
+
                             </div>
+
+
                             <div class="form-group">
-                                <label>Marital Status</label>
-                                <select name="marStatus" id="marStatus">
-                                    <option value="notMarried">Not Married</option>
-                                    <option value="Married">Married</option>
+
+                                <label for="marStatus-python">
+                                    Marital Status
+                                </label>
+
+                                <select
+                                    name="marStatus"
+                                    id="marStatus-python"
+                                >
+
+                                    <option value="notMarried">
+                                        Not Married
+                                    </option>
+
+                                    <option value="Married">
+                                        Married
+                                    </option>
+
                                 </select>
+
                             </div>
+
                         </div>
 
+
                         <div class="form-row">
+
                             <div class="form-group">
-                                <label>Reliable Transport?</label>
-                                <select name="transport" id="transport">
+
+                                <label for="transport-python">
+                                    Reliable Transport?
+                                </label>
+
+                                <select
+                                    name="transport"
+                                    id="transport-python"
+                                >
+
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
+
                                 </select>
+
                             </div>
+
+
                             <div class="form-group">
-                                <label>Nationality</label>
-                                <select name="nationality" id="nationality">
-                                    <option value="South Africa">South Africa</option>
-                                    <option value="Namibia">Namibia</option>
-                                    <option value="Botswana">Botswana</option>
-                                    <option value="Other">Other</option>
+
+                                <label for="nationality-python">
+                                    Nationality
+                                </label>
+
+                                <select
+                                    name="nationality"
+                                    id="nationality-python"
+                                >
+
+                                    <option value="South Africa">
+                                        South Africa
+                                    </option>
+
+                                    <option value="Namibia">
+                                        Namibia
+                                    </option>
+
+                                    <option value="Botswana">
+                                        Botswana
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
                                 </select>
+
                             </div>
+
                         </div>
 
+
                         <div class="form-group">
-                            <label for="cover-letter-junior">Cover Letter</label>
-                            <textarea id="cover-letter-junior" name="coverLetter" rows="6" placeholder="Tell us about yourself and why you're a great fit for this role..." required></textarea>
+
+                            <label for="cover-letter-python">
+                                Cover Letter
+                            </label>
+
+                            <textarea
+                                id="cover-letter-python"
+                                name="coverLetter"
+                                rows="6"
+                                placeholder="Tell us about yourself and why you're a great fit for this role..."
+                                required
+                            ></textarea>
+
                         </div>
+
 
                         <div class="upload-section">
-                            <label for="cv-upload">Upload CV (PDF format)</label>
-                            <input type="file" id="cv-upload" name="cv" accept=".pdf" />
+
+                            <label for="cv-python">
+                                Upload CV (PDF format)
+                            </label>
+
+                            <input
+                                type="file"
+                                id="cv-python"
+                                name="cv"
+                                accept=".pdf"
+                            />
+
                         </div>
 
-                        <button type="submit" class="submit-btn">SUBMIT APPLICATION</button>
+
+                        <button
+                            type="submit"
+                            class="submit-btn"
+                        >
+                            SUBMIT APPLICATION
+                        </button>
+
                     </form>
 
+
                     <aside class="job-requirements">
+
                         <h3>Job Requirements</h3>
+
                         <ul>
-                            <li>Basic knowledge of software development principles and clean code.</li>
-                            <li>Strong problem-solving and communication skills.</li>
-                            <li>Eagerness to learn and thrive in a collaborative environment.</li>
-                            <li>Relevant degree, diploma, or equivalent project experience.</li>
+
+                            <li>
+                                Basic knowledge of Python programming
+                                and software development principles.
+                            </li>
+
+                            <li>
+                                Understanding of object-oriented
+                                programming and problem-solving.
+                            </li>
+
+                            <li>
+                                Familiarity with Python frameworks,
+                                databases, or APIs is advantageous.
+                            </li>
+
+                            <li>
+                                Relevant degree, diploma, or equivalent
+                                project experience.
+                            </li>
+
                         </ul>
+
                     </aside>
+
                 </div>
+
             </div>
 
-            <!-- Card 2: Teacher -->
-            <div class="card" data-job="teacher">
+
+
+            <!-- ===================================================== -->
+            <!-- CARD 2: INTERMEDIATE LIFE SCIENCE TEACHER -->
+            <!-- ===================================================== -->
+
+            <div
+                class="card"
+                data-job="intermediate-life-science-teacher"
+            >
+
                 <div class="card-header">
+
                     <div class="header-content">
-                        <h2>Educator / Teacher</h2>
-                        <p class="summary">Education &bull; Full-Time</p>
+
+                        <h2>Intermediate Life Science Teacher</h2>
+
+                        <p class="summary">
+                            Education &bull; Full-Time
+                        </p>
+
                     </div>
+
                     <span class="expand-icon" aria-hidden="true">↓</span>
+
                 </div>
 
+
                 <div class="application-layout">
-                    <form class="form" id="form-teacher" enctype="multipart/form-data">
-                        
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" name="fullName" placeholder="John Smith" required />
-                        </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Cellphone Number</label>
-                                <input type="tel" name="cellphone" placeholder="+27 83 987 6543" required />
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" name="email" placeholder="john@example.com" required />
-                            </div>
-                        </div>
+                    <form
+                        class="form"
+                        id="form-life-science"
+                        enctype="multipart/form-data"
+                    >
 
                         <div class="form-group">
-                            <label>Address</label>
-                            <input type="text" name="address" placeholder="45 Park Road, Johannesburg" />
+
+                            <label for="fullName-life">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullName-life"
+                                name="fullName"
+                                placeholder="John Smith"
+                                required
+                            />
+
                         </div>
 
+
                         <div class="form-row">
+
                             <div class="form-group">
-                                <label>Gender</label>
-                                <select name="gender" id="gender-teacher">
+
+                                <label for="cellphone-life">
+                                    Cellphone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="cellphone-life"
+                                    name="cellphone"
+                                    placeholder="+27 83 987 6543"
+                                    required
+                                />
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="email-life">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email-life"
+                                    name="email"
+                                    placeholder="john@example.com"
+                                    required
+                                />
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="address-life">
+                                Address
+                            </label>
+
+                            <input
+                                type="text"
+                                id="address-life"
+                                name="address"
+                                placeholder="45 Park Road, Johannesburg"
+                            />
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="gender-life">
+                                    Gender
+                                </label>
+
+                                <select
+                                    name="gender"
+                                    id="gender-life"
+                                >
+
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                     <option value="other">Other</option>
+
                                 </select>
+
                             </div>
+
+
                             <div class="form-group">
-                                <label>Marital Status</label>
-                                <select name="marStatus" id="marStatus-teacher">
-                                    <option value="notMarried">Not Married</option>
-                                    <option value="Married">Married</option>
+
+                                <label for="marStatus-life">
+                                    Marital Status
+                                </label>
+
+                                <select
+                                    name="marStatus"
+                                    id="marStatus-life"
+                                >
+
+                                    <option value="notMarried">
+                                        Not Married
+                                    </option>
+
+                                    <option value="Married">
+                                        Married
+                                    </option>
+
                                 </select>
+
                             </div>
+
                         </div>
+
 
                         <div class="form-row">
+
                             <div class="form-group">
-                                <label>Reliable Transport?</label>
-                                <select name="transport" id="transport-teacher">
+
+                                <label for="transport-life">
+                                    Reliable Transport?
+                                </label>
+
+                                <select
+                                    name="transport"
+                                    id="transport-life"
+                                >
+
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
+
                                 </select>
+
                             </div>
+
+
                             <div class="form-group">
-                                <label>Nationality</label>
-                                <select name="nationality" id="nationality-teacher">
-                                    <option value="South Africa">South Africa</option>
-                                    <option value="Namibia">Namibia</option>
-                                    <option value="Botswana">Botswana</option>
-                                    <option value="Other">Other</option>
+
+                                <label for="nationality-life">
+                                    Nationality
+                                </label>
+
+                                <select
+                                    name="nationality"
+                                    id="nationality-life"
+                                >
+
+                                    <option value="South Africa">
+                                        South Africa
+                                    </option>
+
+                                    <option value="Namibia">
+                                        Namibia
+                                    </option>
+
+                                    <option value="Botswana">
+                                        Botswana
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
                                 </select>
+
                             </div>
+
                         </div>
+
 
                         <div class="form-group">
-                            <label for="cover-letter-teacher">Cover Letter</label>
-                            <textarea id="cover-letter-teacher" name="coverLetter" rows="6" placeholder="Tell us about your teaching philosophy and experience..." required></textarea>
+
+                            <label for="cover-letter-life">
+                                Cover Letter
+                            </label>
+
+                            <textarea
+                                id="cover-letter-life"
+                                name="coverLetter"
+                                rows="6"
+                                placeholder="Tell us about your teaching experience, subject knowledge, and teaching philosophy..."
+                                required
+                            ></textarea>
+
                         </div>
+
 
                         <div class="upload-section">
-                            <label for="cv-teacher">Upload CV (PDF format)</label>
-                            <input type="file" id="cv-teacher" name="cv" accept=".pdf" />
+
+                            <label for="cv-life">
+                                Upload CV (PDF format)
+                            </label>
+
+                            <input
+                                type="file"
+                                id="cv-life"
+                                name="cv"
+                                accept=".pdf"
+                            />
+
                         </div>
 
-                        <button type="submit" class="submit-btn">SUBMIT APPLICATION</button>
+
+                        <button
+                            type="submit"
+                            class="submit-btn"
+                        >
+                            SUBMIT APPLICATION
+                        </button>
+
                     </form>
 
+
                     <aside class="job-requirements">
+
                         <h3>Job Requirements</h3>
+
                         <ul>
-                            <li>Recognised teaching qualification (B.Ed or PGCE).</li>
-                            <li>Strong organizational and classroom leadership skills.</li>
-                            <li>Ability to foster an engaging and inclusive learning environment.</li>
-                            <li>Patience, empathy, and genuine dedication to student growth.</li>
+
+                            <li>
+                                Recognised teaching qualification such
+                                as a B.Ed or PGCE.
+                            </li>
+
+                            <li>
+                                Strong knowledge of Life Sciences and
+                                the relevant school curriculum.
+                            </li>
+
+                            <li>
+                                Ability to create engaging and inclusive
+                                learning environments.
+                            </li>
+
+                            <li>
+                                Strong classroom management,
+                                communication, and organisational skills.
+                            </li>
+
                         </ul>
+
                     </aside>
+
                 </div>
+
             </div>
+
+
+
+            <!-- ===================================================== -->
+            <!-- CARD 3: Pub and Grill Waiter -->
+            <!-- ===================================================== -->
+
+            <div
+                class="card"
+                data-job="waiter"
+            >
+
+                <div class="card-header">
+
+                    <div class="header-content">
+
+                        <h2>Pub and Grill Waiter</h2>
+
+                        <p class="summary">
+                            Hospitality &bull; Full-Time
+                        </p>
+
+                    </div>
+
+                    <span class="expand-icon" aria-hidden="true">↓</span>
+
+                </div>
+
+
+                <div class="application-layout">
+
+                    <form
+                        class="form"
+                        id="form-waiter"
+                        enctype="multipart/form-data"
+                    >
+
+                        <div class="form-group">
+
+                            <label for="fullName-waiter">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullName-waiter"
+                                name="fullName"
+                                placeholder="Alex Johnson"
+                                required
+                            />
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="cellphone-waiter">
+                                    Cellphone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="cellphone-waiter"
+                                    name="cellphone"
+                                    placeholder="+27 71 123 4567"
+                                    required
+                                />
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="email-waiter">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email-waiter"
+                                    name="email"
+                                    placeholder="alex@example.com"
+                                    required
+                                />
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="address-waiter">
+                                Address
+                            </label>
+
+                            <input
+                                type="text"
+                                id="address-waiter"
+                                name="address"
+                                placeholder="12 Main Road, Cape Town"
+                            />
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="gender-waiter">
+                                    Gender
+                                </label>
+
+                                <select
+                                    name="gender"
+                                    id="gender-waiter"
+                                >
+
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="marStatus-waiter">
+                                    Marital Status
+                                </label>
+
+                                <select
+                                    name="marStatus"
+                                    id="marStatus-waiter"
+                                >
+
+                                    <option value="notMarried">
+                                        Not Married
+                                    </option>
+
+                                    <option value="Married">
+                                        Married
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="transport-waiter">
+                                    Reliable Transport?
+                                </label>
+
+                                <select
+                                    name="transport"
+                                    id="transport-waiter"
+                                >
+
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="nationality-waiter">
+                                    Nationality
+                                </label>
+
+                                <select
+                                    name="nationality"
+                                    id="nationality-waiter"
+                                >
+
+                                    <option value="South Africa">
+                                        South Africa
+                                    </option>
+
+                                    <option value="Namibia">
+                                        Namibia
+                                    </option>
+
+                                    <option value="Botswana">
+                                        Botswana
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="cover-letter-waiter">
+                                Cover Letter
+                            </label>
+
+                            <textarea
+                                id="cover-letter-waiter"
+                                name="coverLetter"
+                                rows="6"
+                                placeholder="Tell us about your customer service experience and why you would be a great waiter..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="upload-section">
+
+                            <label for="cv-waiter">
+                                Upload CV (PDF format)
+                            </label>
+
+                            <input
+                                type="file"
+                                id="cv-waiter"
+                                name="cv"
+                                accept=".pdf"
+                            />
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="submit-btn"
+                        >
+                            SUBMIT APPLICATION
+                        </button>
+
+                    </form>
+
+
+                    <aside class="job-requirements">
+
+                        <h3>Job Requirements</h3>
+
+                        <ul>
+
+                            <li>
+                                Previous hospitality or customer
+                                service experience is advantageous.
+                            </li>
+
+                            <li>
+                                Excellent communication and
+                                interpersonal skills.
+                            </li>
+
+                            <li>
+                                Ability to work efficiently in a
+                                fast-paced environment.
+                            </li>
+
+                            <li>
+                                Friendly attitude, professional appearance,
+                                and strong teamwork skills.
+                            </li>
+
+                        </ul>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ===================================================== -->
+            <!-- CARD 4: SENIOR ACCOUNTANT -->
+            <!-- ===================================================== -->
+
+            <div
+                class="card"
+                data-job="senior-accountant"
+            >
+
+                <div class="card-header">
+
+                    <div class="header-content">
+
+                        <h2>Senior Accountant</h2>
+
+                        <p class="summary">
+                            Finance &bull; Full-Time
+                        </p>
+
+                    </div>
+
+                    <span class="expand-icon" aria-hidden="true">↓</span>
+
+                </div>
+
+
+                <div class="application-layout">
+
+                    <form
+                        class="form"
+                        id="form-senior-accountant"
+                        enctype="multipart/form-data"
+                    >
+
+                        <div class="form-group">
+
+                            <label for="fullName-accountant">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullName-accountant"
+                                name="fullName"
+                                placeholder="Michael Williams"
+                                required
+                            />
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="cellphone-accountant">
+                                    Cellphone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="cellphone-accountant"
+                                    name="cellphone"
+                                    placeholder="+27 72 456 7890"
+                                    required
+                                />
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="email-accountant">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email-accountant"
+                                    name="email"
+                                    placeholder="michael@example.com"
+                                    required
+                                />
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="address-accountant">
+                                Address
+                            </label>
+
+                            <input
+                                type="text"
+                                id="address-accountant"
+                                name="address"
+                                placeholder="25 Oak Avenue, Johannesburg"
+                            />
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="gender-accountant">
+                                    Gender
+                                </label>
+
+                                <select
+                                    name="gender"
+                                    id="gender-accountant"
+                                >
+
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="marStatus-accountant">
+                                    Marital Status
+                                </label>
+
+                                <select
+                                    name="marStatus"
+                                    id="marStatus-accountant"
+                                >
+
+                                    <option value="notMarried">
+                                        Not Married
+                                    </option>
+
+                                    <option value="Married">
+                                        Married
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="transport-accountant">
+                                    Reliable Transport?
+                                </label>
+
+                                <select
+                                    name="transport"
+                                    id="transport-accountant"
+                                >
+
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="nationality-accountant">
+                                    Nationality
+                                </label>
+
+                                <select
+                                    name="nationality"
+                                    id="nationality-accountant"
+                                >
+
+                                    <option value="South Africa">
+                                        South Africa
+                                    </option>
+
+                                    <option value="Namibia">
+                                        Namibia
+                                    </option>
+
+                                    <option value="Botswana">
+                                        Botswana
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="cover-letter-accountant">
+                                Cover Letter
+                            </label>
+
+                            <textarea
+                                id="cover-letter-accountant"
+                                name="coverLetter"
+                                rows="6"
+                                placeholder="Tell us about your accounting experience, qualifications, and why you are suited to this position..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="upload-section">
+
+                            <label for="cv-accountant">
+                                Upload CV (PDF format)
+                            </label>
+
+                            <input
+                                type="file"
+                                id="cv-accountant"
+                                name="cv"
+                                accept=".pdf"
+                            />
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="submit-btn"
+                        >
+                            SUBMIT APPLICATION
+                        </button>
+
+                    </form>
+
+
+                    <aside class="job-requirements">
+
+                        <h3>Job Requirements</h3>
+
+                        <ul>
+
+                            <li>
+                                Bachelor's degree or equivalent
+                                qualification in Accounting or Finance.
+                            </li>
+
+                            <li>
+                                Several years of professional
+                                accounting experience.
+                            </li>
+
+                            <li>
+                                Strong knowledge of financial reporting,
+                                budgeting, and accounting principles.
+                            </li>
+
+                            <li>
+                                Excellent analytical, organisational,
+                                and leadership skills.
+                            </li>
+
+                        </ul>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
 
         </main>
 
+
         <!-- Footer -->
         <footer>
+
             <small>
-                Created by Elye Fredricks, Geremie Ishimwe, Leyton Manthopoulos, Jonathan Rajdl & Carl Vlok
+                Created by Elye Fredricks, Geremie Ishimwe,
+                Leyton Manthopoulos, Jonathan Rajdl & Carl Vlok
             </small>
+
         </footer>
 
     </div>
 
+
     <!-- Application JS Logic -->
     <script src="../static/scripts/apply.js"></script>
+
 </body>
 </html>
