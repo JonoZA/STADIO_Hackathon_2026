@@ -1,84 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;800&display=swap');
+
+
 /* ================================= */
 /* COLOUR VARIABLES */
 /* ================================= */
 
 :root {
-    --hero-bg: linear-gradient(
-        120deg,
-        #084027,
-        #058f5c,
-        #025235,
-        #084027
-    );
 
-    --hero-title-color: blanchedalmond;
+    --bg-dark: #04130b;
 
-    --hero-title-font: Georgia, serif;
+    --accent-green: #10b981;
 
-    --actions-bg: #93c83e;
+    --accent-glow: rgba(16, 185, 129, 0.25);
 
-    --action-btn-bg: #c09712de;
+    --gold-primary: #f59e0b;
 
-    --action-btn-hover: #b26e14;
+    --gold-secondary: #d97706;
 
-    --action-btn-text-color: #ffffff;
+    --gold-glow: rgba(245, 158, 11, 0.35);
 
-    --dark-text: #333;
+    --text-main: #f8fafc;
 
-    --border: rgba(255, 255, 255, 0.5);
+    --text-muted: #94a3b8;
 
-    --card-bg: rgba(255, 255, 255, 0.92);
+    --glass-border: rgba(255, 255, 255, 0.1);
 
-    --t-title-fade: 0.8s;
+    --card-bg: rgba(255, 255, 255, 0.95);
+
+    --font-heading: 'Outfit', sans-serif;
+
+    --font-body: 'Inter', sans-serif;
+
+    --t-title-fade: 0.6s;
+
 }
 
 
 /* ================================= */
-/* PAGE */
+/* GLOBAL */
 /* ================================= */
+
+* {
+    box-sizing: border-box;
+}
+
 
 html,
 body {
-    height: 100%;
+
     margin: 0;
-}
 
+    min-height: 100%;
 
-body {
-    color: var(--hero-title-color);
+    font-family: var(--font-body);
 
-    display: flex;
+    background-color: var(--bg-dark);
 
-    justify-content: center;
-    align-items: center;
+    color: var(--text-main);
 
     overflow-x: hidden;
-    overflow-y: hidden;
 
-    background: var(--hero-bg);
-
-    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 
 /* ================================= */
-/* MOVING HAZE */
+/* MOVING GREEN HAZE */
 /* ================================= */
 
-body::before {
-    content: "";
+.hero-haze {
 
     position: fixed;
 
     inset: -50%;
 
     width: 200%;
+
     height: 200%;
 
     background: linear-gradient(
         135deg,
         transparent 42%,
-        rgba(142, 242, 163, 0.382) 50%,
+        rgba(16, 185, 129, 0.18) 50%,
         transparent 58%
     );
 
@@ -86,7 +88,98 @@ body::before {
 
     z-index: 0;
 
-    animation: hazeSweep 6s ease-in-out infinite alternate;
+    animation: hazeSweep 7s ease-in-out infinite alternate;
+
+}
+
+
+/* ================================= */
+/* PAGE WRAPPER */
+/* ================================= */
+
+.page-wrapper {
+
+    position: relative;
+
+    z-index: 2;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 1.5rem 1.5rem 0;
+
+}
+
+
+/* ================================= */
+/* HAIRE HEADER */
+/* ================================= */
+
+.site-header {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 0.5rem 0 1.5rem;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ================================= */
+/* HAIRE LOGO */
+/* ================================= */
+
+.haire-logo {
+
+    font-family: var(--font-heading);
+
+    font-size: clamp(3rem, 6vw, 5rem);
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -0.03em;
+
+    text-decoration: none;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff 30%,
+        var(--text-muted) 100%
+    );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    color: transparent;
+
+    opacity: 0;
+
+    animation: fadeUp var(--t-title-fade) ease-out forwards;
+
+    transition: transform 0.3s ease;
+
+}
+
+
+.haire-logo:hover {
+
+    transform: translateY(-2px);
+
 }
 
 
@@ -95,6 +188,13 @@ body::before {
 /* ================================= */
 
 .cards-container {
+
+    width: 100%;
+
+    max-width: 1250px;
+
+    margin: 0 auto;
+
     display: flex;
 
     justify-content: center;
@@ -103,13 +203,8 @@ body::before {
 
     gap: 15px;
 
-    width: 100%;
+    flex-shrink: 0;
 
-    max-width: 1250px;
-
-    margin: 0 auto;
-
-    box-sizing: border-box;
 }
 
 
@@ -118,11 +213,10 @@ body::before {
 /* ================================= */
 
 .outer-card {
+
     position: relative;
 
     z-index: 2;
-
-    width: 600px;
 
     height: 80vh;
 
@@ -130,59 +224,49 @@ body::before {
 
     padding: 30px;
 
-    box-sizing: border-box;
-
-    margin: 0;
-
-    border: 2px solid var(--border);
+    border: 1px solid rgba(8, 64, 39, 0.18);
 
     border-radius: 20px;
 
     background: var(--card-bg);
 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
 
-    animation-name: fadeUp;
+    animation: fadeUp var(--t-title-fade) ease-out forwards;
 
-    animation-duration: var(--t-title-fade);
-
-    animation-timing-function: ease-out;
-
-    animation-fill-mode: forwards;
 }
 
 
 /* ================================= */
-/* LEFT CONTROL CARD */
+/* CONTROLS CARD */
 /* ================================= */
 
 .second-card {
+
     width: 280px;
 
-    height: 80vh;
-
     flex-shrink: 0;
-
-    box-sizing: border-box;
 
     font-size: 14px;
 
     overflow: hidden;
+
 }
 
 
 /* ================================= */
-/* LEFT CARD HEADING */
+/* CARD HEADINGS */
 /* ================================= */
 
-.second-card h2 {
+.outer-card > h2 {
+
     margin: 0;
 
-    font-family: var(--hero-title-font);
+    font-family: var(--font-heading);
 
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
 
     font-weight: 800;
 
@@ -190,30 +274,32 @@ body::before {
 
     text-align: center;
 
-    white-space: nowrap;
 }
 
 
 /* ================================= */
-/* LEFT CARD DESCRIPTION */
+/* CARD DESCRIPTION */
 /* ================================= */
 
-.second-card p {
+.outer-card > p {
+
     margin: 8px 0 25px;
 
     text-align: center;
 
     color: #555;
 
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+
 }
 
 
 /* ================================= */
-/* LEFT CARD LABELS */
+/* LABELS */
 /* ================================= */
 
 .second-card label {
+
     display: block;
 
     margin-bottom: 12px;
@@ -223,24 +309,25 @@ body::before {
     font-size: 14px;
 
     font-weight: 600;
+
 }
 
 
 /* ================================= */
-/* JOB CONTROL */
+/* CONTROLS */
 /* ================================= */
 
 .job-control {
+
     margin-bottom: 25px;
+
 }
 
 
-/* ================================= */
-/* FILTER CONTROL */
-/* ================================= */
-
 .filter-input {
+
     margin-bottom: 30px;
+
 }
 
 
@@ -250,11 +337,10 @@ body::before {
 
 #job-selector,
 #filter-input {
+
     width: 100%;
 
     padding: 10px;
-
-    box-sizing: border-box;
 
     border: 1px solid rgba(8, 64, 39, 0.3);
 
@@ -264,27 +350,33 @@ body::before {
 
     color: #333;
 
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 14px;
 
     cursor: pointer;
+
 }
 
 
 #job-selector:focus,
 #filter-input:focus {
+
     outline: none;
 
-    border-color: #058f5c;
+    border-color: var(--accent-green);
+
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+
 }
 
 
 /* ================================= */
-/* BUTTON AREA */
+/* CONTROL BUTTONS */
 /* ================================= */
 
 .control-buttons {
+
     display: flex;
 
     flex-direction: column;
@@ -294,133 +386,99 @@ body::before {
     width: 100%;
 
     margin-top: 10px;
+
 }
 
-
-/* ================================= */
-/* CONTROL BUTTONS */
-/* ================================= */
 
 #clear-button,
 #load-all-button,
 #approve-button {
+
     width: 100%;
 
     padding: 10px 15px;
 
     border: none;
 
-    border-radius: 7px;
+    border-radius: 9999px;
 
-    background-color: var(--action-btn-bg);
+    background: linear-gradient(
+        135deg,
+        var(--gold-primary),
+        var(--gold-secondary)
+    );
 
-    color: var(--action-btn-text-color);
+    color: #000;
 
     cursor: pointer;
 
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 14px;
 
     font-weight: 700;
 
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease;
+    box-shadow: 0 4px 15px var(--gold-glow);
+
+    transition: all 0.3s ease;
+
 }
 
-
-/* ================================= */
-/* BUTTON HOVER */
-/* ================================= */
 
 #clear-button:hover,
 #load-all-button:hover,
 #approve-button:hover {
-    background-color: var(--action-btn-hover);
 
-    color: #ffffff;
+    transform: translateY(-2px);
 
-    transform: translateY(-1px);
+    box-shadow: 0 8px 25px var(--gold-glow);
+
+    filter: brightness(1.1);
+
 }
 
 
 /* ================================= */
-/* PAGE TITLE */
-/* ================================= */
-
-.outer-card > h2 {
-    margin: 0;
-
-    font-family: var(--hero-title-font);
-
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-
-    font-weight: 800;
-
-    color: #084027;
-
-    text-align: center;
-
-    overflow-wrap: break-word;
-}
-
-
-/* ================================= */
-/* PAGE DESCRIPTION */
-/* ================================= */
-
-.outer-card > p {
-    margin: 8px 0 25px;
-
-    text-align: center;
-
-    color: #555;
-
-    font-size: 1rem;
-}
-
-
-/* ================================= */
-/* SCROLLABLE APPLICANT AREA */
+/* APPLICANT SCROLL */
 /* ================================= */
 
 .form-scroll {
+
     height: calc(100% - 105px);
 
     overflow-y: auto;
 
     padding: 5px 10px 10px 5px;
 
-    box-sizing: border-box;
 }
 
 
-/* ================================= */
-/* SCROLLBAR */
-/* ================================= */
-
 .form-scroll::-webkit-scrollbar {
+
     width: 8px;
+
 }
 
 
 .form-scroll::-webkit-scrollbar-track {
+
     background: rgba(8, 64, 39, 0.12);
 
     border-radius: 10px;
+
 }
 
 
 .form-scroll::-webkit-scrollbar-thumb {
-    background: var(--action-btn-bg);
+
+    background: linear-gradient(
+        180deg,
+        var(--gold-primary),
+        var(--gold-secondary)
+    );
 
     border-radius: 10px;
-}
 
-
-.form-scroll::-webkit-scrollbar-thumb:hover {
-    background: var(--action-btn-hover);
 }
 
 
@@ -429,13 +487,14 @@ body::before {
 /* ================================= */
 
 .applicant-card {
+
     margin-top: 15px;
 
     padding: 20px;
 
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.97);
 
-    border: 2px solid rgba(8, 64, 39, 0.25);
+    border: 2px solid rgba(8, 64, 39, 0.18);
 
     border-radius: 12px;
 
@@ -444,21 +503,26 @@ body::before {
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease,
-        border 0.2s ease;
+        border-color 0.2s ease;
+
 }
 
 
 .applicant-card:first-child {
+
     margin-top: 0;
+
 }
 
 
 .applicant-card:hover {
+
     transform: translateY(-2px);
 
     box-shadow: 0 7px 16px rgba(0, 0, 0, 0.12);
 
-    border-color: #058f5c;
+    border-color: var(--accent-green);
+
 }
 
 
@@ -467,6 +531,7 @@ body::before {
 /* ================================= */
 
 .applicant-header {
+
     display: flex;
 
     justify-content: space-between;
@@ -474,6 +539,7 @@ body::before {
     align-items: center;
 
     gap: 15px;
+
 }
 
 
@@ -482,13 +548,15 @@ body::before {
 /* ================================= */
 
 .applicant-name {
+
     margin: 0;
 
     color: #084027;
 
-    font-family: var(--hero-title-font);
+    font-family: var(--font-heading);
 
     font-size: 1.35rem;
+
 }
 
 
@@ -497,27 +565,34 @@ body::before {
 /* ================================= */
 
 .score {
+
     margin-left: auto;
 
     padding: 5px 10px;
 
-    border-radius: 20px;
+    border-radius: 9999px;
 
-    background-color: var(--action-btn-bg);
+    background: linear-gradient(
+        135deg,
+        var(--gold-primary),
+        var(--gold-secondary)
+    );
 
-    color: var(--action-btn-text-color);
+    color: #000;
 
-    font-weight: bold;
+    font-weight: 800;
 
-    font-size: 16px;
+    font-size: 15px;
+
 }
 
 
 /* ================================= */
-/* RADIO BUTTON */
+/* SELECT APPLICANT */
 /* ================================= */
 
 .select-applicant {
+
     display: flex;
 
     align-items: center;
@@ -529,53 +604,66 @@ body::before {
     color: #444;
 
     cursor: pointer;
+
 }
 
 
 .select-applicant input {
+
     margin: 0;
 
     cursor: pointer;
 
-    accent-color: #058f5c;
+    accent-color: var(--accent-green);
+
 }
 
 
 /* ================================= */
-/* VIEW MORE INFO BUTTON */
+/* MORE INFO BUTTON */
 /* ================================= */
 
 .more-info-button {
+
     margin-top: 15px;
 
     padding: 9px 16px;
 
     border: none;
 
-    border-radius: 7px;
+    border-radius: 9999px;
 
-    background-color: var(--action-btn-bg);
+    background: linear-gradient(
+        135deg,
+        var(--gold-primary),
+        var(--gold-secondary)
+    );
 
-    color: var(--action-btn-text-color);
+    color: #000;
 
     cursor: pointer;
 
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 13px;
 
     font-weight: 700;
 
-    letter-spacing: 0.03em;
+    box-shadow: 0 3px 10px var(--gold-glow);
 
-    transition: background-color 0.2s ease;
+    transition: all 0.3s ease;
+
 }
 
 
 .more-info-button:hover {
-    background-color: var(--action-btn-hover);
 
-    color: #ffffff;
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 18px var(--gold-glow);
+
+    filter: brightness(1.1);
+
 }
 
 
@@ -584,6 +672,7 @@ body::before {
 /* ================================= */
 
 .more-information {
+
     display: none;
 
     margin-top: 15px;
@@ -593,80 +682,81 @@ body::before {
     background-color: rgba(8, 64, 39, 0.06);
 
     border-radius: 8px;
+
 }
 
 
-/* ================================= */
-/* SHOW INFORMATION */
-/* ================================= */
-
 .more-information.show {
+
     display: grid;
 
     grid-template-columns: 1fr 1fr;
 
     gap: 20px;
 
-    animation-name: fadeUp;
+    animation: fadeUp 0.3s ease-out forwards;
 
-    animation-duration: 0.3s;
-
-    animation-timing-function: ease-out;
-
-    animation-fill-mode: forwards;
 }
 
 
 /* ================================= */
-/* DESCRIPTION SECTION */
+/* INFORMATION */
 /* ================================= */
 
 .description-section {
+
     padding-right: 20px;
 
     border-right: 1px solid rgba(8, 64, 39, 0.25);
+
 }
 
 
 .description-section h4,
 .qualification-section h4 {
+
     margin-top: 0;
 
     color: #084027;
 
-    font-family: var(--hero-title-font);
+    font-family: var(--font-heading);
+
 }
 
 
 .description-section p {
+
     margin-bottom: 0;
 
     line-height: 1.5;
 
     color: #555;
+
 }
 
 
-/* ================================= */
-/* QUALIFICATION SECTION */
-/* ================================= */
-
 .qualification-section {
+
     padding-left: 10px;
+
 }
 
 
 .qualification-section ul {
+
     padding-left: 20px;
 
     margin-bottom: 0;
+
 }
 
 
 .qualification-section li {
+
     margin-bottom: 5px;
 
     color: #555;
+
 }
 
 
@@ -675,59 +765,37 @@ body::before {
 /* ================================= */
 
 .applicant-card.selected {
-    border: 3px solid #058f5c;
+
+    border: 3px solid var(--accent-green);
 
     background-color: rgba(5, 143, 92, 0.08);
 
     box-shadow: 0 6px 18px rgba(5, 143, 92, 0.2);
+
 }
 
 
 /* ================================= */
-/* STATISTICS CARD */
+/* STATISTICS */
 /* ================================= */
 
 .statistics-card {
+
     width: 280px;
 
-    height: 80vh;
-
     flex-shrink: 0;
-
-    box-sizing: border-box;
 
     text-align: center;
 
     color: #084027;
 
     overflow: hidden;
+
 }
 
-
-/* ================================= */
-/* STATISTICS HEADING */
-/* ================================= */
-
-.statistics-card h2 {
-    margin: 0 0 25px;
-
-    font-family: var(--hero-title-font);
-
-    font-size: 1.8rem;
-
-    font-weight: 800;
-
-    color: #084027;
-
-    text-align: center;
-}
-
-
-/* ================================= */
-/* STATISTICS CONTENT */
-/* ================================= */
 
 .statistics-content {
+
     display: flex;
 
     flex-direction: column;
@@ -739,23 +807,19 @@ body::before {
     width: 100%;
 
     gap: 15px;
+
 }
 
 
-/* ================================= */
-/* STATISTIC ITEM */
-/* ================================= */
-
 .statistic-item {
-    width: 100%;
 
-    box-sizing: border-box;
+    width: 100%;
 
     padding: 18px 10px;
 
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.97);
 
-    border: 2px solid rgba(8, 64, 39, 0.25);
+    border: 2px solid rgba(8, 64, 39, 0.18);
 
     border-radius: 12px;
 
@@ -767,57 +831,82 @@ body::before {
         transform 0.2s ease,
         box-shadow 0.2s ease,
         border-color 0.2s ease;
+
 }
 
 
-/* ================================= */
-/* STATISTIC ITEM HOVER */
-/* ================================= */
-
 .statistic-item:hover {
+
     transform: translateY(-2px);
 
     box-shadow: 0 7px 16px rgba(0, 0, 0, 0.12);
 
-    border-color: #058f5c;
+    border-color: var(--accent-green);
+
 }
 
 
-/* ================================= */
-/* STATISTIC TITLE */
-/* ================================= */
-
 .statistic-item h3 {
+
     margin: 0 0 8px;
 
     color: #084027;
 
-    font-family: var(--hero-title-font);
+    font-family: var(--font-heading);
 
     font-size: 1rem;
 
     font-weight: 700;
 
-    text-align: center;
 }
 
 
-/* ================================= */
-/* STATISTIC VALUE */
-/* ================================= */
-
 .statistic-item p {
+
     margin: 0;
 
     color: #333;
 
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 2rem;
 
     font-weight: 800;
 
+}
+
+
+/* ================================= */
+/* FOOTER */
+/* ================================= */
+
+.site-footer {
+
+    width: 100%;
+
     text-align: center;
+
+    padding: 1.5rem 0 1rem;
+
+    margin-top: 1.5rem;
+
+    flex-shrink: 0;
+
+    border-top: 1px solid var(--glass-border);
+
+    color: var(--text-muted);
+
+    font-family: var(--font-body);
+
+    font-size: 0.8rem;
+
+}
+
+
+.site-footer p {
+
+    margin: 4px 0;
+
 }
 
 
@@ -828,28 +917,38 @@ body::before {
 @keyframes fadeUp {
 
     from {
+
         opacity: 0;
 
-        transform: translateY(15px);
+        transform: translateY(20px);
+
     }
 
     to {
+
         opacity: 1;
 
         transform: translateY(0);
+
     }
+
 }
 
 
 @keyframes hazeSweep {
 
     0% {
+
         transform: translate(-25%, 25%);
+
     }
 
     100% {
+
         transform: translate(25%, -25%);
+
     }
+
 }
 
 
@@ -859,97 +958,111 @@ body::before {
 
 @media (max-width: 1250px) {
 
-    body {
-        overflow-y: auto;
-
-        padding: 20px;
-
-        box-sizing: border-box;
-
-        align-items: flex-start;
-    }
-
-
     .cards-container {
+
         flex-wrap: wrap;
 
         align-items: flex-start;
 
-        justify-content: center;
-
-        gap: 20px;
     }
+
 }
 
 
 @media (max-width: 950px) {
 
     .cards-container {
+
         flex-direction: column;
 
         align-items: center;
 
         gap: 20px;
+
     }
 
 
     .outer-card,
     .second-card,
     .statistics-card {
+
         width: min(600px, 95vw);
 
         height: auto;
 
         min-height: 500px;
+
     }
 
 
     .form-scroll {
+
         height: 450px;
+
     }
+
 }
 
 
 @media (max-width: 600px) {
 
-    body {
-        overflow-y: auto;
+    .page-wrapper {
 
-        padding: 20px 10px;
+        padding: 1rem;
 
-        box-sizing: border-box;
+    }
+
+
+    .site-header {
+
+        padding: 0.5rem 0 1rem;
+
+    }
+
+
+    .haire-logo {
+
+        font-size: 2.5rem;
+
     }
 
 
     .outer-card,
     .second-card,
     .statistics-card {
-        width: 100%;
 
-        height: 90vh;
+        width: 100%;
 
         min-height: 500px;
 
         padding: 20px;
+
     }
 
 
     .applicant-header {
+
         flex-wrap: wrap;
+
     }
 
 
     .score {
+
         margin-left: 0;
+
     }
 
 
     .more-information.show {
+
         grid-template-columns: 1fr;
+
     }
 
 
     .description-section {
+
         padding-right: 0;
 
         padding-bottom: 15px;
@@ -957,10 +1070,23 @@ body::before {
         border-right: none;
 
         border-bottom: 1px solid rgba(8, 64, 39, 0.25);
+
     }
 
 
     .qualification-section {
+
         padding-left: 0;
+
     }
+
+
+    .site-footer {
+
+        padding-top: 1rem;
+
+        padding-bottom: 0.5rem;
+
+    }
+
 }

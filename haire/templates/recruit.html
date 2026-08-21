@@ -3,12 +3,12 @@
 
 <head>
 
-    <link rel="stylesheet" href="../static/styles/recruitStyle.css">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Recruitment Page</title>
+    <title>hAIre — Recruiter Dashboard</title>
+
+    <link rel="stylesheet" href="../static/styles/recruitStyle.css">
 
 </head>
 
@@ -16,451 +16,516 @@
 <body>
 
     <!-- ================================= -->
-    <!-- BOTH CARDS CONTAINER -->
+    <!-- BACKGROUND HAZE -->
     <!-- ================================= -->
 
-    <div class="cards-container">
+    <div class="hero-haze"></div>
+
+
+    <!-- ================================= -->
+    <!-- PAGE WRAPPER -->
+    <!-- ================================= -->
+
+    <div class="page-wrapper">
 
 
         <!-- ================================= -->
-        <!-- CONTROLS CARD - LEFT -->
+        <!-- HAIRE LOGO - TOP OF PAGE -->
         <!-- ================================= -->
 
-        <div class="outer-card second-card">
+        <header class="site-header">
 
-            <h2>Controls</h2>
+            <a href="{{ url_for('index') }}" class="haire-logo">
+                hAIre
+            </a>
 
-            <p>
-                Select what you need.
-            </p>
+        </header>
 
 
-            <!-- JOB SELECTION -->
+        <!-- ================================= -->
+        <!-- THREE RECRUITMENT CARDS -->
+        <!-- ================================= -->
 
-            <div class="job-control">
+        <main class="cards-container">
 
-                <label for="job-selector">
-                    Select Job:
-                </label>
 
-                <select id="job-selector">
+            <!-- ================================= -->
+            <!-- CONTROLS CARD -->
+            <!-- ================================= -->
 
-                    <option value="software-engineer">
-                        Software Engineer
-                    </option>
+            <div class="outer-card second-card">
 
-                    <option value="data-analyst">
-                        Data Analyst
-                    </option>
+                <h2>Controls</h2>
 
-                    <option value="product-manager">
-                        Product Manager
-                    </option>
+                <p>
+                    Select what you need.
+                </p>
 
-                </select>
-                
 
-            </div>
+                <!-- JOB SELECTION -->
 
-            <!-- Filter-->
-            <div class="filter-input">
+                <div class="job-control">
 
-                <label for="filter-input">
-                    Filter Applicants:
-                </label>
+                    <label for="job-selector">
+                        Select Job:
+                    </label>
 
-                <select id="filter-input">
+                    <select id="job-selector">
 
-                    <option value="all">
+                        <option value="software-engineer">
+                            Software Engineer
+                        </option>
+
+                        <option value="data-analyst">
+                            Data Analyst
+                        </option>
+
+                        <option value="product-manager">
+                            Product Manager
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- FILTER -->
+
+                <div class="filter-input">
+
+                    <label for="filter-input">
+                        Filter Applicants:
+                    </label>
+
+                    <select id="filter-input">
+
+                        <option value="all">
                             All
-                    </option>
+                        </option>
 
-                    <option value="high-score">
-                        High Score
-                    </option>
+                        <option value="high-score">
+                            High Score
+                        </option>
 
-                    <option value="low-score">
-                     Low Score
-                    </option>
+                        <option value="low-score">
+                            Low Score
+                        </option>
 
-                </select>
+                    </select>
+
+                </div>
+
+
+                <!-- CONTROL BUTTONS -->
+
+                <div class="control-buttons">
+
+                    <button id="clear-button">
+                        Clear
+                    </button>
+
+                    <button id="load-all-button">
+                        Load All
+                    </button>
+
+                    <button id="approve-button">
+                        Approve
+                    </button>
+
+                </div>
 
             </div>
 
-            <div class="control-buttons">
 
-                <button id="clear-button">
-                    Clear
-                </button>
+            <!-- ================================= -->
+            <!-- APPLICANTS CARD -->
+            <!-- ================================= -->
 
-                <button id="load-all-button">
-                Load All
-                </button>
+            <div class="outer-card applicants-card">
 
-                <button id="approve-button">
-                    Approve
-                </button>
+                <h2>Applicants</h2>
+
+                <p>
+                    Select an applicant for hierarchy
+                </p>
+
+
+                <!-- SCROLLABLE APPLICANT AREA -->
+
+                <div class="form-scroll">
+
+
+                    <!-- ================================= -->
+                    <!-- APPLICANT 1 -->
+                    <!-- ================================= -->
+
+                    <div class="applicant-card">
+
+                        <div class="applicant-header">
+
+                            <h3 class="applicant-name">
+                                John Doe
+                            </h3>
+
+                            <span class="score">
+                                85%
+                            </span>
+
+                            <label class="select-applicant">
+
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="john"
+                                >
+
+                                Select
+
+                            </label>
+
+                        </div>
+
+
+                        <button class="more-info-button">
+                            View More Info
+                        </button>
+
+
+                        <div class="more-information">
+
+                            <div class="description-section">
+
+                                <h4>Description</h4>
+
+                                <p>
+                                    John is an experienced software developer
+                                    with a strong interest in creating reliable
+                                    and user-friendly applications.
+                                </p>
+
+                            </div>
+
+
+                            <div class="qualification-section">
+
+                                <h4>Top Matches</h4>
+
+                                <ul>
+
+                                    <li>Software Engineering</li>
+                                    <li>Java</li>
+                                    <li>Python</li>
+                                    <li>Database Management</li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================================= -->
+                    <!-- APPLICANT 2 -->
+                    <!-- ================================= -->
+
+                    <div class="applicant-card">
+
+                        <div class="applicant-header">
+
+                            <h3 class="applicant-name">
+                                Sarah Smith
+                            </h3>
+
+                            <span class="score">
+                                90%
+                            </span>
+
+                            <label class="select-applicant">
+
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="sarah"
+                                >
+
+                                Select
+
+                            </label>
+
+                        </div>
+
+
+                        <button class="more-info-button">
+                            View More Info
+                        </button>
+
+
+                        <div class="more-information">
+
+                            <div class="description-section">
+
+                                <h4>Description</h4>
+
+                                <p>
+                                    Sarah is a skilled software developer
+                                    with experience in designing and developing
+                                    modern software applications.
+                                </p>
+
+                            </div>
+
+
+                            <div class="qualification-section">
+
+                                <h4>Top Matches</h4>
+
+                                <ul>
+
+                                    <li>Software Engineering</li>
+                                    <li>Java</li>
+                                    <li>Web Development</li>
+                                    <li>Database Management</li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================================= -->
+                    <!-- APPLICANT 3 -->
+                    <!-- ================================= -->
+
+                    <div class="applicant-card">
+
+                        <div class="applicant-header">
+
+                            <h3 class="applicant-name">
+                                Jan Doe
+                            </h3>
+
+                            <span class="score">
+                                75%
+                            </span>
+
+                            <label class="select-applicant">
+
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="jan"
+                                >
+
+                                Select
+
+                            </label>
+
+                        </div>
+
+
+                        <button class="more-info-button">
+                            View More Info
+                        </button>
+
+
+                        <div class="more-information">
+
+                            <div class="description-section">
+
+                                <h4>Description</h4>
+
+                                <p>
+                                    Jan is a motivated developer with
+                                    experience working on software projects
+                                    and database systems.
+                                </p>
+
+                            </div>
+
+
+                            <div class="qualification-section">
+
+                                <h4>Top Matches</h4>
+
+                                <ul>
+
+                                    <li>Software Development</li>
+                                    <li>Python</li>
+                                    <li>Database Management</li>
+                                    <li>System Analysis</li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================================= -->
+                    <!-- APPLICANT 4 -->
+                    <!-- ================================= -->
+
+                    <div class="applicant-card">
+
+                        <div class="applicant-header">
+
+                            <h3 class="applicant-name">
+                                Jake Doe
+                            </h3>
+
+                            <span class="score">
+                                66%
+                            </span>
+
+                            <label class="select-applicant">
+
+                                <input
+                                    type="radio"
+                                    name="application"
+                                    value="jake"
+                                >
+
+                                Select
+
+                            </label>
+
+                        </div>
+
+
+                        <button class="more-info-button">
+                            View More Info
+                        </button>
+
+
+                        <div class="more-information">
+
+                            <div class="description-section">
+
+                                <h4>Description</h4>
+
+                                <p>
+                                    Jake is a developing software professional
+                                    with experience in programming and
+                                    application development.
+                                </p>
+
+                            </div>
+
+
+                            <div class="qualification-section">
+
+                                <h4>Top Matches</h4>
+
+                                <ul>
+
+                                    <li>Programming</li>
+                                    <li>Java</li>
+                                    <li>Software Development</li>
+                                    <li>Problem Solving</li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
 
             </div>
-        </div>
-        <!-- END CONTROLS CARD -->
 
+
+            <!-- ================================= -->
+            <!-- STATISTICS CARD -->
+            <!-- ================================= -->
+
+            <div class="outer-card statistics-card">
+
+                <h2>Statistics</h2>
+
+
+                <div class="statistics-content">
+
+
+                    <div class="statistic-item">
+
+                        <h3>Total Applicants</h3>
+
+                        <p id="total-applicants">
+                            4
+                        </p>
+
+                    </div>
+
+
+                    <div class="statistic-item">
+
+                        <h3>Average Score</h3>
+
+                        <p id="average-score">
+                            79%
+                        </p>
+
+                    </div>
+
+
+                    <div class="statistic-item">
+
+                        <h3>Highest Score</h3>
+
+                        <p id="highest-score">
+                            90%
+                        </p>
+
+                    </div>
+
+
+                    <div class="statistic-item">
+
+                        <h3>Lowest Score</h3>
+
+                        <p id="lowest-score">
+                            66%
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </main>
 
 
         <!-- ================================= -->
-        <!-- APPLICANTS CARD - MIDDLE -->
+        <!-- GENERIC COMPANY FOOTER -->
         <!-- ================================= -->
 
-        <div class="outer-card applicants-card">
-
-            <h2>Applicants</h2>
+        <footer class="site-footer">
 
             <p>
-                Select an applicant for hierarchy
+                © 2026 hAIre. All rights reserved.
             </p>
 
-
-            <!-- ================================= -->
-            <!-- SCROLLABLE APPLICANT AREA -->
-            <!-- ================================= -->
-
-            <div class="form-scroll">
-
-
-                <!-- ================================= -->
-                <!-- APPLICANT 1 -->
-                <!-- ================================= -->
-
-                <div class="applicant-card">
-
-                    <div class="applicant-header">
-
-                        <h3 class="applicant-name">
-                            John Doe
-                        </h3>
-
-                        <span class="score">
-                            85%
-                        </span>
-
-                        <label class="select-applicant">
-
-                            <input
-                                type="radio"
-                                name="application"
-                                value="john"
-                            >
-
-                            Select
-
-                        </label>
-
-                    </div>
-
-
-                    <button class="more-info-button">
-                        View More Info
-                    </button>
-
-
-                    <div class="more-information">
-
-                        <div class="description-section">
-
-                            <h4>Description</h4>
-
-                            <p>
-                                John is an experienced software developer
-                                with a strong interest in creating reliable
-                                and user-friendly applications.
-                            </p>
-
-                        </div>
-
-
-                        <div class="qualification-section">
-
-                            <h4>Top Matches</h4>
-
-                            <ul>
-
-                                <li>Software Engineering</li>
-                                <li>Java</li>
-                                <li>Python</li>
-                                <li>Database Management</li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <!-- END APPLICANT 1 -->
-
-
-
-                <!-- ================================= -->
-                <!-- APPLICANT 2 -->
-                <!-- ================================= -->
-
-                <div class="applicant-card">
-
-                    <div class="applicant-header">
-
-                        <h3 class="applicant-name">
-                            Sarah Smith
-                        </h3>
-
-                        <span class="score">
-                            90%
-                        </span>
-
-                        <label class="select-applicant">
-
-                            <input
-                                type="radio"
-                                name="application"
-                                value="sarah"
-                            >
-
-                            Select
-
-                        </label>
-
-                    </div>
-
-
-                    <button class="more-info-button">
-                        View More Info
-                    </button>
-
-
-                    <div class="more-information">
-
-                        <div class="description-section">
-
-                            <h4>Description</h4>
-
-                            <p>
-                                Sarah is a skilled software developer
-                                with experience in designing and developing
-                                modern software applications.
-                            </p>
-
-                        </div>
-
-
-                        <div class="qualification-section">
-
-                            <h4>Top Matches</h4>
-
-                            <ul>
-
-                                <li>Software Engineering</li>
-                                <li>Java</li>
-                                <li>Web Development</li>
-                                <li>Database Management</li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <!-- END APPLICANT 2 -->
-
-
-
-                <!-- ================================= -->
-                <!-- APPLICANT 3 -->
-                <!-- ================================= -->
-
-                <div class="applicant-card">
-
-                    <div class="applicant-header">
-
-                        <h3 class="applicant-name">
-                            Jan Doe
-                        </h3>
-
-                        <span class="score">
-                            75%
-                        </span>
-
-                        <label class="select-applicant">
-
-                            <input
-                                type="radio"
-                                name="application"
-                                value="jan"
-                            >
-
-                            Select
-
-                        </label>
-
-                    </div>
-
-
-                    <button class="more-info-button">
-                        View More Info
-                    </button>
-
-
-                    <div class="more-information">
-
-                        <div class="description-section">
-
-                            <h4>Description</h4>
-
-                            <p>
-                                Jan is a motivated developer with
-                                experience working on software projects
-                                and database systems.
-                            </p>
-
-                        </div>
-
-
-                        <div class="qualification-section">
-
-                            <h4>Top Matches</h4>
-
-                            <ul>
-
-                                <li>Software Development</li>
-                                <li>Python</li>
-                                <li>Database Management</li>
-                                <li>System Analysis</li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <!-- END APPLICANT 3 -->
-
-
-
-                <!-- ================================= -->
-                <!-- APPLICANT 4 -->
-                <!-- ================================= -->
-
-                <div class="applicant-card">
-
-                    <div class="applicant-header">
-
-                        <h3 class="applicant-name">
-                            Jake Doe
-                        </h3>
-
-                        <span class="score">
-                            66%
-                        </span>
-
-                        <label class="select-applicant">
-
-                            <input
-                                type="radio"
-                                name="application"
-                                value="jake"
-                            >
-
-                            Select
-
-                        </label>
-
-                    </div>
-
-
-                    <button class="more-info-button">
-                        View More Info
-                    </button>
-
-
-                    <div class="more-information">
-
-                        <div class="description-section">
-
-                            <h4>Description</h4>
-
-                            <p>
-                                Jake is a developing software professional
-                                with experience in programming and
-                                application development.
-                            </p>
-
-                        </div>
-
-
-                        <div class="qualification-section">
-
-                            <h4>Top Matches</h4>
-
-                            <ul>
-
-                                <li>Programming</li>
-                                <li>Java</li>
-                                <li>Software Development</li>
-                                <li>Problem Solving</li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <!-- END APPLICANT 4 -->
-
-
-            </div>
-            <!-- END FORM-SCROLL -->
-
-
-        </div>
-        <!-- END APPLICANTS CARD -->
-
-        <!--===================================-->
-        <!--Statistics Card - Right-->
-        <!--===================================-->
-
-        <div class="outer-card statistics-card">
-
-            <h2>Statistics</h2>
-
-
-            <div class="statistics-content">
-
-                <div class="statistic-item">
-                    <h3>Total Applicants</h3>
-                    <p id="total-applicants">4</p>
-                </div>
-
-                <div class="statistic-item">
-                    <h3>Average Score</h3>
-                    <p id="average-score">79%</p>
-                </div>
-
-                <div class="statistic-item">
-                    <h3>Highest Score</h3>
-                    <p id="highest-score">90%</p>
-                </div>
-
-                <div class="statistic-item">
-                    <h3>Lowest Score</h3>
-                    <p id="lowest-score">66%</p>
-                </div>
-
-            </div> <!-- END STATISTICS-CONTENT -->
+            <p>
+                AI-powered recruitment solutions for modern businesses.
+            </p>
+
+        </footer>
 
 
     </div>
-    <!-- END CARDS-CONTAINER -->
 
 
     <script src="../static/scripts/recruit.js"></script>
