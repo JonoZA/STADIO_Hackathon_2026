@@ -3,7 +3,6 @@
 /* ================================= */
 
 :root {
-    /* Same colours as indexs.css */
     --hero-bg: linear-gradient(
         120deg,
         #084027,
@@ -13,11 +12,13 @@
     );
 
     --hero-title-color: blanchedalmond;
+
     --hero-title-font: Georgia, serif;
 
     --actions-bg: #93c83e;
 
     --action-btn-bg: #c09712de;
+
     --action-btn-hover: #b26e14;
 
     --action-btn-text-color: #ffffff;
@@ -62,7 +63,6 @@ body {
 
 /* ================================= */
 /* MOVING HAZE */
-/* Same effect as indexs.css */
 /* ================================= */
 
 body::before {
@@ -91,6 +91,25 @@ body::before {
 
 
 /* ================================= */
+/* BOTH CARDS CONTAINER */
+/* ================================= */
+
+.cards-container {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+/* ================================= */
 /* OUTER CARD */
 /* ================================= */
 
@@ -99,7 +118,7 @@ body::before {
 
     z-index: 2;
 
-    width: min(700px, 95vw);
+    width: 600px;
 
     height: 80vh;
 
@@ -132,6 +151,197 @@ body::before {
 
 
 /* ================================= */
+/* LEFT CONTROL CARD */
+/* ================================= */
+
+.second-card {
+    width: 280px;
+
+    height: 80vh;
+
+    flex-shrink: 0;
+
+    box-sizing: border-box;
+
+    font-size: 14px;
+
+    overflow: hidden;
+}
+
+
+/* ================================= */
+/* LEFT CARD HEADING */
+/* ================================= */
+
+.second-card h2 {
+    margin: 0;
+
+    font-family: var(--hero-title-font);
+
+    font-size: 1.8rem;
+
+    font-weight: 800;
+
+    color: #084027;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* ================================= */
+/* LEFT CARD DESCRIPTION */
+/* ================================= */
+
+.second-card p {
+    margin: 8px 0 25px;
+
+    text-align: center;
+
+    color: #555;
+
+    font-size: 0.9rem;
+}
+
+
+/* ================================= */
+/* LEFT CARD LABELS */
+/* ================================= */
+
+.second-card label {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #333;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* ================================= */
+/* JOB CONTROL */
+/* ================================= */
+
+.job-control {
+    margin-bottom: 25px;
+}
+
+
+/* ================================= */
+/* FILTER CONTROL */
+/* ================================= */
+
+.Filter {
+    margin-bottom: 30px;
+}
+
+
+/* ================================= */
+/* DROPDOWNS */
+/* ================================= */
+
+#job-selector,
+#filter-input {
+    width: 100%;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(8, 64, 39, 0.3);
+
+    border-radius: 7px;
+
+    background-color: white;
+
+    color: #333;
+
+    font-family: 'Segoe UI', Arial, sans-serif;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+#job-selector:focus,
+#filter-input:focus {
+    outline: none;
+
+    border-color: #058f5c;
+}
+
+
+/* ================================= */
+/* BUTTON AREA */
+/* ================================= */
+
+.second-card > div:last-child {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+
+/* ================================= */
+/* CONTROL BUTTONS */
+/* ================================= */
+
+#clear-button,
+#load-all-button,
+#approve-button {
+    width: 100%;
+
+    padding: 10px 15px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background-color: var(--action-btn-bg);
+
+    color: var(--action-btn-text-color);
+
+    cursor: pointer;
+
+    font-family: 'Segoe UI', Arial, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* ================================= */
+/* BUTTON HOVER */
+/* ================================= */
+
+#clear-button:hover,
+#load-all-button:hover,
+#approve-button:hover {
+    background-color: var(--action-btn-hover);
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* ================================= */
 /* PAGE TITLE */
 /* ================================= */
 
@@ -140,13 +350,15 @@ body::before {
 
     font-family: var(--hero-title-font);
 
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
 
     font-weight: 800;
 
     color: #084027;
 
     text-align: center;
+
+    overflow-wrap: break-word;
 }
 
 
@@ -472,6 +684,7 @@ body::before {
 /* ================================= */
 
 @keyframes fadeUp {
+
     from {
         opacity: 0;
 
@@ -487,6 +700,7 @@ body::before {
 
 
 @keyframes hazeSweep {
+
     0% {
         transform: translate(-25%, 25%);
     }
@@ -501,6 +715,44 @@ body::before {
 /* RESPONSIVE DESIGN */
 /* ================================= */
 
+@media (max-width: 950px) {
+
+    body {
+        overflow-y: auto;
+
+        padding: 20px;
+
+        box-sizing: border-box;
+
+        align-items: flex-start;
+    }
+
+
+    .cards-container {
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 20px;
+    }
+
+
+    .outer-card,
+    .second-card {
+        width: min(600px, 95vw);
+
+        height: auto;
+
+        min-height: 500px;
+    }
+
+
+    .form-scroll {
+        height: 450px;
+    }
+}
+
+
 @media (max-width: 600px) {
 
     body {
@@ -512,7 +764,8 @@ body::before {
     }
 
 
-    .outer-card {
+    .outer-card,
+    .second-card {
         width: 100%;
 
         height: 90vh;
