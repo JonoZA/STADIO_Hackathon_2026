@@ -6,7 +6,7 @@ from typing import List, Optional
 import time, requests
 import json
 from io import BytesIO
-from pypdf import PdfReader
+# from pypdf import PdfReader
 
 start_time = time.time()
 load_dotenv()
@@ -60,7 +60,7 @@ class CandidateApplicationReview(BaseModel):
 def agent_resume_coverLetter_parser(resumeURL, cover_letter):
 
     prompt = f"""
-        You are an expert HR reviewer. Analyze the candidate's CV and application materials.
+        You are an expert HR recruiter. Analyze the candidate's CV and application materials.
         Extract all requested resume details into their respective structured fields, and synthesize
         a comprehensive 'personal_summary' and 'candidate_summary' evaluating their fit.
 
@@ -86,7 +86,7 @@ def agent_resume_coverLetter_parser(resumeURL, cover_letter):
 
     return result
 
-url="https://qfktrunnikcwulzwnlgi.supabase.co/storage/v1/object/public/cv-uploads/d4c5032c-02ca-4919-856b-fdca3cf81716.pdf"
+url="https://qfktrunnikcwulzwnlgi.supabase.co/storage/v1/object/public/cv-uploads/9a73e765-3e6c-409c-b2db-9b8594285836.pdf"
 cover_letter = """Dear Hiring Manager,
 
 # I am writing to express my interest in the Life Sciences Teacher position at your school. I am passionate about education and science, and I am eager to contribute to a learning environment where students are encouraged to develop their knowledge, curiosity, and critical-thinking skills.
