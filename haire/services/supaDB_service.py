@@ -26,6 +26,6 @@ def save_candidate_and_cv(form_data: dict, file_bytes: bytes) -> dict:
 
     # 3. Get public URL and update the candidate row
     file_url = supabase.storage.from_("cv-uploads").get_public_url(filename)
-    supabase.table("candidates_raw").update({"cv_file_url": file_url}).eq("id", candidate_id).execute()
-
-    return {"id": candidate_id, "file_url": file_url}
+    update_res = supabase.table("candidates_raw").update({"cv_file_url": file_url}).eq("id", candidate_id).execute()
+    
+    return update_res.data[0]

@@ -18,16 +18,44 @@ document.addEventListener('DOMContentLoaded', function () {
     if (form) {
       form.addEventListener('click', (e) => e.stopPropagation());
 
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (stageEnded) return;
-        stageEnded = true;
+        
+        const submitBtn = form.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.disabled = true;
 
-        if (stageEnd) {
-          stageEnd.classList.remove('hidden');
-        }
-        if (main) {
-          main.classList.add('ended');
+        try {
+          const formData = new FormData(form);
+          const jobTitle = card.querySelector('.card-header h2').innerText;
+          formData.append('job_title', jobTitle);
+
+          const response = await fetch('/apply', {
+            method: 'POST',
+            body: formData
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            stageEnded = true;
+            if (stageEnd) {
+              stageEnd.classList.remove('hidden');
+            }
+            if (main) {
+              main.classList.add('ended');
+            }
+          } else {
+            alert('Error: ' + (result.error || 'Failed to submit'));
+          }
+        } catch (error) {
+          console.error('Submission error:', error);
+          alert('An error occurred while submitting.');
+        } finally {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
         }
       });
     }
