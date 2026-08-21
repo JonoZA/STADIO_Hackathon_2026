@@ -40,13 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const result = await response.json();
 
           if (response.ok) {
-            stageEnded = true;
-            if (stageEnd) {
-              stageEnd.classList.remove('hidden');
-            }
-            if (main) {
-              main.classList.add('ended');
-            }
+            window.location.href = '/success';
           } else {
             alert('Error: ' + (result.error || 'Failed to submit'));
           }
