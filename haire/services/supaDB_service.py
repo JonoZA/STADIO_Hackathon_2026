@@ -34,7 +34,7 @@ def save_ranked_candidate(ranked_data: dict) -> dict:
     """
     Saves the processed algorithm output to the 'candidates_ranked' table.
     The ranked_data dict should contain the fields required by your Supabase table schema
-    (e.g., candidate_id, score, top_matches, etc.).
+    (e.g., id, score, top_matches, etc.).
     """
     insert_res = supabase.table("candidates_ranked").insert(ranked_data).execute()
     return insert_res.data[0]

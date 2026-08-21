@@ -1,4 +1,4 @@
-﻿annotated-types==0.7.0
+annotated-types==0.7.0
 anyio==4.10.0
 asgiref==3.9.1
 blinker==1.9.0
@@ -87,3 +87,4 @@ websockets==15.0.1
 Werkzeug==3.1.8
 whitenoise==6.11.0
 yarl==1.24.5
+pypdf==4.3.1

@@ -29,7 +29,7 @@ def handle_application():
         
         # 4. Prepare data for candidates_ranked table
         ranked_data = {
-            "candidate_id": result["id"],
+            "id": result["id"],
             "fullName": result.get("fullName"),
             "email": result.get("email"),
             "cellphone": result.get("cellphone"),
@@ -58,114 +58,53 @@ def handle_application():
 
 
 
+# # @upload_bp.route("/api/evaluate", methods=["POST"])
 
+url="https://qfktrunnikcwulzwnlgi.supabase.co/storage/v1/object/public/cv-uploads/d4c5032c-02ca-4919-856b-fdca3cf81716.pdf%22"
+cover_letter = """Dear Hiring Manager,
+ 
+ I am writing to express my interest in the Life Sciences Teacher position at your school. I am passionate about education and science, and I am eager to contribute to a learning environment where students are encouraged to develop their knowledge, curiosity, and critical-thinking skills.
+ 
+ I believe that effective Life Sciences education should go beyond memorising concepts. Students should be encouraged to understand how biological principles relate to the world around them, from human health and genetics to ecosystems, biodiversity, and environmental challenges. My approach to teaching focuses on making these concepts engaging, accessible, and relevant to students' everyday lives.
+ 
+ I am committed to creating a positive and inclusive classroom environment where students feel comfortable asking questions, participating in discussions, and developing confidence in their abilities. I understand the importance of adapting teaching methods to accommodate different learning styles and abilities, while maintaining clear expectations and a strong academic standard.
+ 
+ In addition to delivering quality lessons, I value the importance of building positive relationships with students, colleagues, and parents. I am organised, enthusiastic, and willing to contribute to the broader school community through extracurricular activities and other initiatives.
+ 
+I would welcome the opportunity to bring my passion for Life Sciences and education to your school. Thank you for considering my application. I look forward to the opportunity to discuss how my skills and enthusiasm could contribute to your school and its students.
+"""
 
+# candidate = agent_resume_coverLetter_parser(url, cover_letter)
 
-# @upload_bp.route("/api/evaluate", methods=["POST"])
-
-# ============================================================
 # 1. CREATE APPLICANT PROFILE
-# ============================================================
 
-def create_applicant_profile():
-    """
-    Creates and returns an applicant dictionary.
+# def create_applicant_profile():
 
-    For now, this function simply returns an example
-    dictionary.
-    Later, this could receive information from:
-        - A Flask form
-        - A database
-        - A CV parser
-        - An API
-        - An AI model
-    """
+#     #THIS MUST BE PULLED FROM THE AI MODEL
+#     applicant = {
 
-    #THIS MUST BE PULLED FROM THE AI MODEL
-    applicant = {
+#         "personal_details": {
+#             "name": "Anika",
+#             "surname": "Pillay",
+#             "gender": "Female",
+#             "address": "Durban, South Africa",
+#             "cell": "081 333 4444",
+#             "email": "anika.pillay@email.co.za",
+#             "nationality": "South African",
+#             "transport": "Own vehicle"
+#         },
 
-        "personal_details": {
+#         "cv": candidate
+#     }
 
-            "name": "Sarah",
+#     return applicant
 
-            "surname": "Smith",
-
-            "gender": "Female",
-
-            "address": "Cape Town, Western Cape",
-
-            "cell": "082 123 4567",
-
-            "email": "sarah.smith@email.com",
-
-            "nationality": "South African",
-
-            "transport": "Own vehicle"
-        },
-
-        "cv": {
-
-            "education": [
-                "Bachelor of Education specialising in Life Sciences",
-                "Teaching qualification"
-            ],
-
-            "experience": [
-                "Three years teaching Life Sciences",
-                "Grade 10, 11 and 12 teaching experience",
-                "Experience with classroom management",
-                "Experience with learner assessment"
-            ],
-
-            "skills": [
-                "Life Sciences",
-                "Biology",
-                "Genetics",
-                "Ecology",
-                "Human Biology",
-                "Cell Biology",
-                "Classroom Management",
-                "Lesson Planning",
-                "Communication",
-                "Student Engagement",
-                "Laboratory Experiments",
-                "Microsoft Office",
-                "Google Classroom",
-                "Teamwork"
-            ],
-
-            "curriculum": [
-                "CAPS curriculum",
-                "Curriculum planning",
-                "Assessment planning"
-            ],
-
-            "projects": [
-                "Developed practical Life Sciences laboratory activities"
-            ]
-        }
-    }
-
-    return applicant
-
-
-# ============================================================
 # 2. LOAD REQUIREMENTS FROM CSV
-# ============================================================
 
 def get_job_requirements(
     csv_file,
     job_title
 ):
-    """
-    Reads the CSV and returns only the requirements
-    belonging to the requested job.
-
-    The algorithm does NOT know what the job requirements are.
-
-    They come entirely from the CSV.
-    """
-
     requirements = []
 
     with open(
@@ -173,186 +112,103 @@ def get_job_requirements(
         "r",
         encoding="utf-8"
     ) as file:
-
         reader = csv.DictReader(file)
-
         for row in reader:
-
             if row["job_title"] == job_title:
-
                 requirement = {
-
                     "id": row["requirement_id"],
-
                     "category": row["category"],
-
                     "description": row["description"],
-
                     "keywords": [
                         keyword.strip()
                         for keyword
                         in row["keywords"].split("|")
                     ],
-
                     "weight": float(
                         row["weight"]
                     ),
-
                     "mandatory":
                         row["mandatory"].lower()
                         == "true",
-
                     "threshold": float(
                         row["threshold"]
                     )
                 }
-
                 requirements.append(
                     requirement
                 )
 
     return requirements
 
-
-# ============================================================
 # 3. NORMALISE TEXT
-# ============================================================
 
 def normalize_text(text):
-    """
-    Converts text to lowercase and removes
-    unnecessary punctuation.
-    """
-
     text = str(text).lower()
-
     text = re.sub(
         r"[^a-z0-9\s\-]",
         " ",
         text
     )
-
     text = re.sub(
         r"\s+",
         " ",
         text
     )
-
+    
     return text.strip()
 
-
-# ============================================================
 # 4. EXTRACT ALL CV TEXT
-# ============================================================
 
 def get_cv_text(applicant):
-    """
-    Converts the entire CV dictionary into one searchable
-    string.
-
-    This is intentionally dynamic.
-
-    It does NOT care whether the CV contains:
-
-        education
-        experience
-        skills
-        projects
-
-    or something completely different.
-
-    Any new CV section will automatically be included.
-    """
-
     cv = applicant.get(
         "cv",
         {}
     )
-
     text_parts = []
-
     def extract(value):
-
         if isinstance(value, dict):
-
             for item in value.values():
                 extract(item)
-
         elif isinstance(value, list):
-
             for item in value:
                 extract(item)
-
         else:
-
             text_parts.append(
                 str(value)
             )
-
     extract(cv)
-
     return normalize_text(
         " ".join(text_parts)
     )
 
-
-# ============================================================
 # 5. KEYWORD SIMILARITY
-# ============================================================
 
 def calculate_similarity(
     keywords,
     candidate_text
 ):
-    """
-    Determines how many of the requirement's keywords
-    appear in the applicant's CV.
-
-    Returns a value from 0 to 1.
-    """
-
     if not keywords:
         return 0.0
-
     candidate_text = normalize_text(
         candidate_text
     )
-
     matches = 0
-
     for keyword in keywords:
-
         keyword = normalize_text(
             keyword
         )
-
         if keyword in candidate_text:
-
             matches += 1
-
     return matches / len(keywords)
 
 
-# ============================================================
 # 6. EVIDENCE STRENGTH
-# ============================================================
 
 def calculate_evidence_strength(
     similarity
-):
-    """
-    Converts the similarity score into an evidence
-    strength score.
-
-    This function is deliberately generic.
-
-    It does not know what the requirement is.
-    """
-
+):    
     if similarity == 0:
-
         return 0.0
-
     elif similarity < 0.25:
 
         return 0.40
@@ -362,37 +218,19 @@ def calculate_evidence_strength(
         return 0.60
 
     elif similarity < 0.75:
-
-        return 0.80
-
+        return 0.90
     else:
-
         return 1.00
-
-
-# ============================================================
-# 7. RECENCY SCORE
-# ============================================================
 
 def calculate_recency(
     applicant
 ):
-    """
-    Placeholder for now.
-
-    Later this can inspect dates in the applicant's
-    experience and determine how recent the relevant
-    experience is.
-
-    For now, every applicant receives 0.90.
+    """ 
+    Recency is difficult to implement as we are not tracking how recently a candidate got work experience
     """
 
-    return 0.90
+    return 1
 
-
-# ============================================================
-# 8. CALCULATE ONE REQUIREMENT
-# ============================================================
 
 def calculate_requirement_score(
     requirement,
@@ -401,223 +239,129 @@ def calculate_requirement_score(
     """
     Calculates the candidate's score for ONE requirement.
     """
-
+    
     cv_text = get_cv_text(
         applicant
     )
-
-    # --------------------------------------------------------
-    # Similarity
-    # --------------------------------------------------------
-
     similarity = calculate_similarity(
         requirement["keywords"],
         cv_text
     )
-
-    # --------------------------------------------------------
-    # Evidence
-    # --------------------------------------------------------
-
     evidence = calculate_evidence_strength(
         similarity
     )
-
-    # --------------------------------------------------------
-    # Recency
-    # --------------------------------------------------------
-
     recency = calculate_recency(
         applicant
     )
-
-    # --------------------------------------------------------
-    # Combine the three factors
-    #
-    # These percentages are currently the scoring model.
-    #
-    # Similarity = 60%
-    # Evidence   = 25%
-    # Recency    = 15%
-    # --------------------------------------------------------
-
     match_score = (
-
-        similarity * 0.60
-
-        +
-
-        evidence * 0.25
-
-        +
-
-        recency * 0.15
+        similarity * 0.50 + evidence * 0.30 + recency * 0.20
     )
 
-    # Prevent score from exceeding 1
+# Prevent score from exceeding 1
     match_score = min(
         match_score,
         1.0
     )
-
-    # --------------------------------------------------------
-    # Apply requirement weight
-    # --------------------------------------------------------
+    
+# Apply requirement weight
 
     weighted_score = (
-
-        match_score
-        *
-        requirement["weight"]
+        match_score * requirement["weight"]
     )
 
-    # --------------------------------------------------------
     # Determine whether requirement is met
-    # --------------------------------------------------------
 
-    requirement_met = (
-
-        match_score
-        >=
-        requirement["threshold"]
-    )
-
+    requirement_met = match_score >= (requirement.get("threshold", 0.0) * 0.90)
     return {
-
         "similarity":
             similarity,
-
         "evidence":
             evidence,
-
         "recency":
             recency,
-
         "match":
             match_score,
-
         "weighted_score":
             weighted_score,
-
         "met":
             requirement_met
     }
 
 
-# ============================================================
 # 9. MAIN SCORING ALGORITHM
-# ============================================================
 
 def score_application(
     applicant,
     requirements
 ):
-    """
-    Calculates the final weighted candidate score.
-
-    This function is completely independent of the job.
-
-    It can score:
-
-        Life Sciences Teacher
-        Python Developer
-        Waiter
-        Accountant
-
-    or any future job added to the CSV.
-    """
-
     total_weight = 0
-
     total_points = 0
-
     mandatory_failures = []
-
     requirement_results = []
 
-    # --------------------------------------------------------
-    # Process every requirement
-    # --------------------------------------------------------
+# Process every requirement
 
     for requirement in requirements:
-
         result = calculate_requirement_score(
             requirement,
             applicant
         )
-
         # Add requirement weight
         total_weight += (
             requirement["weight"]
         )
-
         # Add points earned
         total_points += (
             result["weighted_score"]
         )
 
-        # ----------------------------------------------------
-        # Check mandatory requirement
-        # ----------------------------------------------------
+# Check mandatory requirement
 
         if (
             requirement["mandatory"]
             and
             not result["met"]
         ):
-
             mandatory_failures.append(
                 requirement["id"]
             )
 
-        # ----------------------------------------------------
-        # Save detailed result
-        # ----------------------------------------------------
+# Save detailed result
 
         requirement_results.append({
-
             "id":
                 requirement["id"],
-
             "category":
                 requirement["category"],
-
             "description":
                 requirement["description"],
-
             "weight":
                 requirement["weight"],
-
             "similarity":
                 round(
                     result["similarity"],
                     3
                 ),
-
             "evidence":
                 round(
                     result["evidence"],
                     3
                 ),
-
             "recency":
                 round(
                     result["recency"],
                     3
                 ),
-
             "match":
                 round(
                     result["match"] * 100,
                     2
                 ),
-
             "points":
                 round(
                     result["weighted_score"],
                     2
                 ),
-
             "mandatory":
                 requirement["mandatory"],
 
@@ -625,16 +369,11 @@ def score_application(
                 result["met"]
         })
 
-    # ========================================================
-    # FINAL SCORE
-    # ========================================================
+# FINAL SCORE
 
     if total_weight == 0:
-
         final_score = 0
-
     else:
-
         final_score = (
             total_points
             /
@@ -646,51 +385,36 @@ def score_application(
         2
     )
 
-    # ========================================================
-    # RECOMMENDATION
-    # ========================================================
+# RECOMMENDATION
 
     if mandatory_failures:
-
         recommendation = (
             "REVIEW - Mandatory "
             "requirement(s) not met"
         )
-
     elif final_score >= 85:
-
         recommendation = (
             "Excellent Candidate"
         )
-
     elif final_score >= 75:
-
         recommendation = (
             "Strong Candidate"
         )
-
     elif final_score >= 65:
-
         recommendation = (
             "Potential Candidate"
         )
-
     elif final_score >= 50:
-
         recommendation = (
             "Weak Candidate"
         )
-
     else:
-
         recommendation = (
             "Poor Candidate"
         )
 
-    # ========================================================
-    # RETURN RESULT
-    # ========================================================
-
+# RETURN RESULT AS DICTIONARY
+    
     personal = applicant.get(
         "personal_details",
         {}
@@ -767,268 +491,200 @@ def score_application(
     }
 
 
-# ============================================================
-# 10. DISPLAY RESULT
-# ============================================================
-
-def display_result(result):
-
-    print("=" * 70)
-
-    print(
-        "CANDIDATE EVALUATION"
-    )
-
-    print("=" * 70)
-
-    candidate = result["candidate"]
-
-    print(
-        f"Candidate: "
-        f"{candidate['name']} "
-        f"{candidate['surname']}"
-    )
-
-    print(
-        f"Email: "
-        f"{candidate['email']}"
-    )
-
-    print(
-        f"Cell: "
-        f"{candidate['cell']}"
-    )
+# # ============================================================
+# # 10. DISPLAY RESULT
+# # ============================================================
+
+# def display_result(result):
+
+#     print("=" * 70)
+
+#     print(
+#         "CANDIDATE EVALUATION"
+#     )
+
+#     print("=" * 70)
+
+#     candidate = result["candidate"]
+
+#     print(
+#         f"Candidate: "
+#         f"{candidate['name']} "
+#         f"{candidate['surname']}"
+#     )
+
+#     print(
+#         f"Email: "
+#         f"{candidate['email']}"
+#     )
+
+#     print(
+#         f"Cell: "
+#         f"{candidate['cell']}"
+#     )
 
-    print(
-        f"\nFinal Score: "
-        f"{result['score']}/100"
-    )
+#     print(
+#         f"\nFinal Score: "
+#         f"{result['score']}/100"
+#     )
 
-    print(
-        f"Recommendation: "
-        f"{result['recommendation']}"
-    )
+#     print(
+#         f"Recommendation: "
+#         f"{result['recommendation']}"
+#     )
 
-    print("\n" + "-" * 70)
+#     print("\n" + "-" * 70)
 
-    print(
-        "REQUIREMENT BREAKDOWN"
-    )
+#     print(
+#         "REQUIREMENT BREAKDOWN"
+#     )
 
-    print("-" * 70)
+#     print("-" * 70)
 
-    for requirement in result["requirements"]:
+#     for requirement in result["requirements"]:
 
-        print(
-            f"\n{requirement['id']} - "
-            f"{requirement['description']}"
-        )
+#         print(
+#             f"\n{requirement['id']} - "
+#             f"{requirement['description']}"
+#         )
 
-        print(
-            f"Category: "
-            f"{requirement['category']}"
-        )
+#         print(
+#             f"Category: "
+#             f"{requirement['category']}"
+#         )
 
-        print(
-            f"Weight: "
-            f"{requirement['weight']}"
-        )
+#         print(
+#             f"Weight: "
+#             f"{requirement['weight']}"
+#         )
 
-        print(
-            f"Similarity: "
-            f"{requirement['similarity']:.2f}"
-        )
+#         print(
+#             f"Similarity: "
+#             f"{requirement['similarity']:.2f}"
+#         )
 
-        print(
-            f"Evidence: "
-            f"{requirement['evidence']:.2f}"
-        )
+#         print(
+#             f"Evidence: "
+#             f"{requirement['evidence']:.2f}"
+#         )
 
-        print(
-            f"Recency: "
-            f"{requirement['recency']:.2f}"
-        )
+#         print(
+#             f"Recency: "
+#             f"{requirement['recency']:.2f}"
+#         )
 
-        print(
-            f"Match: "
-            f"{requirement['match']:.2f}%"
-        )
+#         print(
+#             f"Match: "
+#             f"{requirement['match']:.2f}%"
+#         )
 
-        print(
-            f"Points Earned: "
-            f"{requirement['points']:.2f}/"
-            f"{requirement['weight']}"
-        )
+#         print(
+#             f"Points Earned: "
+#             f"{requirement['points']:.2f}/"
+#             f"{requirement['weight']}"
+#         )
 
-        print(
-            f"Mandatory: "
-            f"{'YES' if requirement['mandatory'] else 'NO'}"
-        )
+#         print(
+#             f"Mandatory: "
+#             f"{'YES' if requirement['mandatory'] else 'NO'}"
+#         )
 
-        print(
-            f"Requirement Met: "
-            f"{'YES' if requirement['met'] else 'NO'}"
-        )
+#         print(
+#             f"Requirement Met: "
+#             f"{'YES' if requirement['met'] else 'NO'}"
+#         )
 
-    # --------------------------------------------------------
-    # Mandatory failures
-    # --------------------------------------------------------
+#     # --------------------------------------------------------
+#     # Mandatory failures
+#     # --------------------------------------------------------
 
-    if result["mandatory_failures"]:
+#     if result["mandatory_failures"]:
 
-        print(
-            "\n" + "=" * 70
-        )
+#         print(
+#             "\n" + "=" * 70
+#         )
 
-        print(
-            "MANDATORY REQUIREMENTS "
-            "REQUIRING REVIEW"
-        )
+#         print(
+#             "MANDATORY REQUIREMENTS "
+#             "REQUIRING REVIEW"
+#         )
 
-        print("=" * 70)
+#         print("=" * 70)
 
-        for failure in result[
-            "mandatory_failures"
-        ]:
+#         for failure in result[
+#             "mandatory_failures"
+#         ]:
 
-            print(
-                f"- {failure}"
-            )
+#             print(
+#                 f"- {failure}"
+#             )
 
-    else:
+#     else:
 
-        print(
-            "\nAll mandatory requirements "
-            "were satisfied."
-        )
+#         print(
+#             "\nAll mandatory requirements "
+#             "were satisfied."
+#         )
 
 
-# ============================================================
-# 11. MAIN PROGRAM
-# ============================================================
+# # ============================================================
+# # 11. MAIN PROGRAM
+# # ============================================================
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    # --------------------------------------------------------
-    # Create applicant
-    # --------------------------------------------------------
+#     # --------------------------------------------------------
+#     # Create applicant
+#     # --------------------------------------------------------
 
-    applicant = create_applicant_profile()
+#     applicant = create_applicant_profile()
 
-    # --------------------------------------------------------
-    # Select the job
-    #
-    # This is the ONLY thing you need to change to test
-    # another job.
-    # --------------------------------------------------------
+#     # --------------------------------------------------------
+#     # Select the job
+#     #
+#     # This is the ONLY thing you need to change to test
+#     # another job.
+#     # --------------------------------------------------------
 
-    selected_job = (
-        "Grade 10 - 12 Life Science Teacher"
-    )
+#     selected_job = (
+#         "Grade 10 - 12 Life Science Teacher"
+#     )
 
-    # --------------------------------------------------------
-    # Load requirements from CSV
-    # --------------------------------------------------------
+#     # --------------------------------------------------------
+#     # Load requirements from CSV
+#     # --------------------------------------------------------
 
-    requirements = get_job_requirements(
-        "job_requirements.csv",
-        selected_job
-    )
+#     requirements = get_job_requirements(
+#         "../haire/static/data/jobRequirements.csv",
+#         selected_job
+#     )
 
-    # --------------------------------------------------------
-    # Check that requirements were found
-    # --------------------------------------------------------
+#     # --------------------------------------------------------
+#     # Check that requirements were found
+#     # --------------------------------------------------------
 
-    if not requirements:
+#     if not requirements:
 
-        print(
-            f"No requirements found for: "
-            f"{selected_job}"
-        )
+#         print(
+#             f"No requirements found for: "
+#             f"{selected_job}"
+#         )
 
-    else:
+#     else:
 
-        # ----------------------------------------------------
-        # Score applicant
-        # ----------------------------------------------------
+#         # ----------------------------------------------------
+#         # Score applicant
+#         # ----------------------------------------------------
 
-        result = score_application(
-            applicant,
-            requirements
-        )
+#         result = score_application(
+#             applicant,
+#             requirements
+#         )
 
-        # ----------------------------------------------------
-        # Display result
-        # ----------------------------------------------------
+#         # ----------------------------------------------------
+#         # Display result
+#         # ----------------------------------------------------
 
-        display_result(
-            result
-        )
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # cv_file = request.files.get("cv")
-    # job_description = request.form.get("job_description")
-    # job_title = request.form.get("job_title", "General Role")
-
-    # if not cv_file or not job_description:
-    #     return jsonify({"error": "Missing CV file or job description"}), 400
-
-    # try:
-    #     file_bytes = cv_file.read()
-        
-    #     # 1. Upload to Supabase Storage
-    #     file_url, storage_path = upload_pdf_to_storage(file_bytes, cv_file.filename or "cv.pdf", job_title)
-        
-    #     # 2. Extract PDF Text
-    #     cv_text = extract_pdf_text(file_bytes)
-        
-    #     # 3. AI Evaluation
-    #     eval_data = evaluate_cv_content(cv_text, job_description)
-        
-    #     # 4. Save to Database
-    #     db_record = {
-    #         "candidate_name": eval_data["candidate_name"],
-    #         "job_title": job_title,
-    #         "match_score": eval_data["match_score"],
-    #         "evaluation_json": eval_data,
-    #         "cv_file_url": file_url,
-    #         "cv_storage_path": storage_path,
-    #     }
-    #     saved_record = save_evaluation_record(db_record)
-
-    #     return jsonify({"success": True, "evaluation": eval_data, "record": saved_record}), 201
-
-    # except Exception as e:
-    #     return jsonify({"error": str(e)}), 500
+#         display_result(
+#             result
+#         )
