@@ -68,13 +68,13 @@
 
                 <!-- Apply / Recruit buttons centered and side by side -->
                 <div class="d-flex justify-content-center gap-3 flex-wrap">
-                    <form action="/submit" method="post">
+                    <a href="{{ url_for('apply') }}">
                         <button class="btn btn-success shadow" type="submit">APPLY NOW</button>
-                    </form>
+                    </a>
 
-                    <form action="/submit" method="post">
+                    <a href="{{ url_for('recruit') }}">
                         <button class="btn btn-success shadow" type="submit">RECRUIT</button>
-                    </form>
+                    </a>
                 </div>
 
             </div>
