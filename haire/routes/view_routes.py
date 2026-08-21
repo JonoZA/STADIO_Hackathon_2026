@@ -19,6 +19,10 @@ def recruit():
 def brief():
     return render_template("brief.html")
 
+@view_bp.route("/success")
+def success():
+    return render_template("success.html")
+
 # @view_bp.route("/api/candidates", methods=["GET"])
 # def list_candidates():
 #     job_title = request.args.get("job_title")
