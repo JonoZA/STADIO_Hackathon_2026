@@ -101,6 +101,19 @@ body {
     appearance: none;
 }
 
+.card textarea {
+    width: 50%;
+    min-height: 220px;
+    padding: 12px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font: inherit;
+    line-height: 1.5;
+    resize: vertical;
+}
+
 /* Keep checkboxes compact but aligned with spacing of other fields */
 .card input[type="checkbox"] {
     width: auto;
