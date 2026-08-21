@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Job Application Portal — hAIre</title>
     <meta name="theme-color" content="#04130b" />
 
-    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="../static/styles/applyStyles.css" />
 </head>
 
@@ -22,11 +20,18 @@
         <div class="brief-form">
             <a href="{{ url_for('view_bp.home') }}" aria-label="Return to homepage">
                 <button class="brief-btn" type="button" aria-label="Return home">
-                    <svg class="brief-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <svg
+                        class="brief-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
-
                     </svg>
                 </button>
 
@@ -37,13 +42,11 @@
 
         <!-- Page Header -->
         <header class="portal-header">
-
             <h1 class="hero-title">Open Positions</h1>
 
             <p class="hero-tagline">
                 Select a role below to expand details and submit your application.
             </p>
-
         </header>
 
 
@@ -58,32 +61,19 @@
             <div class="card" data-job="junior-python-developer">
 
                 <div class="card-header">
-
                     <div class="header-content">
-
                         <h2>Junior Python Developer</h2>
 
                         <p class="summary">
                             Engineering &bull; Full-Time
                         </p>
-
                     </div>
 
                     <span class="expand-icon" aria-hidden="true">↓</span>
-
                 </div>
 
 
                 <div class="application-layout">
-<<<<<<< HEAD
-=======
-                    <form class="form" id="form-junior" enctype="multipart/form-data">
-
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" name="fullName" placeholder="Jane Doe" required />
-                        </div>
->>>>>>> 19ab7c25cfc2aae42e31ad3621b4bf011d900e84
 
                     <form
                         class="form"
@@ -92,7 +82,6 @@
                     >
 
                         <div class="form-group">
-
                             <label for="fullName-python">
                                 Full Name
                             </label>
@@ -104,14 +93,12 @@
                                 placeholder="Jane Doe"
                                 required
                             />
-
                         </div>
 
 
                         <div class="form-row">
 
                             <div class="form-group">
-
                                 <label for="cellphone-python">
                                     Cellphone Number
                                 </label>
@@ -123,12 +110,10 @@
                                     placeholder="+27 82 123 4567"
                                     required
                                 />
-
                             </div>
 
 
                             <div class="form-group">
-
                                 <label for="email-python">
                                     Email Address
                                 </label>
@@ -140,14 +125,12 @@
                                     placeholder="jane@example.com"
                                     required
                                 />
-
                             </div>
 
                         </div>
 
 
                         <div class="form-group">
-
                             <label for="address-python">
                                 Address
                             </label>
@@ -158,14 +141,12 @@
                                 name="address"
                                 placeholder="123 Main St, Cape Town"
                             />
-
                         </div>
 
 
                         <div class="form-row">
 
                             <div class="form-group">
-
                                 <label for="gender-python">
                                     Gender
                                 </label>
@@ -174,18 +155,14 @@
                                     name="gender"
                                     id="gender-python"
                                 >
-
                                     <option value="Other">Other</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
-
                                 </select>
-
                             </div>
 
 
                             <div class="form-group">
-
                                 <label for="marStatus-python">
                                     Marital Status
                                 </label>
@@ -194,7 +171,6 @@
                                     name="marStatus"
                                     id="marStatus-python"
                                 >
-
                                     <option value="notMarried">
                                         Not Married
                                     </option>
@@ -202,9 +178,7 @@
                                     <option value="Married">
                                         Married
                                     </option>
-
                                 </select>
-
                             </div>
 
                         </div>
@@ -213,7 +187,6 @@
                         <div class="form-row">
 
                             <div class="form-group">
-
                                 <label for="transport-python">
                                     Reliable Transport?
                                 </label>
@@ -222,17 +195,13 @@
                                     name="transport"
                                     id="transport-python"
                                 >
-
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
-
                                 </select>
-
                             </div>
 
 
                             <div class="form-group">
-
                                 <label for="nationality-python">
                                     Nationality
                                 </label>
@@ -241,7 +210,6 @@
                                     name="nationality"
                                     id="nationality-python"
                                 >
-
                                     <option value="South Africa">
                                         South Africa
                                     </option>
@@ -257,16 +225,13 @@
                                     <option value="Other">
                                         Other
                                     </option>
-
                                 </select>
-
                             </div>
 
                         </div>
 
 
                         <div class="form-group">
-<<<<<<< HEAD
 
                             <label for="cover-letter-python">
                                 Cover Letter
@@ -280,12 +245,6 @@
                                 required
                             ></textarea>
 
-=======
-                            <label for="cover-letter-junior">Cover Letter</label>
-                            <textarea id="cover-letter-junior" name="coverLetter" rows="6"
-                                placeholder="Tell us about yourself and why you're a great fit for this role..."
-                                required></textarea>
->>>>>>> 19ab7c25cfc2aae42e31ad3621b4bf011d900e84
                         </div>
 
 
@@ -364,7 +323,9 @@
 
                     <div class="header-content">
 
-                        <h2>Intermediate Life Science Teacher</h2>
+                        <h2>
+                            Intermediate Life Science Teacher
+                        </h2>
 
                         <p class="summary">
                             Education &bull; Full-Time
@@ -378,15 +339,6 @@
 
 
                 <div class="application-layout">
-<<<<<<< HEAD
-=======
-                    <form class="form" id="form-teacher" enctype="multipart/form-data">
-
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" name="fullName" placeholder="John Smith" required />
-                        </div>
->>>>>>> 19ab7c25cfc2aae42e31ad3621b4bf011d900e84
 
                     <form
                         class="form"
@@ -477,11 +429,9 @@
                                     name="gender"
                                     id="gender-life"
                                 >
-
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                     <option value="other">Other</option>
-
                                 </select>
 
                             </div>
@@ -497,7 +447,6 @@
                                     name="marStatus"
                                     id="marStatus-life"
                                 >
-
                                     <option value="notMarried">
                                         Not Married
                                     </option>
@@ -505,7 +454,6 @@
                                     <option value="Married">
                                         Married
                                     </option>
-
                                 </select>
 
                             </div>
@@ -525,10 +473,8 @@
                                     name="transport"
                                     id="transport-life"
                                 >
-
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
-
                                 </select>
 
                             </div>
@@ -544,7 +490,6 @@
                                     name="nationality"
                                     id="nationality-life"
                                 >
-
                                     <option value="South Africa">
                                         South Africa
                                     </option>
@@ -560,7 +505,6 @@
                                     <option value="Other">
                                         Other
                                     </option>
-
                                 </select>
 
                             </div>
@@ -569,7 +513,6 @@
 
 
                         <div class="form-group">
-<<<<<<< HEAD
 
                             <label for="cover-letter-life">
                                 Cover Letter
@@ -583,12 +526,6 @@
                                 required
                             ></textarea>
 
-=======
-                            <label for="cover-letter-teacher">Cover Letter</label>
-                            <textarea id="cover-letter-teacher" name="coverLetter" rows="6"
-                                placeholder="Tell us about your teaching philosophy and experience..."
-                                required></textarea>
->>>>>>> 19ab7c25cfc2aae42e31ad3621b4bf011d900e84
                         </div>
 
 
@@ -606,7 +543,6 @@
                             />
 
                         </div>
-<<<<<<< HEAD
 
 
                         <button
@@ -615,9 +551,6 @@
                         >
                             SUBMIT APPLICATION
                         </button>
-=======
-                        <button type="submit" class="submit-btn">SUBMIT APPLICATION</button>
->>>>>>> 19ab7c25cfc2aae42e31ad3621b4bf011d900e84
 
                     </form>
 
@@ -659,7 +592,7 @@
 
 
             <!-- ===================================================== -->
-            <!-- CARD 3: Pub and Grill Waiter -->
+            <!-- CARD 3: PUB AND GRILL WAITER -->
             <!-- ===================================================== -->
 
             <div
@@ -775,11 +708,9 @@
                                     name="gender"
                                     id="gender-waiter"
                                 >
-
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                     <option value="other">Other</option>
-
                                 </select>
 
                             </div>
@@ -795,7 +726,6 @@
                                     name="marStatus"
                                     id="marStatus-waiter"
                                 >
-
                                     <option value="notMarried">
                                         Not Married
                                     </option>
@@ -803,7 +733,6 @@
                                     <option value="Married">
                                         Married
                                     </option>
-
                                 </select>
 
                             </div>
@@ -823,10 +752,8 @@
                                     name="transport"
                                     id="transport-waiter"
                                 >
-
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
-
                                 </select>
 
                             </div>
@@ -842,7 +769,6 @@
                                     name="nationality"
                                     id="nationality-waiter"
                                 >
-
                                     <option value="South Africa">
                                         South Africa
                                     </option>
@@ -858,7 +784,6 @@
                                     <option value="Other">
                                         Other
                                     </option>
-
                                 </select>
 
                             </div>
@@ -1062,11 +987,9 @@
                                     name="gender"
                                     id="gender-accountant"
                                 >
-
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                     <option value="other">Other</option>
-
                                 </select>
 
                             </div>
@@ -1082,7 +1005,6 @@
                                     name="marStatus"
                                     id="marStatus-accountant"
                                 >
-
                                     <option value="notMarried">
                                         Not Married
                                     </option>
@@ -1090,7 +1012,6 @@
                                     <option value="Married">
                                         Married
                                     </option>
-
                                 </select>
 
                             </div>
@@ -1110,10 +1031,8 @@
                                     name="transport"
                                     id="transport-accountant"
                                 >
-
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
-
                                 </select>
 
                             </div>
@@ -1129,7 +1048,6 @@
                                     name="nationality"
                                     id="nationality-accountant"
                                 >
-
                                     <option value="South Africa">
                                         South Africa
                                     </option>
@@ -1145,7 +1063,6 @@
                                     <option value="Other">
                                         Other
                                     </option>
-
                                 </select>
 
                             </div>
@@ -1251,5 +1168,4 @@
     <script src="../static/scripts/apply.js"></script>
 
 </body>
-
 </html>
