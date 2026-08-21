@@ -29,7 +29,7 @@ def handle_application():
         
         # 4. Prepare data for candidates_ranked table
         ranked_data = {
-            "candidate_id": result["id"],
+            "id": result["id"],
             "fullName": result.get("fullName"),
             "email": result.get("email"),
             "cellphone": result.get("cellphone"),
