@@ -20,7 +20,8 @@
           <p class="summary">Click to apply — basic details only.</p>
         </div>
 
-        <form class="form" id="form-junior" enctype="multipart/form-data">
+        <div class="application-layout">
+          <form class="form" id="form-junior" enctype="multipart/form-data">
           <label>Full name:</label>
           <input type="text" name="fullName" required />
 
@@ -63,10 +64,21 @@
           <div class="upload-section">
             <label for="cv-junior">Upload a CV:</label>
             <input type="file" id="cv-junior" name="cv" accept=".pdf" />
-
-            <button type="submit" class="submit-btn">Submit</button>
           </div>
-        </form>
+
+          <button type="submit" class="submit-btn">Submit application</button>
+          </form>
+
+          <aside class="job-requirements">
+            <h3>Job requirements</h3>
+            <ul>
+              <li>Basic knowledge of software development</li>
+              <li>Problem-solving and communication skills</li>
+              <li>Willingness to learn and work in a team</li>
+              <li>Relevant qualification or equivalent experience</li>
+            </ul>
+          </aside>
+        </div>
       </div>
 
       <div class="card" data-job="teacher">
@@ -75,7 +87,8 @@
           <p class="summary">Click to apply — basic details only.</p>
         </div>
 
-        <form class="form" id="form-teacher" enctype="multipart/form-data">
+        <div class="application-layout">
+          <form class="form" id="form-teacher" enctype="multipart/form-data">
           <label>Full name:</label>
           <input type="text" name="fullName" required />
 
@@ -118,10 +131,21 @@
           <div class="upload-section">
             <label for="cv-teacher">Upload a CV:</label>
             <input type="file" id="cv-teacher" name="cv" accept=".pdf" />
-
-            <button type="submit" class="submit-btn">Submit</button>
           </div>
-        </form>
+
+          <button type="submit" class="submit-btn">Submit application</button>
+          </form>
+
+          <aside class="job-requirements">
+            <h3>Job requirements</h3>
+            <ul>
+              <li>Recognised teaching qualification</li>
+              <li>Strong communication and organisation skills</li>
+              <li>Ability to create an engaging learning environment</li>
+              <li>Patience, empathy, and a passion for teaching</li>
+            </ul>
+          </aside>
+        </div>
       </div>
     </div>
     <div id="stage-end" class="stage-end hidden">Application submitted. Thank you!</div>

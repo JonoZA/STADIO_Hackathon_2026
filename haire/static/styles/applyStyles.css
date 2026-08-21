@@ -1,28 +1,28 @@
 :root { --header-h: 64px; }
 
 .site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--header-h);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.95);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    z-index: 1000;
 }
 
 .site-header h1 {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 /* push page content below the fixed header */
 body {
-  padding-top: var(--header-h);
+    padding-top: var(--header-h);
 }
 
 body {
@@ -51,6 +51,12 @@ body {
 
 .card h2 {
     margin: 15px 0 10px;
+}
+
+.application-layout {
+    display: none;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.7fr);
+    gap: 24px;
 }
 
 .card p {
@@ -127,8 +133,34 @@ body {
 }
 
 .card.expanded .form,
-.card.expanded .upload-section {
+.card.expanded .upload-section,
+.card.expanded .application-layout {
     display: block;
+}
+
+.card.expanded .application-layout {
+    display: grid;
+}
+
+.job-requirements {
+    border-left: 2px dashed #8d91b5;
+    padding-left: 24px;
+    color: #34365a;
+}
+
+.job-requirements h3 {
+    margin-top: 0;
+    color: #15163c;
+}
+
+.job-requirements ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.job-requirements li {
+    margin-bottom: 12px;
+    line-height: 1.4;
 }
 
 /* End of current stage overlay */
@@ -176,4 +208,30 @@ body {
     background-color: #007bff;
     color: white;
     cursor: pointer;
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 4px;
+}
+
+@media (max-width: 700px) {
+    .card {
+        width: auto;
+    }
+
+    .application-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .job-requirements {
+        border-left: 0;
+        border-top: 2px dashed #8d91b5;
+        padding: 20px 0 0;
+    }
+
+    .card input,
+    .card select {
+        width: 100%;
+    }
 }
