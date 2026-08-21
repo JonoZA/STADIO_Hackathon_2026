@@ -4,9 +4,8 @@ from dotenv import load_dotenv
 from google.genai import types
 from typing import List, Optional
 import time, requests
-import json
-from io import BytesIO
-# from pypdf import PdfReader
+import json, io
+from pypdf import PdfReader
 
 from extensions import ai_client as client
 class WorkExperience(BaseModel):
@@ -54,33 +53,54 @@ class CandidateApplicationReview(BaseModel):
         description="High-level executive summary summarizing overall suitability for the target role"
     )
 
+def pdf_url_to_text(url):
+    # 1. Download the PDF file stream
+    response = requests.get(url)
+    response.raise_for_status()  # Check for download errors
+    
+    # 2. Convert the byte content into an in-memory file stream
+    pdf_file = io.BytesIO(response.content)
+    
+    # 3. Initialize the PDF reader
+    reader = PdfReader(pdf_file)
+    
+    # 4. Loop through pages and extract text
+    text = ""
+    for page in reader.pages:
+        text += page.extract_text() + "\n"
+        
+    return text
 
+print("Models created")
 def agent_resume_coverLetter_parser(resumeURL, cover_letter):
-
+    pdfText = pdf_url_to_text(resumeURL)
     prompt = f"""
         You are an expert HR recruiter. Analyze the candidate's CV and application materials.
         Extract all requested resume details into their respective structured fields, and synthesize
         a comprehensive 'personal_summary' and 'candidate_summary' evaluating their fit.
 
         Candidate Resume:
-        {resumeURL}
+        {pdfText}
 
         Cover Letter:
         {cover_letter}
     """
+    print("prompt created")
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            response_mime_type="application/json",
-            response_schema=CandidateApplicationReview,
-            temperature=0.2,
-        ),
+    response = client.interactions.create(
+        model="gemini-3.5-flash-lite",
+        input=prompt,
+        response_format={
+            "type": "text",
+            "mime_type": "application/json",
+            "schema": CandidateApplicationReview.model_json_schema(),
+        }
     )
+    print("response started")
 
     # Convert Gemini's JSON response into a Python dictionary
-    result = json.loads(response.text)
+    result = json.loads(response.output_text)
+    print("converted")
 
     return result
 
