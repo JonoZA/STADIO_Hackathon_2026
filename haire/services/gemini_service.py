@@ -89,7 +89,7 @@ def agent_resume_coverLetter_parser(resumeURL, cover_letter):
     print("prompt created")
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.6-flash-lite",
         contents=prompt,
         config=types.GenerateContentConfig(
             response_mime_type="application/json",
