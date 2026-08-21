@@ -3,20 +3,32 @@
 /* ================================= */
 
 :root {
-    --hero-bg: linear-gradient(170deg, #00008b, #c8a2c8, #93c83e);
+    /* Same colours as indexs.css */
+    --hero-bg: linear-gradient(
+        120deg,
+        #084027,
+        #058f5c,
+        #025235,
+        #084027
+    );
 
-    --main-text: blanchedalmond;
+    --hero-title-color: blanchedalmond;
+    --hero-title-font: Georgia, serif;
 
-    --page-bg: #b9adce;
+    --actions-bg: #93c83e;
 
-    --card-bg: rgba(255, 255, 255, 0.92);
+    --action-btn-bg: #c09712de;
+    --action-btn-hover: #b26e14;
 
-    --gold: #c09712de;
-    --gold-hover: #b26e14;
+    --action-btn-text-color: #ffffff;
 
     --dark-text: #333;
 
     --border: rgba(255, 255, 255, 0.5);
+
+    --card-bg: rgba(255, 255, 255, 0.92);
+
+    --t-title-fade: 0.8s;
 }
 
 
@@ -32,24 +44,25 @@ body {
 
 
 body {
-    background: var(--hero-bg);
-
-    font-family: 'Segoe UI', Arial, sans-serif;
-
-    color: var(--dark-text);
-
-    overflow-x: hidden;
-    overflow-y: hidden;
+    color: var(--hero-title-color);
 
     display: flex;
 
     justify-content: center;
     align-items: center;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    background: var(--hero-bg);
+
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 
 /* ================================= */
 /* MOVING HAZE */
+/* Same effect as indexs.css */
 /* ================================= */
 
 body::before {
@@ -57,16 +70,15 @@ body::before {
 
     position: fixed;
 
-    top: -50%;
-    left: -50%;
+    inset: -50%;
 
-    width: 220%;
-    height: 220%;
+    width: 200%;
+    height: 200%;
 
     background: linear-gradient(
         135deg,
         transparent 42%,
-        rgba(255, 255, 255, 0.18) 50%,
+        rgba(142, 242, 163, 0.382) 50%,
         transparent 58%
     );
 
@@ -85,7 +97,7 @@ body::before {
 .outer-card {
     position: relative;
 
-    z-index: 1;
+    z-index: 2;
 
     width: min(700px, 95vw);
 
@@ -109,7 +121,13 @@ body::before {
 
     backdrop-filter: blur(5px);
 
-    animation: fadeUp 0.8s ease-out;
+    animation-name: fadeUp;
+
+    animation-duration: var(--t-title-fade);
+
+    animation-timing-function: ease-out;
+
+    animation-fill-mode: forwards;
 }
 
 
@@ -120,13 +138,13 @@ body::before {
 .outer-card > h2 {
     margin: 0;
 
-    font-family: Georgia, serif;
+    font-family: var(--hero-title-font);
 
     font-size: clamp(2rem, 5vw, 3rem);
 
     font-weight: 800;
 
-    color: #00008b;
+    color: #084027;
 
     text-align: center;
 }
@@ -172,21 +190,21 @@ body::before {
 
 
 .form-scroll::-webkit-scrollbar-track {
-    background: #e5dfeb;
+    background: rgba(8, 64, 39, 0.12);
 
     border-radius: 10px;
 }
 
 
 .form-scroll::-webkit-scrollbar-thumb {
-    background: #c09712de;
+    background: var(--action-btn-bg);
 
     border-radius: 10px;
 }
 
 
 .form-scroll::-webkit-scrollbar-thumb:hover {
-    background: #b26e14;
+    background: var(--action-btn-hover);
 }
 
 
@@ -201,7 +219,7 @@ body::before {
 
     background: rgba(255, 255, 255, 0.95);
 
-    border: 2px solid #d5cde0;
+    border: 2px solid rgba(8, 64, 39, 0.25);
 
     border-radius: 12px;
 
@@ -223,6 +241,8 @@ body::before {
     transform: translateY(-2px);
 
     box-shadow: 0 7px 16px rgba(0, 0, 0, 0.12);
+
+    border-color: #058f5c;
 }
 
 
@@ -242,15 +262,15 @@ body::before {
 
 
 /* ================================= */
-/* NAME */
+/* APPLICANT NAME */
 /* ================================= */
 
 .applicant-name {
     margin: 0;
 
-    color: #00008b;
+    color: #084027;
 
-    font-family: Georgia, serif;
+    font-family: var(--hero-title-font);
 
     font-size: 1.35rem;
 }
@@ -267,9 +287,9 @@ body::before {
 
     border-radius: 20px;
 
-    background-color: var(--gold);
+    background-color: var(--action-btn-bg);
 
-    color: white;
+    color: var(--action-btn-text-color);
 
     font-weight: bold;
 
@@ -301,7 +321,7 @@ body::before {
 
     cursor: pointer;
 
-    accent-color: #00008b;
+    accent-color: #058f5c;
 }
 
 
@@ -318,24 +338,28 @@ body::before {
 
     border-radius: 7px;
 
-    background-color: var(--gold);
+    background-color: var(--action-btn-bg);
 
-    color: white;
+    color: var(--action-btn-text-color);
 
     cursor: pointer;
 
+    font-family: 'Segoe UI', Arial, sans-serif;
+
     font-size: 13px;
 
-    font-weight: 600;
+    font-weight: 700;
+
+    letter-spacing: 0.03em;
 
     transition: background-color 0.2s ease;
 }
 
 
 .more-info-button:hover {
-    background-color: var(--gold-hover);
+    background-color: var(--action-btn-hover);
 
-    color: white;
+    color: #ffffff;
 }
 
 
@@ -350,7 +374,7 @@ body::before {
 
     padding: 15px;
 
-    background-color: #f3eff6;
+    background-color: rgba(8, 64, 39, 0.06);
 
     border-radius: 8px;
 }
@@ -367,7 +391,13 @@ body::before {
 
     gap: 20px;
 
-    animation: fadeUp 0.3s ease-out;
+    animation-name: fadeUp;
+
+    animation-duration: 0.3s;
+
+    animation-timing-function: ease-out;
+
+    animation-fill-mode: forwards;
 }
 
 
@@ -378,7 +408,7 @@ body::before {
 .description-section {
     padding-right: 20px;
 
-    border-right: 1px solid #ccc;
+    border-right: 1px solid rgba(8, 64, 39, 0.25);
 }
 
 
@@ -386,9 +416,9 @@ body::before {
 .qualification-section h4 {
     margin-top: 0;
 
-    color: #00008b;
+    color: #084027;
 
-    font-family: Georgia, serif;
+    font-family: var(--hero-title-font);
 }
 
 
@@ -429,11 +459,11 @@ body::before {
 /* ================================= */
 
 .applicant-card.selected {
-    border: 3px solid #00008b;
+    border: 3px solid #058f5c;
 
-    background-color: #eef3ff;
+    background-color: rgba(5, 143, 92, 0.08);
 
-    box-shadow: 0 6px 18px rgba(0, 0, 139, 0.2);
+    box-shadow: 0 6px 18px rgba(5, 143, 92, 0.2);
 }
 
 
@@ -515,7 +545,7 @@ body::before {
 
         border-right: none;
 
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid rgba(8, 64, 39, 0.25);
     }
 
 
