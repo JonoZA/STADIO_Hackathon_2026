@@ -30,8 +30,6 @@ body {
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: hidden;
-    /* background-color can't render a gradient - needs the background
-       shorthand (or background-image) instead */
     background: var(--hero-bg);
 }
 
@@ -42,13 +40,10 @@ body {
     height: calc(100vh - 2.5rem);
 }
 
-/* Hero section now takes the full page (previously flex: 0 0 68%,
-   with the rest handed to .action-section, which has been removed) */
-/* Hero section is transparent - the single gradient lives on body,
-   so there's no seam between this section and the rest of the page */
+
 .hero-section {
     position: relative;
-    flex: 1;
+    flex: 0 0 75%;
     min-height: 0;
     display: flex;
     flex-direction: column;
@@ -73,7 +68,7 @@ body {
 .hero-title {
     font-family: var(--hero-title-font);
     color: var(--hero-title-color);
-    font-size: clamp(3.5rem, 12vw, 8rem);
+    font-size: clamp(3rem, 25vw, 16rem);
     font-weight: 800;
     letter-spacing: 0.05em;
     margin: 0;
@@ -139,9 +134,7 @@ body {
     font-weight: 600;
 }
 
-/* Haze now covers the whole viewport (position: fixed) instead of
-   being scoped to .hero-section, so it sweeps corner-to-corner
-   across the entire page, footer included */
+
 .hero-haze {
     position: fixed;
     inset: -50%;
@@ -150,7 +143,7 @@ body {
     background: linear-gradient(
         135deg,
         transparent 42%,
-        rgba(89, 69, 151, 0.382) 50%,
+        rgba(142, 242, 163, 0.382) 50%,
         transparent 58%
     );
     pointer-events: none;
@@ -159,6 +152,7 @@ body {
 }
 
 .action-buttons {
+    margin-top: 4rem;
     position: relative;
     z-index: 2;
     display: flex;
