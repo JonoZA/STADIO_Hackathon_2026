@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;800&display=swap');
 
 
-/* ================================= */
-/* COLOUR VARIABLES */
-/* ================================= */
+
+/* Colour Variables */
+
 
 :root {
 
@@ -40,9 +40,9 @@
 }
 
 
-/* ================================= */
-/* GLOBAL */
-/* ================================= */
+
+/* Global */
+
 
 * {
     box-sizing: border-box;
@@ -76,9 +76,9 @@ input {
 }
 
 
-/* ================================= */
-/* KEYBOARD ACCESSIBILITY */
-/* ================================= */
+
+/* For Keyboard Accessibility */
+
 
 button:focus-visible,
 select:focus-visible,
@@ -92,9 +92,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* MOVING GREEN HAZE */
-/* ================================= */
+
+/* Moving Green Haze */
+
 
 .hero-haze {
 
@@ -122,9 +122,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* PAGE WRAPPER */
-/* ================================= */
+
+/* For Page Wrapper */
+
 
 .page-wrapper {
 
@@ -143,9 +143,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* TOP RIGHT BUTTON */
-/* ================================= */
+
+/* Top Right Button */
+
 
 .brief-form {
 
@@ -262,9 +262,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
+
 /* HAIRE HEADER */
-/* ================================= */
+
 
 .site-header {
 
@@ -283,9 +283,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* HAIRE LOGO */
-/* ================================= */
+
+/* Haire logo */
+
 
 .haire-logo {
 
@@ -331,9 +331,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* THREE CARDS CONTAINER */
-/* ================================= */
+
+/* Three Cards Container */
+
 
 .cards-container {
 
@@ -356,9 +356,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* OUTER CARD */
-/* ================================= */
+
+/* Outer Card */
+
 
 .outer-card {
 
@@ -387,9 +387,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* CONTROLS CARD */
-/* ================================= */
+
+/* Controls Card */
+
 
 .second-card {
 
@@ -404,9 +404,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* CARD HEADINGS */
-/* ================================= */
+
+/* Card Heading */
+
 
 .outer-card > h2 {
 
@@ -425,9 +425,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* CARD DESCRIPTION */
-/* ================================= */
+
+/* Card Description */
+
 
 .outer-card > p {
 
@@ -444,9 +444,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* LABELS */
-/* ================================= */
+
+/* Labels */
+
 
 .second-card label {
 
@@ -463,9 +463,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* CONTROLS */
-/* ================================= */
+
+/* Controls */
+
 
 .job-control {
 
@@ -481,9 +481,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* DROPDOWNS */
-/* ================================= */
+
+/* Dropdowns */
+
 
 #job-selector,
 #filter-input {
@@ -535,9 +535,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* CONTROL BUTTONS */
-/* ================================= */
+
+/* Controls Buttons */
+
 
 .control-buttons {
 
@@ -581,9 +581,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* PRIMARY ACTION */
-/* ================================= */
+
+/* Primary Button */
+
 
 .primary-button {
 
@@ -613,9 +613,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* SECONDARY ACTION */
-/* ================================= */
+
+/* Secondary Button */
+
 
 .secondary-button {
 
@@ -637,9 +637,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* CLEAR ACTION */
-/* ================================= */
+
+/* Clear Action  */
+
 
 .clear-button {
 
@@ -663,9 +663,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* APPLICANT SCROLL */
-/* ================================= */
+
+/* Application Scroll */
+
 
 .form-scroll {
 
@@ -709,9 +709,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* APPLICANT CARD */
-/* ================================= */
+
+/* Applicant Card */
+
 
 .applicant-card {
 
@@ -754,9 +754,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* APPLICANT HEADER */
-/* ================================= */
+
+/* Applicant Header */
+
 
 .applicant-header {
 
@@ -771,9 +771,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* APPLICANT NAME */
-/* ================================= */
+
+/* Applicant Name */
+
 
 .applicant-name {
 
@@ -788,9 +788,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* SCORE */
-/* ================================= */
+
+/* Score */
+
 
 .score {
 
@@ -817,9 +817,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* SELECT APPLICANT */
-/* ================================= */
+
+/* Select Applicant */
+
 
 .select-applicant {
 
@@ -857,9 +857,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* MORE INFO BUTTON */
-/* ================================= */
+
+/* More Info Button */
+
 
 .more-info-button {
 
@@ -904,9 +904,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* MORE INFORMATION */
-/* ================================= */
+
+/* More Information */
+
 
 .more-information {
 
@@ -936,9 +936,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* INFORMATION */
-/* ================================= */
+
+/* Information */
+
 
 .description-section {
 
@@ -999,9 +999,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* SELECTED APPLICANT */
-/* ================================= */
+
+/* Selected Applicant */
+
 
 .applicant-card.selected {
 
@@ -1014,9 +1014,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* STATISTICS */
-/* ================================= */
+
+/* Statistics */
+
 
 .statistics-card {
 
@@ -1115,9 +1115,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* FOOTER */
-/* ================================= */
+
+/* Footer */
+
 
 .site-footer {
 
@@ -1151,9 +1151,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* ANIMATIONS */
-/* ================================= */
+
+/* Animations */
+
 
 @keyframes fadeUp {
 
@@ -1193,9 +1193,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* REDUCE MOTION */
-/* ================================= */
+
+/* Reduced Motion */
+
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -1216,9 +1216,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* RESPONSIVE DESIGN */
-/* ================================= */
+
+/* Responsive Design */
+
 
 @media (max-width: 1250px) {
 
@@ -1233,9 +1233,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* TABLET */
-/* ================================= */
+
+/* Tablet */
+
 
 @media (max-width: 950px) {
 
@@ -1272,9 +1272,9 @@ a:focus-visible {
 }
 
 
-/* ================================= */
-/* MOBILE */
-/* ================================= */
+
+/* Mobile */
+
 
 @media (max-width: 600px) {
 
