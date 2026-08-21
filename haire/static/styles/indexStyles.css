@@ -1,204 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;800&display=swap');
+
 :root {
-    --hero-bg: linear-gradient(120deg, #084027, #058f5c,#025235, #084027 );
-    --hero-title-color: blanchedalmond;
-    --hero-title-font: Georgia, serif;
-    --hero-tagline-font: Georgia, serif;
-    --hero-subtitle-color: blanchedalmond;
+    --bg-dark: #04130b;
+    --accent-glow: rgba(16, 185, 129, 0.25);
+    --gold-primary: #f59e0b;
+    --gold-glow: rgba(245, 158, 11, 0.35);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --glass-border: rgba(255, 255, 255, 0.1);
 
-    --actions-bg:  #93c83e;
-    --action-btn-bg: #c09712de;
-    --action-btn-text-color: #ffffff;
-    --action-btn-font: 'Segoe UI', Arial, sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
 
-    --brief-btn-bg: #c09712de;
-    --brief-btn-text-color: #ffffff;
+    --t-hero-slide: 0.8s;
+    --t-title-fade: 0.6s;
+}
 
-    --t-hero-slide: 1s;
-    --t-title-fade: 0.8s;
-    --t-subtitle-delay: 0.3s;
-    --t-brief-delay: 0.5s;
-    --t-actions-delay: 0.4s;
+* {
+    box-sizing: border-box;
 }
 
 html, body {
     height: 100%;
     margin: 0;
-}
-
-body {
-    color: var(--hero-title-color);
-    display: flex;
-    flex-direction: column;
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
     overflow-x: hidden;
-    overflow-y: hidden;
-    background: var(--hero-bg);
 }
 
-.page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    height: calc(100vh - 2.5rem);
-}
-
-
-.hero-section {
-    position: relative;
-    flex: 0 0 75%;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
-
-    transform: translateY(-100%);
-    animation-name: heroSlideDown;
-    animation-duration: var(--t-hero-slide);
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    width: calc(100% - 3rem);
-    box-sizing: border-box;
-    text-align: center;
-    padding: 0 1.5rem;
-}
-
-.title-row {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.hero-title {
-    font-family: var(--hero-title-font);
-    color: var(--hero-title-color);
-    font-size: clamp(3rem, 20vw, 10rem);
-    line-height: 0.95;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    margin: 0;
-
-    opacity: 0;
-    animation-name: fadeUp;
-    animation-duration: var(--t-title-fade);
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-    animation-delay: var(--t-hero-slide);
-}
-
-.hero-subtitle {
-    color: var(--hero-subtitle-color);
-    font-size: clamp(1.1rem, 2.8vw, 1.6rem);
-    margin: 0.5rem 0 0;
-
-    opacity: 0;
-    animation-name: fadeUp;
-    animation-duration: var(--t-title-fade);
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-    animation-delay: calc(var(--t-hero-slide) + var(--t-subtitle-delay));
-}
-
-.hero-tagline {
-    font-family: var(--hero-tagline-font);
-    color: var(--action-btn-bg);
-    font-size: clamp(1.5rem, 3.5vw, 2rem);
-    margin-top: 1.7rem;
-}
-
-.hero-subtitle-small {
-    color: var(--hero-subtitle-color);
-    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
-    margin: 0.35rem 0 1.5rem;
-
-    opacity: 0;
-    animation-name: fadeUp;
-    animation-duration: var(--t-title-fade);
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-    animation-delay: calc(var(--t-hero-slide) + var(--t-subtitle-delay) + 0.2s);
-}
-
-.brief-form {
-    position: absolute;
-    top: calc(50% - 2.25rem);
-    right: 0.75rem;
-    flex: 0 0 auto;
-    margin: 0;
-
-    opacity: 0;
-    animation-name: fadeUp;
-    animation-duration: var(--t-title-fade);
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-    animation-delay: calc(var(--t-hero-slide) + var(--t-subtitle-delay) + var(--t-brief-delay));
-}
-
-.action-btn:hover {
-    background-color: #b26e14;
-    color: #ffffff;
-}
-
-.brief-btn:hover {
-    background-color: #b26e14;
-    color: #ffffff;
-}
-.brief-btn {
-    width: 4.5rem;
-    height: 4.5rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border-radius: 50%;
-    background-color: var(--brief-btn-bg);
-    color: var(--brief-btn-text-color);
-    border: none;
-    font-weight: 600;
-}
-
-.brief-icon {
-    width: 2rem;
-    height: 2rem;
-}
-
-.brief-form a {
-    position: relative;
-    display: inline-flex;
-    text-decoration: none;
-}
-
-.brief-tooltip {
-    position: absolute;
-    top: calc(100% + 0.65rem);
-    left: 50%;
-    transform: translateX(-50%) translateY(-0.25rem);
-    padding: 0.55rem 0.85rem;
-    border-radius: 6px;
-    background-color: var(--action-btn-bg);
-    color: var(--action-btn-text-color);
-    font-family: var(--action-btn-font);
-    font-size: 0.85rem;
-    font-weight: 700;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.brief-form a:hover .brief-tooltip,
-.brief-form a:focus-visible .brief-tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-
+/* --- RESTORED HERO HAZE SWEEP --- */
 .hero-haze {
     position: fixed;
     inset: -50%;
@@ -207,31 +38,160 @@ body {
     background: linear-gradient(
         135deg,
         transparent 42%,
-        rgba(142, 242, 163, 0.382) 50%,
+        rgba(16, 185, 129, 0.18) 50%,
         transparent 58%
     );
     pointer-events: none;
     z-index: 1;
-    animation: hazeSweep 6s ease-in-out infinite alternate;
+    animation: hazeSweep 7s ease-in-out infinite alternate;
 }
 
-.action-buttons {
-    margin-top: 4rem;
+.page-wrapper {
     position: relative;
-    top: 4rem;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: 2rem 1.5rem 1rem;
+}
+
+.hero-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+/* --- PERFECTLY CENTERED TITLE --- */
+.title-row {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    transform: translateY(150%);
+    margin-bottom: 0.5rem;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #ffffff 30%, var(--text-muted) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    margin: 0;
     opacity: 0;
-    animation-name: slideUp;
-    animation-duration: 0.8s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-    animation-delay: calc(var(--t-hero-slide) + var(--t-subtitle-delay) + var(--t-brief-delay) + var(--t-actions-delay));
+    animation: fadeUp var(--t-title-fade) ease-out forwards var(--t-hero-slide);
+}
+
+/* --- TOP RIGHT FLOATING BRIEF BUTTON --- */
+.brief-form {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeUp var(--t-title-fade) ease-out forwards calc(var(--t-hero-slide) + 0.4s);
+}
+
+.brief-btn {
+    width: 3.25rem;
+    height: 3.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #000000;
+    border: none;
+    box-shadow: 0 4px 15px var(--gold-glow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brief-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--gold-glow);
+    filter: brightness(1.1);
+}
+
+.brief-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.brief-tooltip {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    background: #1e293b;
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+.brief-form a:hover .brief-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Subtitles & Gold Gradient Tagline */
+.hero-tagline {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    font-weight: 600;
+    background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    margin: 0.5rem 0 1rem;
+    opacity: 0;
+    animation: fadeUp var(--t-title-fade) ease-out forwards calc(var(--t-hero-slide) + 0.2s);
+}
+
+.hero-subtitle {
+    color: var(--text-main);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-weight: 400;
+    margin: 0;
+    opacity: 0;
+    animation: fadeUp var(--t-title-fade) ease-out forwards calc(var(--t-hero-slide) + 0.3s);
+}
+
+.hero-subtitle-small {
+    color: var(--text-muted);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    margin-top: 0.5rem;
+    opacity: 0;
+    animation: fadeUp var(--t-title-fade) ease-out forwards calc(var(--t-hero-slide) + 0.4s);
+}
+
+/* --- ACTION BUTTONS (UNIFIED GOLD) --- */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp var(--t-title-fade) ease-out forwards calc(var(--t-hero-slide) + 0.5s);
 }
 
 .action-buttons a {
@@ -239,55 +199,68 @@ body {
 }
 
 .action-btn {
-    background-color: var(--action-btn-bg);
-    color: var(--action-btn-text-color);
-    font-family: var(--action-btn-font);
-    border: none;
+    font-family: var(--font-body);
     font-weight: 700;
-    letter-spacing: 0.03em;
-    padding: 0.75rem 2rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    padding: 0.85rem 2.25rem;
+    border-radius: 9999px;
+    border: none;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #000000;
+    box-shadow: 0 4px 20px var(--gold-glow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (max-width: 700px) {
-    .brief-form {
-        right: 0.25rem;
-    }
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--gold-glow);
+    filter: brightness(1.1);
 }
 
+/* Footer */
 footer {
-    position: relative;
-    z-index: 2;
     text-align: center;
-    height: 2.5rem;
-    box-sizing: border-box;
-    padding: 0.5rem 0;
-    background: transparent;
-    color: var(--hero-title-color);
+    padding: 1rem 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
 }
 
-@keyframes heroSlideDown {
-    to { transform: translateY(0); }
-}
-
+/* Keyframe Animations */
 @keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(15px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes slideUp {
-    to {
-        transform: translateY(0);
-        opacity: 1;
     }
 }
 
 @keyframes hazeSweep {
     0% { transform: translate(-25%, 25%); }
     100% { transform: translate(25%, -25%); }
+}
+
+@media (max-width: 600px) {
+    .brief-form {
+        top: 1rem;
+        right: 1rem;
+    }
+    .brief-btn {
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+    .brief-icon {
+        width: 1.15rem;
+        height: 1.15rem;
+    }
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    .action-buttons a, .action-btn {
+        width: 100%;
+    }
 }
