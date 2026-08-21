@@ -5,6 +5,7 @@ from google.genai import types
 from typing import List, Optional
 import time, requests
 import json, io
+# pyrefly: ignore [missing-import]
 from pypdf import PdfReader
 
 from extensions import ai_client as client
