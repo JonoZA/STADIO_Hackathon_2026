@@ -38,7 +38,7 @@ def handle_application():
             "nationality": result.get("nationality"),
             "job_title": result.get("job_title"),
             "cv_file_url": result.get("cv_file_url"),
-            "proffessional_summary": ai_output.get("professional_summary"),
+            "proffesional_summary": ai_output.get("professional_summary"),
             "work_experience": ai_output.get("work_experience"),
             "skills": ai_output.get("skills"),
             "education": ai_output.get("education"),
