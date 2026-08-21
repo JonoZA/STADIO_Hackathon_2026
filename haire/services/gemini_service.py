@@ -87,19 +87,19 @@ def agent_resume_coverLetter_parser(resumeURL, cover_letter):
     """
     print("prompt created")
 
-    response = client.interactions.create(
-        model="gemini-3.5-flash-lite",
-        input=prompt,
-        response_format={
-            "type": "text",
-            "mime_type": "application/json",
-            "schema": CandidateApplicationReview.model_json_schema(),
-        }
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            response_mime_type="application/json",
+            response_schema=CandidateApplicationReview,
+            temperature=0.2,
+        ),
     )
     print("response started")
 
     # Convert Gemini's JSON response into a Python dictionary
-    result = json.loads(response.output_text)
+    result = json.loads(response.text)
     print("converted")
 
     return result

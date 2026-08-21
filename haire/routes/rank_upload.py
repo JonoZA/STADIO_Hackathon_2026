@@ -1,17 +1,17 @@
 import io, time, csv, re
 from flask import Blueprint, request, jsonify
 from services.gemini_service import agent_resume_coverLetter_parser
-# from services.supaDB_service import save_candidate_and_cv
-#from extensions import supabase 
+from services.supaDB_service import save_candidate_and_cv, save_ranked_candidate
+from extensions import supabase 
 
 
-# upload_bp = Blueprint("upload_bp", __name__)
+upload_bp = Blueprint("upload_bp", __name__)
 
-# @upload_bp.route("/apply", methods=["POST"])
-# def handle_application():
-#     cv_file = request.files.get("cv")
-#     if not cv_file:
-#         return jsonify({"error": "No CV file provided"}), 400
+@upload_bp.route("/apply", methods=["POST"])
+def handle_application():
+    cv_file = request.files.get("cv")
+    if not cv_file:
+        return jsonify({"error": "No CV file provided"}), 400
 
     try:
         # 1. Save raw form data and CV file to Supabase
@@ -55,32 +55,6 @@ from services.gemini_service import agent_resume_coverLetter_parser
         return jsonify({"message": "Application submitted successfully", "data": result}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
-
-#     try:
-#         result = save_candidate_and_cv(
-#             form_data=request.form,
-#             file_bytes=cv_file.read()
-#         )
-#         return jsonify({"message": "Application submitted successfully", "data": result}), 201
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500
-
-url="https://qfktrunnikcwulzwnlgi.supabase.co/storage/v1/object/public/cv-uploads/d4c5032c-02ca-4919-856b-fdca3cf81716.pdf"
-cover_letter = """Dear Hiring Manager,
-
-# I am writing to express my interest in the Life Sciences Teacher position at your school. I am passionate about education and science, and I am eager to contribute to a learning environment where students are encouraged to develop their knowledge, curiosity, and critical-thinking skills.
-
-# I believe that effective Life Sciences education should go beyond memorising concepts. Students should be encouraged to understand how biological principles relate to the world around them, from human health and genetics to ecosystems, biodiversity, and environmental challenges. My approach to teaching focuses on making these concepts engaging, accessible, and relevant to students' everyday lives.
-
-# I am committed to creating a positive and inclusive classroom environment where students feel comfortable asking questions, participating in discussions, and developing confidence in their abilities. I understand the importance of adapting teaching methods to accommodate different learning styles and abilities, while maintaining clear expectations and a strong academic standard.
-
-# In addition to delivering quality lessons, I value the importance of building positive relationships with students, colleagues, and parents. I am organised, enthusiastic, and willing to contribute to the broader school community through extracurricular activities and other initiatives.
-
-I would welcome the opportunity to bring my passion for Life Sciences and education to your school. Thank you for considering my application. I look forward to the opportunity to discuss how my skills and enthusiasm could contribute to your school and its students.
-"""
-candidate = agent_resume_coverLetter_parser(url, cover_letter)
 
 
 
