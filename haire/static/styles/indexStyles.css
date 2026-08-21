@@ -29,7 +29,7 @@ html, body {
     overflow-x: hidden;
 }
 
-/* --- RESTORED HERO HAZE SWEEP --- */
+/* --- code for the haze that moves across the screen  --- */
 .hero-haze {
     position: fixed;
     inset: -50%;
@@ -68,7 +68,7 @@ html, body {
     width: 100%;
 }
 
-/* --- PERFECTLY CENTERED TITLE --- */
+/* --- title that is centered and its design --- */
 .title-row {
     width: 100%;
     display: flex;
@@ -93,7 +93,7 @@ html, body {
     animation: fadeUp var(--t-title-fade) ease-out forwards var(--t-hero-slide);
 }
 
-/* --- TOP RIGHT FLOATING BRIEF BUTTON --- */
+/* design for the top right brief button */
 .brief-form {
     position: absolute;
     top: 1.5rem;
