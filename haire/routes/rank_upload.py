@@ -70,8 +70,8 @@ def handle_application():
         job_title = saved_record.get("job_title") or "Grade 10 - 12 Life Science Teacher"
 
         try:
-            algo = theAlgorithm(personal_details, candidate_cv, csv_path, job_title)
-            match_score = algo.perform_the_mega_algorithm_of_doom()
+            algorithm = theAlgorithm(personal_details, candidate_cv, "../haire/static/data/jobRequirements.csv", job_title)()
+            match_score = algorithm.perform_the_mega_algorithm_of_doom()
         except Exception as algo_err:
             print("Algorithm calculation error:", algo_err)
             match_score = 0.0
