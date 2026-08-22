@@ -1,8 +1,4 @@
 import io, csv, re
-from flask import Blueprint, request, jsonify
-from services.gemini_service import agent_resume_coverLetter_parser
-from services.supaDB_service import save_candidate_and_cv, save_ranked_candidate
-from extensions import supabase 
 
 class theAlgorithm():
     def __init__(self, personalDetails, candidateCV, requirementsFP, jobTitle):
