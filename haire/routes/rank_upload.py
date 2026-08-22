@@ -4,6 +4,7 @@ from services.gemini_service import agent_resume_coverLetter_parser
 from services.supaDB_service import upload_cv_file, save_candidate_saved, save_ranked_candidate
 from services.theAlgorithm import theAlgorithm
 from extensions import supabase 
+from pathlib import Path
 
 
 upload_bp = Blueprint("upload_bp", __name__)
@@ -66,11 +67,12 @@ def handle_application():
         }
         
         candidate_cv = ai_output
-        csv_path = "haire/static/data/jobRequirements.csv"
+        BASE_DIR = Path(__file__).resolve().parents[1]
+        csv_path = str(BASE_DIR / "haire/static/data/jobRequirements.csv")
         job_title = saved_record.get("job_title")
 
         try:
-            algorithm = theAlgorithm(personal_details, candidate_cv, csv_path, job_title)()
+            algorithm = theAlgorithm(personal_details, candidate_cv, str(csv_path), job_title)
             match_score = algorithm.perform_the_mega_algorithm_of_doom()
         except Exception as algo_err:
             print("Algorithm calculation error:", algo_err)
