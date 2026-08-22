@@ -347,7 +347,7 @@ a:focus-visible {
 
     justify-content: center;
 
-    align-items: flex-start;
+    align-items: stretch;
 
     gap: 20px;
 
@@ -393,7 +393,7 @@ a:focus-visible {
 
 .second-card {
 
-    width: 280px;
+    width: 350px;
 
     flex-shrink: 0;
 
@@ -714,6 +714,8 @@ a:focus-visible {
 
 
 .applicant-card {
+
+    min-width: 400px;
 
     margin-top: 15px;
 
