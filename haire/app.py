@@ -14,4 +14,4 @@ app.register_blueprint(upload_bp)
 app.register_blueprint(view_bp)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)
