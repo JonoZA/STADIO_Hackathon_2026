@@ -28,6 +28,13 @@ class theAlgorithm():
     ):
         requirements = []
 
+        alias_map = {
+            "intermediate life science teacher": "grade 10 - 12 life science teacher",
+            "life science teacher": "grade 10 - 12 life science teacher",
+            "pub and grill waiter": "a pub and grill waiter",
+            "senior accountant": "a senior accountant"
+        }
+
         with open(
             csv_file,
             "r",
@@ -35,9 +42,22 @@ class theAlgorithm():
         ) as file:
             reader = csv.DictReader(file)
             target_job = str(job_title or "").strip().lower()
+            if target_job in alias_map:
+                target_job = alias_map[target_job]
+
             for row in reader:
                 csv_job = str(row.get("job_title", "")).strip().lower()
-                if csv_job == target_job or (target_job and (target_job in csv_job or csv_job in target_job)):
+                is_match = (
+                    csv_job == target_job
+                    or (target_job and (target_job in csv_job or csv_job in target_job))
+                    or ("life science" in target_job and "life science" in csv_job)
+                    or ("teacher" in target_job and "teacher" in csv_job)
+                    or ("python" in target_job and "python" in csv_job)
+                    or ("waiter" in target_job and "waiter" in csv_job)
+                    or ("accountant" in target_job and "accountant" in csv_job)
+                )
+
+                if is_match:
                     requirement = {
                         "id": row["requirement_id"],
                         "category": row["category"],
