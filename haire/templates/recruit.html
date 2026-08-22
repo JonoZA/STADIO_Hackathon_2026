@@ -234,7 +234,7 @@
 
                             <label class="select-applicant">
                                 <input
-                                    type="checkbox"
+                                    type="radio"
                                     name="application"
                                     value="{{ candidate.id }}"
                                 >
@@ -388,7 +388,36 @@
 
 </footer>
 
+</div>
 
+<!-- APPROVAL CONFIRMATION MODAL -->
+<div id="approval-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button type="button" class="modal-close-btn" id="modal-close-x" aria-label="Close modal">&times;</button>
+
+        <!-- STEP 1: CONFIRMATION -->
+        <div id="modal-step-1" class="modal-step">
+            <h3 id="modal-title" class="modal-heading">Confirm Candidate Approval</h3>
+            <p id="modal-confirm-text" class="modal-body">
+                Are you sure you want to approve the selected candidate?
+            </p>
+            <div class="modal-actions">
+                <button type="button" id="modal-cancel-btn" class="secondary-button">Cancel</button>
+                <button type="button" id="modal-confirm-btn" class="primary-button">Yes, Approve</button>
+            </div>
+        </div>
+
+        <!-- STEP 2: EMAIL EXPLANATION -->
+        <div id="modal-step-2" class="modal-step" style="display: none;">
+            <h3 class="modal-heading" style="color: #4ade80;">Process Explanation</h3>
+            <p class="modal-body" style="line-height: 1.6;">
+                At this point we would send an email to the selected candidates that were approved and automatically send rejection emails to everyone that was not selected.
+            </p>
+            <div class="modal-actions" style="justify-content: flex-end;">
+                <button type="button" id="modal-done-btn" class="primary-button">Got it</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 

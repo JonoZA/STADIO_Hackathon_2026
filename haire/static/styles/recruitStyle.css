@@ -1398,3 +1398,84 @@ a:focus-visible {
     }
 
 }
+
+/* ==========================================
+   APPROVAL CONFIRMATION MODAL
+   ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(4, 19, 11, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-card {
+    background: linear-gradient(135deg, rgba(16, 42, 28, 0.95), rgba(8, 26, 17, 0.98));
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(74, 222, 128, 0.15);
+    border-radius: 16px;
+    padding: 2.2rem;
+    max-width: 480px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.92) translateY(10px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #e2e8f0;
+}
+
+.modal-overlay.active .modal-card {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.modal-close-btn:hover {
+    color: #ffffff;
+}
+
+.modal-heading {
+    margin: 0 0 1rem 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.modal-body {
+    margin: 0 0 1.8rem 0;
+    font-size: 0.98rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
