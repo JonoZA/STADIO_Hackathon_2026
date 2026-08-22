@@ -1,7 +1,7 @@
 import io, time, csv, re
 from flask import Blueprint, request, jsonify
 from services.gemini_service import agent_resume_coverLetter_parser
-from services.supaDB_service import save_candidate_and_cv, save_ranked_candidate
+from services.supaDB_service import upload_cv_file, save_candidate_saved, save_ranked_candidate
 from services.theAlgorithm import theAlgorithm
 from extensions import supabase 
 
@@ -53,11 +53,29 @@ def handle_application():
         saved_id = saved_record["id"]
 
         # ============================================================
-        # ALGORITHM: Mega ranking algorithm placeholder
-        # Pass candidate data into your algorithm function to compute match_score
-        # match_score = mega_algorithm(saved_record)
+        # ALGORITHM: Calculate candidate match_score using theAlgorithm
         # ============================================================
-        match_score = 0.0  # Placeholder until ALGORITHM function is connected
+        personal_details = {
+            "name": saved_record.get("fullName", ""),
+            "surname": "",
+            "gender": saved_record.get("gender", ""),
+            "address": saved_record.get("address", ""),
+            "cell": saved_record.get("cellphone", ""),
+            "email": saved_record.get("email", ""),
+            "nationality": saved_record.get("nationality", ""),
+            "transport": "Own vehicle" if saved_record.get("transport") else "None"
+        }
+        
+        candidate_cv = ai_output
+        csv_path = "haire/static/data/jobRequirements.csv"
+        job_title = saved_record.get("job_title") or "Grade 10 - 12 Life Science Teacher"
+
+        try:
+            algo = theAlgorithm(personal_details, candidate_cv, csv_path, job_title)
+            match_score = algo.perform_the_mega_algorithm_of_doom()
+        except Exception as algo_err:
+            print("Algorithm calculation error:", algo_err)
+            match_score = 0.0
 
         # 6. Prepare data for 'candidates_ranked' table
         ranked_data = {

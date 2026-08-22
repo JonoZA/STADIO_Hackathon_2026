@@ -8,7 +8,7 @@ class theAlgorithm():
     def __init__(self, personalDetails, candidateCV, requirementsFP, jobTitle):
         self.personalDetails = personalDetails
         self.candidateCV = candidateCV
-        self.requirements = requirementsFP
+        self.requirementsFP = requirementsFP
         self.jobTitle = jobTitle
         
 
@@ -147,6 +147,7 @@ class theAlgorithm():
             return 1.00
 
     def calculate_recency(
+        self,
         applicant
     ):
         """ 
