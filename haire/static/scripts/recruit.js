@@ -17,19 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 2. RADIO BUTTON DESELECT / TOGGLE LOGIC
-    const radioButtons = document.querySelectorAll('input[type="radio"][name="application"]');
+    // 2. CHECKBOX SELECTION & CARD HIGHLIGHT LOGIC
+    const checkboxes = document.querySelectorAll('input[name="application"]');
 
-    radioButtons.forEach(radio => {
-        radio.addEventListener("click", function () {
-            if (this.dataset.wasChecked === "true") {
-                this.checked = false;
-                this.dataset.wasChecked = "false";
-            } else {
-                radioButtons.forEach(otherRadio => {
-                    otherRadio.dataset.wasChecked = "false";
-                });
-                this.dataset.wasChecked = "true";
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", function () {
+            const card = this.closest(".applicant-card");
+            if (card) {
+                if (this.checked) {
+                    card.classList.add("selected");
+                } else {
+                    card.classList.remove("selected");
+                }
             }
         });
     });
@@ -38,9 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const clearBtn = document.getElementById("clear-button");
     if (clearBtn) {
         clearBtn.addEventListener("click", function () {
-            radioButtons.forEach(radio => {
-                radio.checked = false;
-                radio.dataset.wasChecked = "false";
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                const card = cb.closest(".applicant-card");
+                if (card) card.classList.remove("selected");
             });
         });
     }
@@ -75,9 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (approveBtn) {
         approveBtn.addEventListener("click", function () {
-            const selected = document.querySelector('input[type="radio"][name="application"]:checked');
-            if (!selected) {
-                alert("Please select a candidate to approve first.");
+            const selected = document.querySelectorAll('input[name="application"]:checked');
+            if (selected.length === 0) {
+                alert("Please select at least one candidate to approve first.");
                 return;
             }
             openModal();
