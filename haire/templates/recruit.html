@@ -217,336 +217,72 @@
             role="group"
             aria-label="Applicants"
         >
+            {% if candidates %}
+                {% for candidate in candidates %}
+                    <article class="applicant-card">
+                        <div class="applicant-header">
+                            <h3 class="applicant-name">
+                                {{ candidate.full_name or "Unknown Candidate" }}
+                            </h3>
 
-            <!-- First applicant -->
+                            <span
+                                class="score"
+                                aria-label="Applicant match score: {{ candidate.match_score|int }} percent"
+                            >
+                                {{ candidate.match_score|round(0)|int }}% Match
+                            </span>
 
-            <article class="applicant-card">
+                            <label class="select-applicant">
+                                <input
+                                    type="checkbox"
+                                    name="application"
+                                    value="{{ candidate.id }}"
+                                >
+                                <span></span>
+                            </label>
+                        </div>
 
-                <div class="applicant-header">
-
-                    <h3 class="applicant-name">
-                        John Doe
-                    </h3>
-
-                    <span
-                        class="score"
-                        aria-label="Applicant match score: 85 percent"
-                    >
-                        85% Match
-                    </span>
-
-                    <label class="select-applicant">
-
-                        <input
-                            type="checkbox"
-                            name="application"
-                            value="john"
+                        <button
+                            class="more-info-button"
+                            type="button"
+                            aria-expanded="false"
+                            aria-label="View more information about {{ candidate.full_name or 'the applicant' }}"
                         >
-
-                        <span>
-                            
-                        </span>
-
-                    </label>
-
-                </div>
-
-
-                <button
-                    class="more-info-button"
-                    type="button"
-                    aria-expanded="false"
-                    aria-label="View more information about John Doe"
-                >
-                    View More Info
-                </button>
-
-
-                <div class="more-information">
-
-                    <div class="description-section">
-
-                        <h4>
-                            Description
-                        </h4>
-
-                        <p>
-                            John is an experienced software developer
-                            with a strong interest in creating reliable
-                            and user-friendly applications.
-                        </p>
-
-                    </div>
-
-
-                    <div class="qualification-section">
-
-                        <h4>
-                            Top Matches
-                        </h4>
-
-                        <ul>
-
-                            <li>Software Engineering</li>
-                            <li>Java</li>
-                            <li>Python</li>
-                            <li>Database Management</li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-            <!-- Second applicant -->
-
-            <article class="applicant-card">
-
-                <div class="applicant-header">
-
-                    <h3 class="applicant-name">
-                        Sarah Smith
-                    </h3>
-
-                    <span
-                        class="score"
-                        aria-label="Applicant match score: 90 percent"
-                    >
-                        90% Match
-                    </span>
-
-                    <label class="select-applicant">
-
-                        <input
-                            type="checkbox"
-                            name="application"
-                            value="sarah"
-                        >
-
-                        <span>
-                            
-                        </span>
-
-                    </label>
-
-                </div>
-
-
-                <button
-                    class="more-info-button"
-                    type="button"
-                    aria-expanded="false"
-                    aria-label="View more information about Sarah Smith"
-                >
-                    View More Info
-                </button>
-
-
-                <div class="more-information">
-
-                    <div class="description-section">
-
-                        <h4>
-                            Description
-                        </h4>
-
-                        <p>
-                            Sarah is a skilled software developer
-                            with experience in designing and developing
-                            modern software applications.
-                        </p>
-
-                    </div>
-
-
-                    <div class="qualification-section">
-
-                        <h4>
-                            Top Matches
-                        </h4>
-
-                        <ul>
-
-                            <li>Software Engineering</li>
-                            <li>Java</li>
-                            <li>Web Development</li>
-                            <li>Database Management</li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-            <!-- Third applicant -->
-
-            <article class="applicant-card">
-
-                <div class="applicant-header">
-
-                    <h3 class="applicant-name">
-                        Jan Doe
-                    </h3>
-
-                    <span
-                        class="score"
-                        aria-label="Applicant match score: 75 percent"
-                    >
-                        75% Match
-                    </span>
-
-                    <label class="select-applicant">
-
-                        <input
-                            type="checkbox"
-                            name="application"
-                            value="jan"
-                        >
-
-                        <span>
-                            
-                        </span>
-
-                    </label>
-
-                </div>
-
-
-                <button
-                    class="more-info-button"
-                    type="button"
-                    aria-expanded="false"
-                    aria-label="View more information about Jan Doe"
-                >
-                    View More Info
-                </button>
-
-
-                <div class="more-information">
-
-                    <div class="description-section">
-
-                        <h4>
-                            Description
-                        </h4>
-
-                        <p>
-                            Jan is a motivated developer with
-                            experience working on software projects
-                            and database systems.
-                        </p>
-
-                    </div>
-
-
-                    <div class="qualification-section">
-
-                        <h4>
-                            Top Matches
-                        </h4>
-
-                        <ul>
-
-                            <li>Software Development</li>
-                            <li>Python</li>
-                            <li>Database Management</li>
-                            <li>System Analysis</li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-            <!-- Fourth applicant -->
-
-            <article class="applicant-card">
-
-                <div class="applicant-header">
-
-                    <h3 class="applicant-name">
-                        Jake Doe
-                    </h3>
-
-                    <span
-                        class="score"
-                        aria-label="Applicant match score: 66 percent"
-                    >
-                        66% Match
-                    </span>
-
-                    <label class="select-applicant">
-
-                        <input
-                            type="checkbox"
-                            name="application"
-                            value="jake"
-                        >
-
-                        <span>
-                        
-                        </span>
-
-                    </label>
-
-                </div>
-
-
-                <button
-                    class="more-info-button"
-                    type="button"
-                    aria-expanded="false"
-                    aria-label="View more information about Jake Doe"
-                >
-                    View More Info
-                </button>
-
-
-                <div class="more-information">
-
-                    <div class="description-section">
-
-                        <h4>
-                            Description
-                        </h4>
-
-                        <p>
-                            Jake is a developing software professional
-                            with experience in programming and
-                            application development.
-                        </p>
-
-                    </div>
-
-
-                    <div class="qualification-section">
-
-                        <h4>
-                            Top Matches
-                        </h4>
-
-                        <ul>
-
-                            <li>Programming</li>
-                            <li>Java</li>
-                            <li>Software Development</li>
-                            <li>Problem Solving</li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
+                            View More Info
+                        </button>
+
+                        <div class="more-information">
+                            <div class="description-section">
+                                <h4>
+                                    Description
+                                </h4>
+
+                                <p>
+                                    {{ candidate.candidate_summary or candidate.professional_summary or "No summary available." }}
+                                </p>
+                            </div>
+
+                            <div class="qualification-section">
+                                <h4>
+                                    Top Matches
+                                </h4>
+
+                                <ul>
+                                    {% if candidate.skill_list %}
+                                        {% for skill in candidate.skill_list %}
+                                            <li>{{ skill }}</li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li>{{ candidate.job_title or "Role Match" }}</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <p class="empty-state">No ranked candidates available yet.</p>
+            {% endif %}
         </div>
 
     </section>
@@ -574,9 +310,9 @@
 
                 <p
                     id="total-applicants"
-                    aria-label="Total applicants: 4"
+                    aria-label="Total applicants: {{ stats.total_applicants }}"
                 >
-                    4
+                    {{ stats.total_applicants }}
                 </p>
 
             </div>
@@ -590,9 +326,9 @@
 
                 <p
                     id="average-score"
-                    aria-label="Average score: 79 percent"
+                    aria-label="Average score: {{ stats.average_score }} percent"
                 >
-                    79%
+                    {{ stats.average_score }}%
                 </p>
 
             </div>
@@ -606,9 +342,9 @@
 
                 <p
                     id="highest-score"
-                    aria-label="Highest score: 90 percent"
+                    aria-label="Highest score: {{ stats.highest_score }} percent"
                 >
-                    90%
+                    {{ stats.highest_score }}%
                 </p>
 
             </div>
@@ -622,9 +358,9 @@
 
                 <p
                     id="lowest-score"
-                    aria-label="Lowest score: 66 percent"
+                    aria-label="Lowest score: {{ stats.lowest_score }} percent"
                 >
-                    66%
+                    {{ stats.lowest_score }}%
                 </p>
 
             </div>

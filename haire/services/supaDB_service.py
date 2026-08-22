@@ -29,13 +29,55 @@ def save_ranked_candidate(ranked_data: dict) -> dict:
 
 def get_all_evaluations(job_title: str = None) -> list:
     """
-    Fetches all ranked candidates from the 'candidates_ranked' table.
-    Optionally filters by job_title if provided.
+    Fetches all ranked candidates from the 'candidates_ranked' table,
+    enriches them with the matching candidate profile from 'candidates_saved',
+    and sorts them from highest match_score to lowest.
     """
-    query = supabase.table("candidates_ranked").select("*")
-    
+    ranked_result = supabase.table("candidates_ranked").select("*").execute()
+    ranked_candidates = ranked_result.data or []
+
+    enriched_candidates = []
+
+    for candidate in ranked_candidates:
+        candidate_id = candidate.get("id")
+        saved_record = {}
+
+        if candidate_id:
+            saved_result = supabase.table("candidates_saved").select("*").eq("id", candidate_id).execute()
+            if saved_result.data:
+                saved_record = saved_result.data[0]
+
+        merged = {**saved_record, **candidate}
+        merged["full_name"] = merged.get("full_name") or "Unknown Candidate"
+
+        match_score = merged.get("match_score")
+        if match_score is None:
+            merged["match_score"] = 0.0
+        else:
+            merged["match_score"] = float(match_score)
+
+        if isinstance(merged.get("skills"), str):
+            merged["skill_list"] = [
+                skill.strip()
+                for skill in merged["skills"].split(",")
+                if skill.strip()
+            ][:4]
+        elif isinstance(merged.get("skills"), list):
+            merged["skill_list"] = merged["skills"][:4]
+        else:
+            merged["skill_list"] = []
+
+        enriched_candidates.append(merged)
+
     if job_title and job_title != "all":
-        query = query.eq("job_title", job_title)
-        
-    result = query.execute()
-    return result.data
+        job_title = str(job_title).strip().lower()
+        enriched_candidates = [
+            candidate for candidate in enriched_candidates
+            if str(candidate.get("job_title", "")).strip().lower() == job_title
+        ]
+
+    return sorted(
+        enriched_candidates,
+        key=lambda candidate: candidate.get("match_score", 0),
+        reverse=True
+    )

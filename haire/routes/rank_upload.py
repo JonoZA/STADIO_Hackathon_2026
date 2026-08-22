@@ -81,6 +81,7 @@ def handle_application():
         # 6. Prepare data for 'candidates_ranked' table
         ranked_data = {
             "id": saved_id,
+            "job_title": saved_record.get("job_title"),
             "professional_summary": ai_output.get("professional_summary"),
             "work_experience": ai_output.get("work_experience"),
             "skills": ai_output.get("skills"),
