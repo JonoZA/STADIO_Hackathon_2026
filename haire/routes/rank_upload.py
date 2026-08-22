@@ -67,7 +67,7 @@ def handle_application():
         
         candidate_cv = ai_output
         csv_path = "haire/static/data/jobRequirements.csv"
-        job_title = saved_record.get("job_title") or "Grade 10 - 12 Life Science Teacher"
+        job_title = saved_record.get("job_title")
 
         try:
             algorithm = theAlgorithm(personal_details, candidate_cv, "../haire/static/data/jobRequirements.csv", job_title)()
