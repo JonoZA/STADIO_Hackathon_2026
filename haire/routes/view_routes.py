@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, jsonify, request
-from services.supaDB_service import get_all_evaluations
+from services.supaDB_service import get_all_evaluations, get_all_job_titles
 
 view_bp = Blueprint("view_bp", __name__)
 
@@ -13,20 +13,22 @@ def apply():
 
 @view_bp.route("/recruit")
 def recruit():
-    job_title = request.args.get("job_title")
-    candidates = get_all_evaluations(job_title)
+    return render_template("recruit.html")
 
-    total = len(candidates)
-    scores = [float(candidate.get("match_score", 0)) for candidate in candidates]
+@view_bp.route("/api/candidates", methods=["GET"])
+def list_candidates():
+    job_title = request.args.get("job_title", "all")
+    sort_by = request.args.get("sort_by", "highest-score")
 
-    stats = {
-        "total_applicants": total,
-        "average_score": round(sum(scores) / total, 1) if total else 0,
-        "highest_score": round(max(scores), 1) if scores else 0,
-        "lowest_score": round(min(scores), 1) if scores else 0,
-    }
-
-    return render_template("recruit.html", candidates=candidates, stats=stats)
+    try:
+        candidates = get_all_evaluations(job_title=job_title, sort_by=sort_by)
+        return jsonify({
+            "success": True,
+            "candidates": candidates,
+            "job_titles": get_all_job_titles()
+        }), 200
+    except Exception as exc:
+        return jsonify({"success": False, "error": str(exc)}), 500
 
 @view_bp.route("/brief")
 def brief():

@@ -102,60 +102,27 @@
         <!-- JOB SELECTION -->
 
         <div class="job-control">
-
             <label for="job-selector">
                 Select Job
             </label>
 
-            <select
-                id="job-selector"
-                name="job"
-            >
-
-                <option value="software-engineer">
-                    Software Engineer
-                </option>
-
-                <option value="data-analyst">
-                    Data Analyst
-                </option>
-
-                <option value="product-manager">
-                    Product Manager
-                </option>
-
+            <select id="job-selector" name="job">
+                <option value="all">All Jobs</option>
             </select>
-
         </div>
 
 
         <!-- FILTER -->
 
         <div class="filter-input">
-
             <label for="filter-input">
-                Filter Applicants
+                Sort Applicants
             </label>
 
-            <select
-                id="filter-input"
-                name="applicant-filter"
-            >
-
-                <option value="all">
-                    All Applicants
-                </option>
-
-                <option value="high-score">
-                    High Score
-                </option>
-
-                <option value="low-score">
-                    Low Score
-                </option>
-
+            <select id="filter-input" name="applicant-filter">
+                <option value="highest-score">Highest Score</option>
+                <option value="alphabetical">Alphabetical</option>
             </select>
-
         </div>
 
 
@@ -167,11 +134,11 @@
         >
 
             <button
-                id="load-all-button"
+                id="refresh-button"
                 type="button"
                 class="secondary-button"
             >
-                Load All
+                Refresh
             </button>
 
             <button
@@ -214,6 +181,7 @@
 
         <div
             class="form-scroll"
+            id="applicant-list"
             role="group"
             aria-label="Applicants"
         >

@@ -1,6 +1,49 @@
 import uuid
 from extensions import supabase
 
+def sort_candidates_for_display(candidates: list, sort_by: str = "highest-score") -> list:
+    """
+    Sort candidates for recruiter display.
+    """
+    records = list(candidates or [])
+    if not records:
+        return records
+
+    sort_by = (sort_by or "highest-score").strip().lower()
+
+    if sort_by == "alphabetical":
+        return sorted(
+            records,
+            key=lambda candidate: (
+                str(candidate.get("full_name") or candidate.get("name") or "").lower(),
+                float(candidate.get("match_score") or 0)
+            )
+        )
+
+    return sorted(
+        records,
+        key=lambda candidate: (
+            float(candidate.get("match_score") or 0),
+            str(candidate.get("full_name") or candidate.get("name") or "").lower()
+        ),
+        reverse=True
+    )
+
+
+def get_all_job_titles() -> list:
+    """
+    Return a unique list of job titles from candidates_ranked.
+    """
+    result = supabase.table("candidates_ranked").select("job_title").execute()
+    titles = []
+    for row in result.data or []:
+        title = (row.get("job_title") or "").strip()
+        if title and title not in titles:
+            titles.append(title)
+
+    return sorted(titles)
+
+
 def upload_cv_file(file_bytes: bytes) -> str:
     """
     Uploads a CV PDF to the 'cv-uploads' Supabase bucket and returns its public URL.
@@ -13,12 +56,14 @@ def upload_cv_file(file_bytes: bytes) -> str:
     )
     return supabase.storage.from_("cv-uploads").get_public_url(filename)
 
+
 def save_candidate_saved(saved_data: dict) -> dict:
     """
     Saves candidate form data + AI parsed CV details to the 'candidates_saved' table.
     """
     insert_res = supabase.table("candidates_saved").insert(saved_data).execute()
     return insert_res.data[0]
+
 
 def save_ranked_candidate(ranked_data: dict) -> dict:
     """
@@ -27,11 +72,10 @@ def save_ranked_candidate(ranked_data: dict) -> dict:
     insert_res = supabase.table("candidates_ranked").insert(ranked_data).execute()
     return insert_res.data[0]
 
-def get_all_evaluations(job_title: str = None) -> list:
+
+def get_all_evaluations(job_title: str = None, sort_by: str = "highest-score") -> list:
     """
-    Fetches all ranked candidates from the 'candidates_ranked' table,
-    enriches them with the matching candidate profile from 'candidates_saved',
-    and sorts them from highest match_score to lowest.
+    Fetch all ranked candidates, merge in saved profile data, and sort for display.
     """
     ranked_result = supabase.table("candidates_ranked").select("*").execute()
     ranked_candidates = ranked_result.data or []
@@ -49,35 +93,28 @@ def get_all_evaluations(job_title: str = None) -> list:
 
         merged = {**saved_record, **candidate}
         merged["full_name"] = merged.get("full_name") or "Unknown Candidate"
+        merged["match_score"] = float(merged.get("match_score") or 0)
 
-        match_score = merged.get("match_score")
-        if match_score is None:
-            merged["match_score"] = 0.0
-        else:
-            merged["match_score"] = float(match_score)
-
-        if isinstance(merged.get("skills"), str):
+        raw_skills = merged.get("skills")
+        if isinstance(raw_skills, list):
+            merged["skill_list"] = raw_skills[:4]
+        elif isinstance(raw_skills, str):
             merged["skill_list"] = [
                 skill.strip()
-                for skill in merged["skills"].split(",")
+                for skill in raw_skills.split(",")
                 if skill.strip()
             ][:4]
-        elif isinstance(merged.get("skills"), list):
-            merged["skill_list"] = merged["skills"][:4]
         else:
             merged["skill_list"] = []
 
         enriched_candidates.append(merged)
 
     if job_title and job_title != "all":
-        job_title = str(job_title).strip().lower()
+        target_job = str(job_title).strip().lower()
         enriched_candidates = [
-            candidate for candidate in enriched_candidates
-            if str(candidate.get("job_title", "")).strip().lower() == job_title
+            candidate
+            for candidate in enriched_candidates
+            if str(candidate.get("job_title", "")).strip().lower() == target_job
         ]
 
-    return sorted(
-        enriched_candidates,
-        key=lambda candidate: candidate.get("match_score", 0),
-        reverse=True
-    )
+    return sort_candidates_for_display(enriched_candidates, sort_by)
