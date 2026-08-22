@@ -13,7 +13,28 @@ def apply():
 
 @view_bp.route("/recruit")
 def recruit():
-    return render_template("recruit.html")
+    try:
+        candidates = get_all_evaluations()
+        scores = [float(candidate.get("match_score") or 0) for candidate in candidates]
+        total = len(candidates)
+        avg = sum(scores) / total if total else 0
+        highest = max(scores) if total else 0
+        lowest = min(scores) if total else 0
+        stats = {
+            "total_applicants": total,
+            "average_score": round(avg),
+            "highest_score": round(highest),
+            "lowest_score": round(lowest),
+        }
+    except Exception:
+        candidates = []
+        stats = {
+            "total_applicants": 0,
+            "average_score": 0,
+            "highest_score": 0,
+            "lowest_score": 0,
+        }
+    return render_template("recruit.html", candidates=candidates, stats=stats)
 
 @view_bp.route("/api/candidates", methods=["GET"])
 def list_candidates():

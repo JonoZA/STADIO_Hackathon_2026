@@ -278,9 +278,9 @@
 
                 <p
                     id="total-applicants"
-                    aria-label="Total applicants: {{ stats.total_applicants }}"
+                    aria-label="Total applicants: {{ stats.total_applicants if stats else 0 }}"
                 >
-                    {{ stats.total_applicants }}
+                    {{ stats.total_applicants if stats else 0 }}
                 </p>
 
             </div>
@@ -294,9 +294,9 @@
 
                 <p
                     id="average-score"
-                    aria-label="Average score: {{ stats.average_score }} percent"
+                    aria-label="Average score: {{ stats.average_score if stats else 0 }} percent"
                 >
-                    {{ stats.average_score }}%
+                    {{ stats.average_score if stats else 0 }}%
                 </p>
 
             </div>
@@ -310,9 +310,9 @@
 
                 <p
                     id="highest-score"
-                    aria-label="Highest score: {{ stats.highest_score }} percent"
+                    aria-label="Highest score: {{ stats.highest_score if stats else 0 }} percent"
                 >
-                    {{ stats.highest_score }}%
+                    {{ stats.highest_score if stats else 0 }}%
                 </p>
 
             </div>
@@ -326,9 +326,9 @@
 
                 <p
                     id="lowest-score"
-                    aria-label="Lowest score: {{ stats.lowest_score }} percent"
+                    aria-label="Lowest score: {{ stats.lowest_score if stats else 0 }} percent"
                 >
-                    {{ stats.lowest_score }}%
+                    {{ stats.lowest_score if stats else 0 }}%
                 </p>
 
             </div>
