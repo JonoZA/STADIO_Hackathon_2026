@@ -1262,3 +1262,309 @@ footer small {
         transform: rotate(360deg);
     }
 }
+
+/* =========================================================
+   APPLICATION LOADING SCREEN
+   ========================================================= */
+
+.application-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(16, 185, 129, 0.12),
+            transparent 45%
+        ),
+        #04130b;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+}
+
+
+/* Loader becomes visible */
+
+.application-loader.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Content */
+
+.loader-content {
+    width: min(90%, 480px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    animation: loaderContentIn 0.8s ease-out forwards;
+}
+
+
+/* hAIre Logo */
+
+.loader-logo {
+    margin-bottom: 2.5rem;
+
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+
+    color: var(--accent-green);
+
+    text-shadow:
+        0 0 20px rgba(16, 185, 129, 0.5),
+        0 0 40px rgba(16, 185, 129, 0.2);
+
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+
+/* Animated spinner */
+
+.loader-spinner {
+    position: relative;
+
+    width: 90px;
+    height: 90px;
+
+    margin-bottom: 2rem;
+}
+
+
+/* Spinner rings */
+
+.loader-spinner span {
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    border: 3px solid transparent;
+    border-top-color: var(--accent-green);
+
+    animation: loaderSpin 1.4s linear infinite;
+}
+
+
+/* Second ring */
+
+.loader-spinner span:nth-child(2) {
+    inset: 10px;
+
+    border-top-color: var(--gold-primary);
+
+    animation-duration: 1.1s;
+    animation-direction: reverse;
+}
+
+
+/* Third ring */
+
+.loader-spinner span:nth-child(3) {
+    inset: 20px;
+
+    border-top-color: #34d399;
+
+    animation-duration: 0.8s;
+}
+
+
+/* Loading heading */
+
+.loader-content h2 {
+    margin: 0 0 0.75rem;
+
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+
+    color: white;
+
+    animation: textFade 1.5s ease-in-out infinite alternate;
+}
+
+
+/* Loading text */
+
+.loader-content p {
+    margin: 0 0 2rem;
+
+    max-width: 400px;
+
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    color: var(--text-muted);
+}
+
+
+/* Progress bar */
+
+.loader-progress {
+    width: min(100%, 320px);
+    height: 4px;
+
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    border-radius: 999px;
+}
+
+
+/* Moving progress */
+
+.loader-progress-bar {
+    width: 40%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-green),
+        var(--gold-primary),
+        transparent
+    );
+
+    animation: progressMove 1.5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   LOADER ANIMATIONS
+   ========================================================= */
+
+@keyframes loaderSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+@keyframes progressMove {
+
+    0% {
+        transform: translateX(-150%);
+    }
+
+    100% {
+        transform: translateX(350%);
+    }
+
+}
+
+
+@keyframes logoPulse {
+
+    0%,
+    100% {
+        opacity: 0.75;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+}
+
+
+@keyframes textFade {
+
+    from {
+        opacity: 0.65;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes loaderContentIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   PAGE EXIT ANIMATION
+   ========================================================= */
+
+.page-wrapper.submitting {
+    animation: pageExit 0.6s ease forwards;
+}
+
+
+@keyframes pageExit {
+
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+
+}
+
+
+/* Prevent interaction while submitting */
+
+body.is-submitting {
+    overflow: hidden;
+}
+
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .loader-spinner span,
+    .loader-progress-bar,
+    .loader-logo,
+    .loader-content h2 {
+        animation: none;
+    }
+
+}

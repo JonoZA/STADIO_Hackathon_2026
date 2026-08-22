@@ -1,64 +1,204 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const cards = document.querySelectorAll('.card');
-  const main = document.querySelector('.mainListings');
-  const stageEnd = document.getElementById('stage-end');
-  let stageEnded = false;
 
-  cards.forEach((card) => {
-    const header = card.querySelector('.card-header');
-    const form = card.querySelector('form');
+    const cards = document.querySelectorAll('.card');
+    const pageWrapper = document.querySelector('.page-wrapper');
+    const loader = document.getElementById('application-loader');
 
-    if (header) {
-      header.addEventListener('click', () => {
-        if (stageEnded) return;
-        card.classList.toggle('expanded');
-      });
-    }
+    let stageEnded = false;
+    let submitting = false;
 
-    if (form) {
-      form.addEventListener('click', (e) => e.stopPropagation());
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (stageEnded) return;
-        
-        const submitBtn = form.querySelector('.submit-btn');
-        const originalText = submitBtn.textContent;
+    cards.forEach((card) => {
 
-        // Show loading spinner
-        submitBtn.innerHTML = '<span class="loading-spinner"></span> Submitting...';
-        submitBtn.disabled = true;
+        const header = card.querySelector('.card-header');
+        const form = card.querySelector('form');
 
-        try {
-          const formData = new FormData(form);
-          const jobTitle = card.querySelector('.card-header h2').innerText;
-          formData.append('job_title', jobTitle);
 
-          const response = await fetch('/apply', {
-            method: 'POST',
-            body: formData
-          });
+        /* ==========================================
+           CARD EXPANSION
+           ========================================== */
 
-          const result = await response.json();
+        if (header) {
 
-          if (response.ok) {
-            window.location.href = '/success';
-          } else {
-            alert('Error: ' + (result.error || 'Failed to submit'));
-            
-            // Restore button if submission failed
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-          }
-        } catch (error) {
-          console.error('Submission error:', error);
-          alert('An error occurred while submitting.');
+            header.addEventListener('click', () => {
 
-          // Restore button if an error occurred
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
+                if (stageEnded || submitting) return;
+
+                card.classList.toggle('expanded');
+
+            });
+
         }
-      });
-    }
-  });
-})
+
+
+        /* ==========================================
+           FORM
+           ========================================== */
+
+        if (form) {
+
+            form.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+
+
+            form.addEventListener('submit', async (e) => {
+
+                e.preventDefault();
+
+
+                /* Prevent double submission */
+
+                if (stageEnded || submitting) return;
+
+                submitting = true;
+
+
+                /* ==========================================
+                   GET ELEMENTS
+                   ========================================== */
+
+                const submitBtn = form.querySelector('.submit-btn');
+
+                const originalText = submitBtn.innerHTML;
+
+
+                /* ==========================================
+                   DISABLE BUTTON
+                   ========================================== */
+
+                submitBtn.disabled = true;
+
+                submitBtn.innerHTML = 'Submitting...';
+
+
+                /* ==========================================
+                   PREPARE FORM DATA
+                   ========================================== */
+
+                const formData = new FormData(form);
+
+                const jobTitle =
+                    card.querySelector('.card-header h2').innerText;
+
+                formData.append('job_title', jobTitle);
+
+
+                /* ==========================================
+                   START PAGE EXIT ANIMATION
+                   ========================================== */
+
+                document.body.classList.add('is-submitting');
+
+                pageWrapper.classList.add('submitting');
+
+
+                /*
+                 * Give the page a moment to fade away
+                 * before showing the loader.
+                 */
+
+                await new Promise(resolve => {
+                    setTimeout(resolve, 500);
+                });
+
+
+                /* ==========================================
+                   SHOW LOADING SCREEN
+                   ========================================== */
+
+                loader.classList.add('active');
+
+
+                try {
+
+                    /* ==========================================
+                       SUBMIT APPLICATION
+                       ========================================== */
+
+                    const response = await fetch('/apply', {
+
+                        method: 'POST',
+
+                        body: formData
+
+                    });
+
+
+                    const result = await response.json();
+
+
+                    /* ==========================================
+                       SUCCESS
+                       ========================================== */
+
+                    if (response.ok) {
+
+                        /*
+                         * Small delay allows the loading
+                         * animation to be seen before
+                         * redirecting.
+                         */
+
+                        await new Promise(resolve => {
+                            setTimeout(resolve, 1800);
+                        });
+
+
+                        window.location.href = '/success';
+
+                        return;
+
+                    }
+
+
+                    /* ==========================================
+                       SERVER ERROR
+                       ========================================== */
+
+                    throw new Error(
+                        result.error || 'Failed to submit application'
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        'Submission error:',
+                        error
+                    );
+
+
+                    /* Hide loader */
+
+                    loader.classList.remove('active');
+
+                    pageWrapper.classList.remove('submitting');
+
+                    document.body.classList.remove('is-submitting');
+
+
+                    /* Restore button */
+
+                    submitBtn.innerHTML = originalText;
+
+                    submitBtn.disabled = false;
+
+
+                    submitting = false;
+
+
+                    alert(
+                        error.message ||
+                        'An error occurred while submitting your application.'
+                    );
+
+                }
+
+            });
+
+        }
+
+    });
+
+});
