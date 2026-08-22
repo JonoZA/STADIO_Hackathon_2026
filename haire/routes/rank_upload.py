@@ -27,13 +27,13 @@ def handle_application():
         
         # 4. Prepare full data for 'candidates_saved' table
         saved_data = {
-            "fullName": request.form.get("fullName"),
+            "full_name": request.form.get("fullName"),
             "cellphone": request.form.get("cellphone"),
             "email": request.form.get("email"),
             "gender": request.form.get("gender"),
             "nationality": request.form.get("nationality"),
             "cv_file_url": cv_file_url,
-            "marStatus": request.form.get("marStatus"),
+            "mar_status": request.form.get("marStatus"),
             "job_title": request.form.get("job_title"),
             "transport": request.form.get("transport") == "true" or request.form.get("transport") == "on",
             "address": request.form.get("address"),
@@ -56,8 +56,7 @@ def handle_application():
         # ALGORITHM: Calculate candidate match_score using theAlgorithm
         # ============================================================
         personal_details = {
-            "name": saved_record.get("fullName", ""),
-            "surname": "",
+            "full_name": saved_record.get("full_name", ""),
             "gender": saved_record.get("gender", ""),
             "address": saved_record.get("address", ""),
             "cell": saved_record.get("cellphone", ""),
