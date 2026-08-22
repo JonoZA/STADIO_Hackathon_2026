@@ -25,10 +25,10 @@ Job Requirements
         ↓
   Match Score / 100
 
-### Installation guide ###
+## Installation guide 
 Close the repo
 pip install requirements.txt
 python app.py
 
-## URL ##
+## URL 
 Alternatively, access HAire via our URL: www.haire.co.za
