@@ -33,6 +33,7 @@ class theAlgorithm():
             "r",
             encoding="utf-8"
         ) as file:
+            reader = csv.DictReader(file)
             target_job = str(job_title or "").strip().lower()
             for row in reader:
                 csv_job = str(row.get("job_title", "")).strip().lower()
