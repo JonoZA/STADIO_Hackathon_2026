@@ -393,7 +393,7 @@ a:focus-visible {
 
 .second-card {
 
-    width: 340px;
+    width: 280px;
 
     flex-shrink: 0;
 
@@ -717,8 +717,6 @@ a:focus-visible {
 
     margin-top: 15px;
 
-    width:45%;
-
     padding: 20px;
 
     background: rgba(255, 255, 255, 0.97);
@@ -1022,7 +1020,7 @@ a:focus-visible {
 
 .statistics-card {
 
-    width: 340px;
+    width: 280px;
 
     flex-shrink: 0;
 
