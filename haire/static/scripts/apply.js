@@ -24,7 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
         
         const submitBtn = form.querySelector('.submit-btn');
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Submitting...';
+
+        // Show loading spinner
+        submitBtn.innerHTML = '<span class="loading-spinner"></span> Submitting...';
         submitBtn.disabled = true;
 
         try {
@@ -43,15 +45,20 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = '/success';
           } else {
             alert('Error: ' + (result.error || 'Failed to submit'));
+            
+            // Restore button if submission failed
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
           }
         } catch (error) {
           console.error('Submission error:', error);
           alert('An error occurred while submitting.');
-        } finally {
-          submitBtn.textContent = originalText;
+
+          // Restore button if an error occurred
+          submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
         }
       });
     }
   });
-});
+})
