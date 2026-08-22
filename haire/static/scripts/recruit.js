@@ -6,7 +6,15 @@ infoButtons.forEach(button => {
 
         const information = this.nextElementSibling;
 
-        information.classList.toggle("show");
+        const isShown = information.classList.toggle("show");
+
+        if (isShown) {
+            this.textContent = "View Less Info";
+            this.setAttribute("aria-expanded", "true");
+        } else {
+            this.textContent = "View More Info";
+            this.setAttribute("aria-expanded", "false");
+        }
 
     });
 
