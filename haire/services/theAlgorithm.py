@@ -33,9 +33,10 @@ class theAlgorithm():
             "r",
             encoding="utf-8"
         ) as file:
-            reader = csv.DictReader(file)
+            target_job = str(job_title or "").strip().lower()
             for row in reader:
-                if row["job_title"] == job_title:
+                csv_job = str(row.get("job_title", "")).strip().lower()
+                if csv_job == target_job or (target_job and (target_job in csv_job or csv_job in target_job)):
                     requirement = {
                         "id": row["requirement_id"],
                         "category": row["category"],
